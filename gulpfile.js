@@ -1,24 +1,21 @@
 const Gulp = require('gulp');
 const execSync = require('child_process').execSync;
-const { src, dest } = require('gulp');
-const replace = require('gulp-replace')
 
-function replaceType(cb) {    
-    src(['dist/frontend-admin/index.html'])
-        .pipe(replace('type="module"', 'type="text/javascript"'))
-        .pipe(dest('dist/frontend-admin/'));
-    cb();
-};
+// function replaceType(cb) {    
+//     src(['dist/frontend-admin/index.html'])
+//         .pipe(replace('type="module"', 'type="text/javascript"'))
+//         .pipe(dest('dist/frontend-admin/'));
+//     cb();
+// };
 
 
-function build(generateStats = false, optimize = false, prod = true, stage = false, china = false) {
+function build(generateStats = false, optimize = false, prod = true, stage = false) {
   execSync(
     `ng build` +
-    (prod ? ' --prod' : '') +
+    (prod ? ' --configuration "production"' : '') +
     (generateStats ? ' --statsJson' : '') +
-    (optimize ? ' --buildOptimizer' : '') +
+    (optimize ? ' --build-optimizer' : '') +
     (stage ? ' --configuration=stage' : ''),
-    (china ? ' --configuration=china' : ''),
     {stdio: 'inherit'}
   )
 }
@@ -54,11 +51,7 @@ Gulp.task('build', (callback) => {
 });
 
 Gulp.task('build:production', (callback) => {
-  callback(build(false, true), replaceType(callback));
-});
-
-Gulp.task('build:china', (callback) => {
-  callback(build(false, true, true, false, true), replaceType(callback));
+  callback(build(false, true));
 });
 
 Gulp.task('build:opt', (callback) => {

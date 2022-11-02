@@ -1,0 +1,7 @@
+{
+  "/api/gateway/**": {
+    "target": "https://prod-domain.com/",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "/api/gateway/**": {
+    "target": "https://test-domain.com/",
+    "secure": false,
+    "changeOrigin": true
+  }
+}
