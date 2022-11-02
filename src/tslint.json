@@ -1,0 +1,85 @@
+{
+  "extends": "../tslint.json",
+  "rules": {
+    "ordered-imports": [
+      true,
+      {
+        "grouped-imports": true
+      }
+    ],
+    "member-access": true,
+    "typedef": [
+      true,
+      "call-signature"
+    ],
+    "no-debugger": true,
+    "no-console": true,
+    "no-angle-bracket-type-assertion": false,
+    "max-line-length": [
+      false,
+      140
+    ],
+    "ter-arrow-parens": [
+      true,
+      "as-needed"
+    ],
+    "member-ordering": [
+      true,
+      {
+        "alphabetize": false,
+        "order": "statics-first"
+      }
+    ],
+    "no-increment-decrement": false,
+    "banana-in-box": true,
+    "contextual-life-cycle": true,
+    "decorator-not-allowed": true,
+    "pipe-impure": true,
+    "templates-no-negated-async": true,
+    "no-conflicting-life-cycle-hooks": true,
+    "no-input-rename": true,
+    "no-life-cycle-call": false,
+    "no-output-named-after-standard-event": true,
+    "no-output-on-prefix": true,
+    "no-output-rename": true,
+    "no-unused-css": true,
+    "trackBy-function": false,
+    "use-life-cycle-interface": true,
+    "use-pipe-decorator": true,
+    "angular-whitespace": [
+      true,
+      "check-interpolation",
+      "check-semicolon"
+    ],
+    "component-class-suffix": true,
+    "directive-class-suffix": true,
+    "enforce-component-selector": false,
+    "import-destructuring-spacing": true,
+    "no-queries-parameter": true,
+    "use-host-property-decorator": true,
+    "use-input-property-decorator": true,
+    "use-output-property-decorator": true,
+    "space-before-function-paren": [
+      true,
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always",
+        "method": "never",
+        "constructor": "never"
+      }
+    ],
+    "directive-selector": [
+      true,
+      "attribute",
+      "cq",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "cq",
+      "kebab-case"
+    ]
+  }
+}

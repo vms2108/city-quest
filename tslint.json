@@ -1,0 +1,13 @@
+{
+  "rules": {
+    "deprecation": {
+      "severity": "warning"
+    }
+  },
+  "rulesDirectory": [
+    "node_modules/codelyzer"
+  ],
+  "extends": [
+    "tslint-config-airbnb"
+  ]
+}
