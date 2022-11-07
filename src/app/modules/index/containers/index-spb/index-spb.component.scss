@@ -1,0 +1,35 @@
+@import 'src/app/modules/index/common/styles/main-city.scss';
+
+.spb {
+  border: 5px solid #FFFEAE;
+
+  .city__description-list-item:before {
+    background-color: #FFD809;
+  }
+
+  .city__btn {
+    &-right {
+      background: linear-gradient(270deg, #FFFEAE 0%, #FFFFFF 100%);
+    }
+
+    &-left {
+      background: linear-gradient(270deg, #FFFFFF 0%, #FFFEAE 100%);
+    }
+  }
+
+  .city__description-list-item {
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 13px;
+      top: 10px;
+      width: 8px;
+      height: 16px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  }
+}

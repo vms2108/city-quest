@@ -1,0 +1,60 @@
+<div #krsk class="city__item krsk">
+  <div class="city__image mobile">
+    <img src="assets/images/index-krsk.jpg" height="300" alt="Krsk" loading="lazy">
+    <a class="btn" routerLink="/krsk">
+      Гулять
+    </a>
+  </div>
+  
+  <div class="city__description">
+    <div class="city__description-title">
+      Красноярск
+    </div>
+    <div class="city__description-text">
+      Зимой гуляется с дымком и в тумане
+    </div>
+    <div class="city__description-list">
+      <div class="city__description-list-item" [class.opened]="openedItem === '1'" (click)="changeOpenedItem('1')">
+        <div class="city__description-list-item-title">
+          Памятники
+        </div>
+        <svg class="plus" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1448 12.8961L11.1448 18.9711L12.8591 18.9711L12.8591 12.8961L18.9341 12.8961L18.9341 11.1818L12.8591 11.1818L12.8591 4.99972L11.1448 4.99972L11.1448 11.1818L4.96271 11.1818L4.96271 12.8961L11.1448 12.8961Z" fill="white"/>
+        </svg>
+        <svg class="minus" width="15" height="2" viewBox="0 0 15 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M7.14365 1.89604L8.85794 1.89604L14.933 1.89604L14.933 0.181758L8.85794 0.181759L8.8591 0.181824H7.14481L7.14365 0.181759L0.961551 0.181759L0.961552 1.89604L7.14365 1.89604Z" fill="white"/>
+        </svg>
+        <ul>
+          <li>Есть памятник пьяному человеку</li>
+          <li>Нет памятника трезвому человеку</li>
+          <li>Есть памятник Ленина</li>
+        </ul>
+      </div>
+      <div class="city__description-list-item" [class.opened]="openedItem === '2'" (click)="changeOpenedItem('2')">
+        <div class="city__description-list-item-title">
+          Достопримечательности
+        </div>
+        <svg class="plus" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1448 12.8961L11.1448 18.9711L12.8591 18.9711L12.8591 12.8961L18.9341 12.8961L18.9341 11.1818L12.8591 11.1818L12.8591 4.99972L11.1448 4.99972L11.1448 11.1818L4.96271 11.1818L4.96271 12.8961L11.1448 12.8961Z" fill="white"/>
+        </svg>
+        <svg class="minus" width="15" height="2" viewBox="0 0 15 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M7.14365 1.89604L8.85794 1.89604L14.933 1.89604L14.933 0.181758L8.85794 0.181759L8.8591 0.181824H7.14481L7.14365 0.181759L0.961551 0.181759L0.961552 1.89604L7.14365 1.89604Z" fill="white"/>
+        </svg>
+        <ul>
+          <li>Столбы</li>
+          <li>Не фонарные</li>
+          <li>Столбы - это заповедник</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="city__right">
+    <div class="city__image desktop">
+      <img src="assets/images/index-krsk.jpg" height="300" alt="Krsk" loading="lazy">
+      <a class="btn" routerLink="/krsk">
+        Гулять
+      </a>
+    </div>
+    
+  </div>
+</div>

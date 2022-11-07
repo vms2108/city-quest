@@ -1,0 +1,58 @@
+.btn {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 64px;
+  margin-top: 48px;
+  border: 1px solid #D40035;
+  box-sizing: border-box;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  background: #D40035;
+  color: #fff;
+  transition: color 0.3s, background-color 0.3s;
+  
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    background: #fff;
+    color: #D40035;
+
+    & .btn-arrow path {
+      fill: #D40035;
+    }
+  }
+
+  &--long {
+    font-size: 16px;
+  }
+
+  &__text {
+    margin-right: 12px;
+  }
+}
+
+.btn-arrow {
+  margin-top: 5px;
+  display: block;
+  path {
+    transition: fill 0.3s;
+    fill: #fff;
+  }
+}
+
+@media only screen and (min-width: 640px)  {
+  .btn {
+    width: 320px;
+    margin: 0 auto;
+    margin-top: 48px;
+
+    &--long {
+      font-size: 24px;
+      width: 420px;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+<div class="course">
+  <div class="picture">
+    <img [src]="quest.pictureLink" alt="">
+  </div>
+  <p class="subject">
+    Прогулка
+  </p>
+  <h2 class="title">
+    {{ quest.name }}
+  </h2>
+
+  <div class="info">
+    <div class="incomplete">
+      <div class="complete" [style.width.%]="getWidth()"></div>
+    </div>
+    <div class="text">
+      {{ quest.text }}
+    </div>
+  </div>
+
+  <button class="btn" (click)="goToQuest.emit()">
+    Перейти к квесту
+  </button>
+  
+</div>

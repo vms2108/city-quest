@@ -1,0 +1,55 @@
+@import 'src/app/ui/styles/main-wrapper.scss';
+
+.footer {
+  box-sizing: border-box;
+  background: linear-gradient(180deg, #FFF9F9 0%, rgba(255, 255, 255, 0.1) 100%),
+  linear-gradient(90deg, #FFECF7 9.27%, #FEF1DD 59.43%, #FFEAEA 98.94%);
+  color: #2B2E3F;
+  padding: 32px 20px;
+
+  &__line {
+    margin: 0;
+    margin-bottom: 32px;
+    border: 0;
+    border-bottom: 1px solid #2B2E3F;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+  }
+
+  &__link {
+    display: block;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 20px;
+    line-height: 24px;
+    text-decoration-line: underline;
+    color: #2B2E3F;
+
+    cursor: pointer;
+
+    &:hover {
+      text-decoration-line: none;
+    }
+  }
+}
+
+@media only screen and (min-width: 720px) {
+  .footer {
+    &__top,
+    &__center,
+    &__bottom {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .footer {
+    padding-top: 40px;
+  }
+}

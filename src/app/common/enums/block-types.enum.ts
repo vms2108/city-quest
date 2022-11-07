@@ -1,0 +1,7 @@
+export enum BlockTypesEnum {
+  TEXT = 'TEXT',
+  FACT = 'FACT',
+  PICTURE = 'PICTURE',
+  QUESTION = 'QUESTION',
+  QUESTION_IN_VERSE = 'QUESTION_IN_VERSE',
+}

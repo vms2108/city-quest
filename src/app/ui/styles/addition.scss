@@ -1,0 +1,126 @@
+.addition {
+  padding-top: 90px;
+  padding-bottom: 90px;
+
+  &__title {
+    margin-top: 30px;
+  }
+
+  &__text {
+    margin-bottom: 20px;
+    font-family: Lato;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #2B2E3F;
+
+    &.bold {
+      font-weight: bold;
+    }
+
+    &--short {
+      max-width: 900px;
+    }
+  }
+
+  &__list li,
+  &__list ol {
+    display: block;
+    position: relative;
+    margin-bottom: 20px;
+    padding-left: 36px;
+    font-family: Lato;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    align-items: center;
+    color: #2B2E3F;
+  }
+
+  &__list li {
+    &::after {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 7px;
+      width: 7px;
+      height: 15px;
+      border: solid #26357A;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: -5px;
+      top: 3px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #F5F8FF;
+    }
+  }
+
+  &__list ol {
+    padding-left: 16px;
+    margin-left: 20px;
+    display: list-item;
+    list-style-type: numeric;
+    list-style-position: outside;
+  }
+
+  &__subtitle {
+    margin-top: 60px;
+    margin-bottom: 24px;
+    font-family: Merriweather;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 40px;
+    color: #2B2E3F;
+  }
+
+  & a {
+    color: #000;
+  }
+}
+
+@media only screen and (min-width: 1024px)  {
+  .addition {
+    padding-top: 120px;
+
+    &__text {
+      margin-bottom: 24px;
+      margin-left: 108px;
+      font-size: 24px;
+      line-height: 32px;
+    }
+
+    &__subtitle {
+      font-size: 32px;
+      line-height: 40px;
+      margin-bottom: 35px;
+      margin-top: 85px;
+      margin-left: 108px;
+    }
+
+    &__list {
+      padding-left: 105px;
+    }
+
+    &__list li,
+    &__list ol {
+      font-size: 24px;
+      line-height: 32px;
+
+      & .addition__text {
+        margin-left: 0;
+      }
+    }
+
+    &__svg {
+      width: 76px;
+      height: 76px;
+    }
+  }
+}

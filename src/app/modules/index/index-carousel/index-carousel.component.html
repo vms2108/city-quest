@@ -1,0 +1,80 @@
+<div id="city">
+  <div class="wrapper">
+    <div class="flex">
+      <h2 class="city__title">
+        Пойдём бродить
+      </h2>
+    </div>
+    <p class="city__text">
+      Лучшие города для брожения
+    </p>
+  </div>
+  <div class="mobile" (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
+    <ng-container [ngSwitch]="selectedElement">
+          <ng-container *ngSwitchCase="'msk'">
+            <cq-index-msk></cq-index-msk>
+          </ng-container>
+          <ng-container *ngSwitchCase="'spb'">
+            <cq-index-spb></cq-index-spb>
+          </ng-container>
+          <ng-container *ngSwitchCase="'krsk'">
+            <cq-index-krsk></cq-index-krsk>
+          </ng-container>
+          <ng-container *ngSwitchCase="'ekb'">
+            <cq-index-ekb></cq-index-ekb>
+          </ng-container>
+          
+          <ng-container *ngSwitchDefault>
+            {{ elem }}
+          </ng-container>
+        </ng-container>
+    <div class="dots">
+      <div
+        *ngFor="let elem of initialElements"
+        class="dot"
+        [class.dot--selected]="elem === selectedElement"
+        (click)="selectElement(elem)"
+      ></div>
+    </div>
+  </div>
+  <div class="container" [ngStyle]="{ 'width.px': containerWidth}" (touchstart)="swipe($event, 'start', true)" (touchend)="swipe($event, 'end', true)">
+    <div class="items" [ngStyle]="{'left.px': leftValue, 'width.px': itemsWidth}" [class.items--moving]="waiting">
+      <div *ngFor="let elem of elements; index as i" class="item" [ngStyle]="{'width.px': elementWidth}" >
+        <ng-container [ngSwitch]="elem">
+          <ng-container *ngSwitchCase="'msk'">
+            <cq-index-msk></cq-index-msk>
+          </ng-container>
+          <ng-container *ngSwitchCase="'spb'">
+            <cq-index-spb></cq-index-spb>
+          </ng-container>
+          <ng-container *ngSwitchCase="'krsk'">
+            <cq-index-krsk></cq-index-krsk>
+          </ng-container>
+          <ng-container *ngSwitchCase="'ekb'">
+            <cq-index-ekb></cq-index-ekb>
+          </ng-container>
+          
+          <ng-container *ngSwitchDefault>
+            {{ elem }}
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+    <div class="left">
+      <button class="prev" (click)="prev()">
+        <svg width="56" height="48" viewBox="0 0 56 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="rect" x="-1" y="1" width="54" height="46" rx="19" transform="matrix(-1 0 0 1 54 0)" stroke="#26357A" stroke-width="2"/>
+          <path class="path" d="M26.4367 23.9994L33.0367 30.5994L31.1513 32.4847L22.666 23.9994L31.1513 15.514L33.0367 17.3994L26.4367 23.9994Z" fill="#26357A"/>
+        </svg>
+      </button>
+    </div>
+    <div class="right">
+      <button class="next" (click)="next()">
+        <svg width="56" height="48" viewBox="0 0 56 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="rect" x="1" y="-1" width="54" height="46" rx="19" transform="matrix(1 8.74228e-08 8.74228e-08 -1 8.74228e-08 46)" stroke="#26357A" stroke-width="2"/>
+          <path class="path" d="M29.5633 24.0006L22.9633 17.4006L24.8487 15.5153L33.334 24.0006L24.8487 32.486L22.9633 30.6006L29.5633 24.0006Z" fill="#26357A"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

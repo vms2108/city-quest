@@ -1,0 +1,153 @@
+@import 'src/app/ui/styles/variables';
+
+.header {
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: transparent;
+  transition: all 0.3s;
+
+  &.scrolled {
+    background: #fff;
+    box-shadow: -3px 0px 20px rgba(0, 0, 0, 0.120739);
+  }
+
+  &.opened {
+    box-shadow: none;
+  }
+}
+
+.wrapper {
+  position: relative;
+  height: $header-mobile-height;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mock {
+  height: $header-mobile-height;
+  width: 100%;
+}
+
+.logo {
+  border-radius: 6px;
+  margin: 0 auto;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  color: #26357A;
+}
+
+.overlay {
+  position: fixed;
+  display: none;
+  z-index: 3;
+  top: $header-mobile-height;;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.4);
+
+  &.opened {
+    display: block;
+  }
+}
+
+.hidden-menu {
+  display: block;
+  position: fixed;
+  list-style: none;
+  padding: 10px;
+  padding-top: 50px;
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #fff;
+  height: 100%;
+  top: $header-mobile-height;;
+  right: -100%;
+  transition: right .2s;
+  z-index: 4;
+
+  &.opened {
+    right: 0;
+  }
+}
+
+.btn-menu {
+  display: flex;
+  color: #2B2E3F;
+  background-color: transparent;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  transition: right .23s;
+  z-index: 5;
+  width: 17px;
+
+  &.opened {
+    .cross {
+      display: block;
+    }
+
+    .burger {
+      display: none;
+    }
+  }
+}
+
+.cross {
+  display: none;
+}
+
+.link {
+  font-size: 18px;
+  line-height: 130%;
+  padding-left: 15px;
+  padding-bottom: 10px;
+  color: #2B2E3F;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.loader {
+  width: 100%;
+  position: fixed;
+  z-index: 5;
+  top: 30px;
+}
+
+.hidden {
+  z-index: -2;
+  opacity: 0;
+}
+
+@media only screen and (min-width: 920px)  {
+
+  .wrapper {
+    height: $header-desktop-height;
+  }
+
+  .overlay,
+  .hidden-menu {
+    top: $header-desktop-height;
+  }
+
+  .btn-menu {
+    top: 25px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
