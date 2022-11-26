@@ -1,8 +1,9 @@
 import { QuestShort } from 'src/app/common/models/quest-short';
 
-export const SPB_QUESTS: QuestShort[] = [
+export const ALL_QUESTS: QuestShort[] = [
   {
     id: '123',
+    city: 'spb',
     name: 'По Невскому проспекту',
     text: '',
     pictureLink: 'assets/images/quest01/nevskii.jpg',

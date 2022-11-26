@@ -7,8 +7,8 @@ const routes: Routes = [
     loadChildren: () => import('./route-modules/route-index/route-index.routing.module').then(m => m.RouteIndexRoutingModule),
   },
   {
-    path: 'spb',
-    loadChildren: () => import('./route-modules/route-spb/route-spb.routing.module').then(m => m.RouteSpbRoutingModule),
+    path: ':city',
+    loadChildren: () => import('./route-modules/route-city/route-city.routing.module').then(m => m.RouteCityRoutingModule),
   },
 ];
 

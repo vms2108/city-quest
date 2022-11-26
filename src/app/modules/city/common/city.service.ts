@@ -5,12 +5,12 @@ import { delay, map } from 'rxjs/operators';
 import { API_URL_GATEWAY } from 'src/app/api-service.config';
 import { QuestShort } from 'src/app/common/models/quest-short';
 
-import { SPB_QUESTS } from './../constants/spb-quests';
+import { ALL_QUESTS } from './constants/all-quests';
 
 @Injectable()
-export class SpbService {
+export class CityService {
 
-  private readonly SPB_QUESTS = SPB_QUESTS;
+  private readonly ALL_QUESTS = ALL_QUESTS;
 
   constructor(
     private httpClient: HttpClient,
@@ -18,12 +18,16 @@ export class SpbService {
   ) {}
 
   // сделать передачу хидеров на уровне универсального обработчика запросов
-  public loadList(): Observable<QuestShort[]> {
-    return of(this.SPB_QUESTS).pipe(delay(500));
+  public loadList(type: string): Observable<QuestShort[]> {
+    return of(this.mockLoadByType(type)).pipe(delay(500));
     return this.httpClient
-      .get<{ payload: QuestShort[] }>(`${ this.api }/onboarding/booking/ab_tests`)
+      .get<{ payload: QuestShort[] }>(`${ this.api }/city/${ type }`)
       .pipe(
         map(json => json.payload),
       );
+  }
+
+  private mockLoadByType(type: string): QuestShort[] {
+    return this.ALL_QUESTS.filter(item => item.city === type);
   }
 }

@@ -1,6 +1,6 @@
-<div class="wrapper">
-  <h1 class="title">Санкт-Петербург</h1>
-  <div *ngIf="list | async as items" class="items">
+<div *ngIf="list | async as items" class="wrapper">
+  <h1 class="title">{{ label }}</h1>
+  <div *ngIf="items.length" class="items">
     <div *ngFor="let item of items" class="item">
       <cq-quest-info [quest]="item" [userProgress]="3"></cq-quest-info>
     </div>

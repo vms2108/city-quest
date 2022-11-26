@@ -5,6 +5,7 @@ import { ScreenBlock } from 'src/app/common/models/screen-block';
 
 export const QUEST_123: Quest = {
   id: '123',
+  link: 'nevskii-prospect',
   name: 'По Невскому проспекту',
   text: '',
   pictureLink: '',

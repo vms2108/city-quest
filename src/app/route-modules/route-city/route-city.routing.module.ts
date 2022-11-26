@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { RouteSpbComponent } from './route-spb.component';
-import { RouteSpbModule } from './route-spb.module';
+import { RouteCityComponent } from './route-city.component';
+import { RouteCityModule } from './route-city.module';
 
 export const routes: Routes = [
   {
     path: '',
-    component: RouteSpbComponent,
+    component: RouteCityComponent,
   },
   {
     path: '*',
@@ -17,8 +17,8 @@ export const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouteSpbModule,
+    RouteCityModule,
     RouterModule.forChild(routes),
   ],
 })
-export class RouteSpbRoutingModule {}
+export class RouteCityRoutingModule {}
