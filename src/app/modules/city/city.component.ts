@@ -31,6 +31,10 @@ export class CityComponent implements OnInit {
     this.readGetParams();
   }
 
+  public goToQuest(item: QuestShort): void {
+    this.router.navigate([`${ this.router.url }/${ item.id }`]);
+  }
+
   private readGetParams(): void {
     const city = this.route.snapshot.paramMap.get('city') || '';
     if (!city || !this.CITIES_MAP.has(city)) {

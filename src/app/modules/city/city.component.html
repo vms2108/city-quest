@@ -2,8 +2,7 @@
   <h1 class="title">{{ label }}</h1>
   <div *ngIf="items.length" class="items">
     <div *ngFor="let item of items" class="item">
-      <cq-quest-info [quest]="item" [userProgress]="3"></cq-quest-info>
+      <cq-quest-info [quest]="item" [userProgress]="3" (goToQuest)="goToQuest(item)"></cq-quest-info>
     </div>
   </div>
 </div>
-

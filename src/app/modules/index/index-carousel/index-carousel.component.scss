@@ -6,8 +6,6 @@
 .city {
   &__title {
     margin-bottom: 16px;
-    font-family: Roboto;
-    font-style: normal;
     font-weight: bold;
     font-size: 32px;
     line-height: 38px;
@@ -17,16 +15,12 @@
   &__text {
     max-width: 672px;
     margin-bottom: 20px;
-    font-family: Roboto;
-    font-style: normal;
     font-size: 18px;
     line-height: 24px;
     color: #6E6E6E;
   }
 
   &__link {
-    font-family: Roboto;
-    font-style: normal;
     font-weight: bold;
     font-size: 24px;
     line-height: 32px;

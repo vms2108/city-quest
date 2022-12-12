@@ -128,26 +128,3 @@
   z-index: -2;
   opacity: 0;
 }
-
-@media only screen and (min-width: 920px)  {
-
-  .wrapper {
-    height: $header-desktop-height;
-  }
-
-  .overlay,
-  .hidden-menu {
-    top: $header-desktop-height;
-  }
-
-  .btn-menu {
-    top: 25px;
-  }
-}
-
-@media only screen and (min-width: 1200px) {
-  .wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-}

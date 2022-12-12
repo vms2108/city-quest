@@ -10,6 +10,10 @@ const routes: Routes = [
     path: ':city',
     loadChildren: () => import('./route-modules/route-city/route-city.routing.module').then(m => m.RouteCityRoutingModule),
   },
+  {
+    path: ':city/:quest',
+    loadChildren: () => import('./route-modules/route-quest/route-quest.routing.module').then(m => m.RouteQuestRoutingModule),
+  },
 ];
 
 @NgModule({

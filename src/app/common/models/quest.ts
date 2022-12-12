@@ -1,4 +1,4 @@
-import { Screen } from './screen';
+import { QuestScreen } from './quest-screen';
 
 export class Quest {
   constructor(
@@ -7,6 +7,6 @@ export class Quest {
     public name: string,
     public text: string,
     public pictureLink: string,
-    public items: Screen[],
+    public items: QuestScreen[],
   ) {}
 }
