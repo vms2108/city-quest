@@ -13,7 +13,7 @@ export const QUEST_123: Quest = {
     {
       id: '001',
       order: 1,
-      type: ScreenTypesEnum.QUESTION,
+      type: ScreenTypesEnum.INFO,
       name: 'Дворцовый мост',
       blocks: [
         new ScreenBlock(BlockTypesEnum.TEXT, `В каких-то городах, я слышал, туристов разводят на деньги.
@@ -21,6 +21,14 @@ export const QUEST_123: Quest = {
         `),
         new ScreenBlock(BlockTypesEnum.TEXT, 'В 1909 году за постройку моста взялся Андрей Пшеницкий. Из-за первой мировой постройку завершили только в 1916.'),
         new ScreenBlock(BlockTypesEnum.TEXT, 'Инженер Пшеницкий ошибся при проектировании, из-за этого разведённый мост смотрится негармонично и закрывает собой культурные и исторические памятники.'),
+      ],
+    },
+    {
+      id: '002',
+      order: 2,
+      type: ScreenTypesEnum.QUESTION_FREE,
+      name: '',
+      blocks: [
         new ScreenBlock(BlockTypesEnum.QUESTION, 'Дворцовый мост днём ведёт из Адмиралтейства на Васильевский остров. А куда он ведёт по ночам?', '', [
           'Наверх',
           'В небо',
@@ -32,8 +40,8 @@ export const QUEST_123: Quest = {
       ],
     },
     {
-      id: '002',
-      order: 2,
+      id: '003',
+      order: 3,
       name: '',
       type: ScreenTypesEnum.WAY,
       blocks: [
@@ -43,9 +51,9 @@ export const QUEST_123: Quest = {
       ],
     },
     {
-      id: '003',
-      order: 3,
-      type: ScreenTypesEnum.QUESTION,
+      id: '004',
+      order: 4,
+      type: ScreenTypesEnum.INFO,
       name: 'Адмиралтейство',
       blocks: [
         new ScreenBlock(BlockTypesEnum.TEXT, 'Адмиралтейство -  это места для строительства и ремонта военных судов'),
@@ -66,8 +74,25 @@ export const QUEST_123: Quest = {
       ],
     },
     {
-      id: '004',
-      order: 4,
+      id: '005',
+      order: 5,
+      type: ScreenTypesEnum.QUESTION_FREE,
+      name: 'Адмиралтейство',
+      blocks: [
+        new ScreenBlock(BlockTypesEnum.QUESTION_IN_VERSE, `Пётр  учредил чертёж
+        <br>
+        Работа быстро к окончанию подошла
+        <br>
+        Поставить шпиль хотелось невтерпёж
+        <br>
+        Шпиль прозовут “адмиралтейская ...`,
+                        '',
+                        ['Игла']),
+      ],
+    },
+    {
+      id: '006',
+      order: 6,
       name: '',
       type: ScreenTypesEnum.WAY,
       blocks: [

@@ -1,0 +1,17 @@
+<div *ngIf="screen" class="container">
+
+  <h1 *ngIf="screen.name" class="title">
+    {{ screen.name }}
+  </h1>
+
+  <cq-block-universal *ngFor="let block of screen.blocks" [block]="block"></cq-block-universal>
+  
+  <div class="input">
+    <cq-name-control placeholder="Ответ" [formControl]="answerControl"></cq-name-control>
+  </div>
+
+  <button class="btn" [disabled]="answerControl.invalid" (click)="apply()">
+    Готово
+  </button>
+  
+</div>

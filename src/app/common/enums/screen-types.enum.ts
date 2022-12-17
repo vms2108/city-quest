@@ -1,5 +1,5 @@
 export enum ScreenTypesEnum {
   INFO = 'INFO',
-  QUESTION = 'QUESTION',
+  QUESTION_FREE = 'QUESTION_FREE',
   WAY = 'WAY',
 }

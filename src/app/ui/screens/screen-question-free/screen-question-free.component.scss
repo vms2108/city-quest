@@ -1,0 +1,44 @@
+@import 'src/app/ui/styles/variables';
+
+.container {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  padding-bottom: 16px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 32px;
+  color: #26357A;
+  max-width: 335px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.btn {
+  display: block;
+  width: 224px;
+  height: 48px;
+  margin: 0 auto;
+  margin-top: 24px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 140%;
+  color: #FFFFFF;
+  background: #5055BE;
+  border-radius: 12px;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.8;
+  }
+}
+
+.input {
+  width: 320px;
+  margin: 0 auto;
+  margin-top: 15px;
+}

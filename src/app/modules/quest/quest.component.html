@@ -3,10 +3,8 @@
   <ng-container *ngIf="!currentScreen">
     <cq-quest-item *ngFor="let item of quest?.items" [item]="item" (goToScreen)="openScreen(item)"></cq-quest-item>
   </ng-container>
-  
-  
-  <div class="current">
-    <ng-template #currentContainer></ng-template>
-  </div>
 </div>
 
+<div class="screen">
+  <cq-quest-screen [quest]="quest" [currentScreen]="currentScreen"></cq-quest-screen>
+</div>

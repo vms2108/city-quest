@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { CITIES_MAP } from 'src/app/common/constants/cities.map';
 import { QuestShort } from 'src/app/common/models/quest-short';
 
@@ -12,13 +13,15 @@ import { CityService } from './common/city.service';
   styleUrls: ['./city.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CityComponent implements OnInit {
+export class CityComponent implements OnInit, OnDestroy {
 
   public list!: Observable<QuestShort[]>;
 
   public label = '';
 
   private readonly CITIES_MAP = CITIES_MAP;
+
+  private readonly destroy = new Subject<void>();
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -29,6 +32,11 @@ export class CityComponent implements OnInit {
 
   public ngOnInit(): void {
     this.readGetParams();
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy.next();
+    this.destroy.complete();
   }
 
   public goToQuest(item: QuestShort): void {
@@ -42,6 +50,14 @@ export class CityComponent implements OnInit {
       return;
     }
 
+    this.listAndLabel(city);
+
+    this.route.params
+      .pipe(takeUntil(this.destroy))
+      .subscribe(data => data['city'] ? this.listAndLabel(data['city']) : '');
+  }
+
+  private listAndLabel(city: string): void {
     this.loadList(city);
     this.setLabel(city);
   }

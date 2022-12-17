@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer *ngIf="(state | async)?.visible" class="footer">
   <div class="wrapper">
     <div class="footer__top">
       <img src="assets/images/city-quest.png" width="60" alt="City Quest">

@@ -6,7 +6,7 @@
       </a>
       
     </div>
-    <button class="btn-menu" [class.opened]="opened" (click)="opened = !opened">
+    <button *ngIf="(state | async)?.visibleBurger" class="btn-menu" [class.opened]="opened" (click)="opened = !opened">
       <div class="burger">
         <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M4.34431e-06 0.142853H17.1429C17.1429 1.28571 17.1429 1.85714 17.1429 2.42857H4.34431e-06C2.19192e-05 1.85714 2.19192e-05 0.714281 4.34431e-06 0.142853Z" fill="black"/>
