@@ -3,10 +3,11 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, In
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { QuestScreen } from 'src/app/common/models/quest-screen';
 import { BlocksModule } from 'src/app/ui/blocks/blocks.module';
-import { NameControlModule } from 'src/app/ui/controls/name-control/name-control.module';
-import { NotificationsModule } from 'src/app/ui/notifications/notifications.module';
-import { NotificationsService } from 'src/app/ui/notifications/notifications.service';
+import { TextControlModule } from 'src/app/ui/controls/text-control/text-control.module';
+import { NotificationModule } from 'src/app/ui/notifications/notification.module';
+import { NotificationService } from 'src/app/ui/notifications/notification.service';
 import { InnerHtmlModule } from 'src/app/ui/safe-html/inner-html.module';
+import { ScreenBtnModule } from 'src/app/ui/screen-btn/screen-btn.module';
 
 @Component({
   selector: 'cq-screen-question-free',
@@ -32,7 +33,7 @@ export class ScreenQuestionFreeComponent implements OnChanges {
 
   constructor(
     private readonly changeDetectorRef: ChangeDetectorRef,
-    private readonly notificationsService: NotificationsService,
+    private readonly notificationService: NotificationService,
   ) {}
 
   public ngOnChanges(changes: SimpleChanges): void {
@@ -52,12 +53,12 @@ export class ScreenQuestionFreeComponent implements OnChanges {
     if (!this.blockPromptVisible) {
       this.blockPromptVisible = true;
     }
-    this.notificationsService.warning('Не получилось, не фортануло');
+    this.notificationService.warning('Не получилось, не фортануло');
     this.changeDetectorRef.markForCheck();
   }
 
   private success(): void {
-    this.notificationsService.warning('Правильно!');
+    this.notificationService.warning('Правильно!');
     setTimeout(() => this.goNext.emit(''), 300);
   }
 
@@ -68,9 +69,10 @@ export class ScreenQuestionFreeComponent implements OnChanges {
     CommonModule,
     InnerHtmlModule,
     BlocksModule,
-    NameControlModule,
+    TextControlModule,
     ReactiveFormsModule,
-    NotificationsModule,
+    NotificationModule,
+    ScreenBtnModule,
   ],
   declarations: [
     ScreenQuestionFreeComponent,

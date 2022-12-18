@@ -1,26 +1,26 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { SimpleFormControlBaseComponent } from 'src/app/ui/control-base/simple-form-control.base-component';
 
 @Component({
-  selector: 'cq-name-control',
-  templateUrl: './name-control.component.html',
-  styleUrls: ['./name-control.component.scss'],
+  selector: 'cq-text-control',
+  templateUrl: './text-control.component.html',
+  styleUrls: ['./text-control.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => NameControlComponent),
+      useExisting: forwardRef(() => TextControlComponent),
       multi: true,
     },
     {
       provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => NameControlComponent),
+      useExisting: forwardRef(() => TextControlComponent),
       multi: true,
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NameControlComponent extends SimpleFormControlBaseComponent<string, string> {
+export class TextControlComponent extends SimpleFormControlBaseComponent<string, string> implements OnInit {
 
   @Input()
   public placeholder = '';
@@ -28,13 +28,20 @@ export class NameControlComponent extends SimpleFormControlBaseComponent<string,
   @Input()
   public maxLength = 64;
 
-  protected readonly validatorKey = 'cq-name-control';
+  public id = '';
+
+  protected readonly validatorKey = 'cq-text-control';
 
   constructor(
     formBuilder: FormBuilder,
     changeDetectorRef: ChangeDetectorRef,
   ) {
     super(formBuilder, changeDetectorRef);
+  }
+
+  public ngOnInit(): void {
+    super.ngOnInit();
+    this.id = Math.random().toString();
   }
 
   public createControl(): FormControl {

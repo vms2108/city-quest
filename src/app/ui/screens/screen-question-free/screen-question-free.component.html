@@ -7,11 +7,9 @@
   <cq-block-universal *ngFor="let block of screen.blocks" [block]="block"></cq-block-universal>
   
   <div class="input">
-    <cq-name-control placeholder="Ответ" [formControl]="answerControl"></cq-name-control>
+    <cq-text-control placeholder="Ответ" [formControl]="answerControl"></cq-text-control>
   </div>
 
-  <button class="btn" [disabled]="answerControl.invalid" (click)="apply()">
-    Готово
-  </button>
+  <cq-screen-btn text="Готово" [disabled]="answerControl.invalid" (apply)="apply()"></cq-screen-btn>
   
 </div>

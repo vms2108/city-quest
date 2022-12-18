@@ -1,0 +1,32 @@
+<div class="notifications">
+  
+	<div *ngFor="let notification of notifications" class="notification" [ngClass]="className(notification)">
+   
+		<ng-container *ngTemplateOutlet="notificationTpl; context:{notification:notification}">
+      
+    </ng-container>
+	</div>
+</div>
+
+<ng-template #notificationTpl let-notification="notification">
+  <ng-container [ngSwitch]="className(notification)">
+    <ng-container *ngSwitchCase="'success'">
+    
+    </ng-container>
+    <ng-container *ngSwitchCase="'warning'">
+      <img src="assets/images/oops.jpg" width="20" height="20" alt="Oops">
+    </ng-container>
+    <ng-container *ngSwitchCase="'error'">
+    
+    </ng-container>
+    <ng-container *ngSwitchCase="'info'">
+    
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+    
+    </ng-container>
+  </ng-container>
+	<div class="title" fxLayout="row" fxLayoutAlign="space-between center">
+		<div>{{ notification.title }}</div>
+	</div>
+</ng-template>

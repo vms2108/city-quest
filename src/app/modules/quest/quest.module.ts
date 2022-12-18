@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { NotificationModule } from 'src/app/ui/notifications/notification.module';
 import { QuestItemModule } from 'src/app/ui/quest-item/quest-item.module';
 
 import { QuestCommonModule } from './common/quest-common.module';
@@ -11,6 +12,7 @@ import { QuestComponent } from './quest.component';
     CommonModule,
     QuestCommonModule,
     QuestItemModule,
+    NotificationModule,
   ],
   declarations: [
     QuestComponent,
