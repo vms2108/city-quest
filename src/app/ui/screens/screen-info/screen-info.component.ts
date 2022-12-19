@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, In
 import { QuestScreen } from 'src/app/common/models/quest-screen';
 import { BlocksModule } from 'src/app/ui/blocks/blocks.module';
 import { InnerHtmlModule } from 'src/app/ui/safe-html/inner-html.module';
+import { ScreenBtnModule } from 'src/app/ui/screen-btn/screen-btn.module';
 
 @Component({
   selector: 'cq-screen-info',
@@ -38,6 +39,7 @@ export class ScreenInfoComponent implements OnChanges {
     CommonModule,
     InnerHtmlModule,
     BlocksModule,
+    ScreenBtnModule,
   ],
   declarations: [
     ScreenInfoComponent,

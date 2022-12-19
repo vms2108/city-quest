@@ -1,24 +1,5 @@
 @import 'src/app/ui/styles/main-wrapper.scss';
 
-.container {
-  background: #E7F0FD;
-  padding: 16px;
-  padding-right: 0;
-  padding-bottom: 0;
-  border-radius: 32px;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  transition: opacity 0.3s;
-
-  &--move {
-    opacity: 0;
-  }
-}
-
-.next {
-  opacity: 0;
-  z-index: -1;
-  max-height: 500px;
-  overflow: hidden;
+.screen {
+  margin-top: 10px;
 }

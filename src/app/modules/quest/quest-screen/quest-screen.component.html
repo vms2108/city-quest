@@ -1,3 +1,5 @@
+<cq-quest-header [title]="quest?.name" [goBackBtnVisible]="!!index" (goBack)="prev()"></cq-quest-header>
+
 <div class="container" [class.container--move]="move">
   <div class="current">
     <ng-template #currentContainer></ng-template>

@@ -1,0 +1,11 @@
+.container {
+  overflow: hidden;
+}
+
+.next {
+  position: fixed;
+  opacity: 0;
+  z-index: -1;
+  max-height: 500px;
+  overflow: hidden;
+}

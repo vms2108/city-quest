@@ -6,8 +6,6 @@
 
   <cq-block-universal *ngFor="let block of screen.blocks" [block]="block"></cq-block-universal>
   
-  <button class="btn" (click)="apply()">
-    Далее
-  </button>
+  <cq-screen-btn text="Далее" (apply)="apply()"></cq-screen-btn>
   
 </div>

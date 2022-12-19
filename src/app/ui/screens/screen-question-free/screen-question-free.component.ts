@@ -25,7 +25,7 @@ export class ScreenQuestionFreeComponent implements OnChanges {
   @Output()
   public goNext = new EventEmitter<string>();
 
-  public answerControl = new FormControl(null, [Validators.required]);
+  public answerControl = new FormControl('', [Validators.required]);
 
   public blockPromptVisible = false;
 
@@ -42,7 +42,9 @@ export class ScreenQuestionFreeComponent implements OnChanges {
   }
 
   public apply(): void {
-    if (this.screen!.blocks[this.screen!.blocks.length - 1].answers.indexOf(this.answerControl.value!) !== -1) {
+    const rightAnswers = this.screen!.blocks[this.screen!.blocks.length - 1].answers.map(item => item.toLowerCase());
+    const userAnswer = this.answerControl.value!.toLowerCase();
+    if (rightAnswers.indexOf(userAnswer) !== -1) {
       this.success();
     } else {
       this.fail();
@@ -58,7 +60,7 @@ export class ScreenQuestionFreeComponent implements OnChanges {
   }
 
   private success(): void {
-    this.notificationService.warning('Правильно!');
+    this.notificationService.success('Правильно!');
     setTimeout(() => this.goNext.emit(''), 300);
   }
 

@@ -1,0 +1,52 @@
+@import 'src/app/ui/styles/main-wrapper.scss';
+
+.header {
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: transparent;
+  background: #fff;
+  box-shadow: 0px 2px 4px rgba(124, 124, 124, 0.25);
+}
+
+.mock {
+  height: 50px;
+  width: 100%;
+}
+
+.wrapper {
+  position: relative;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0;
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+.fake-element {
+  width: 17px;
+  height: 14px;
+}
+
+.logo {
+  border-radius: 6px;
+  margin: 0 auto;
+  font-family: Lato, Raleway;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  color: #26357A;
+}

@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CITIES_MAP } from 'src/app/common/constants/cities.map';
 import { Quest } from 'src/app/common/models/quest';
+import { StorageService } from 'src/app/common/services/storage.service';
 
 import { QuestScreen } from '../../common/models/quest-screen';
 
@@ -23,6 +24,8 @@ export class QuestComponent implements OnInit, OnDestroy {
 
   public move = false;
 
+  public index = 0;
+
   private readonly CITIES_MAP = CITIES_MAP;
 
   private readonly destroy = new Subject<void>();
@@ -32,6 +35,7 @@ export class QuestComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly questService: QuestService,
+    private readonly storageService: StorageService,
   ) { }
 
   public ngOnInit(): void {
@@ -51,7 +55,18 @@ export class QuestComponent implements OnInit, OnDestroy {
 
   private selectScreen(item: QuestScreen): void {
     this.currentScreen = item;
+
     this.changeDetectorRef.markForCheck();
+  }
+
+  private getScreen(): void {
+    const data = this.storageService.getData(this.quest.id);
+    if (!data) {
+      this.selectScreen(this.quest.items[0]);
+    } else {
+      this.selectScreen(this.quest.items[+data]);
+      this.index = +data;
+    }
   }
 
   private readGetParams(): void {
@@ -72,6 +87,7 @@ export class QuestComponent implements OnInit, OnDestroy {
       .subscribe(info => {
         if (info) {
           this.quest = info;
+          this.getScreen();
           this.changeDetectorRef.markForCheck();
         } else {
           this.navigateThrow();

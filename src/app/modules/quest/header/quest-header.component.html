@@ -1,0 +1,14 @@
+<header class="header">
+  <div class="wrapper">
+    <button class="btn" [class.visible]="goBackBtnVisible" [disabled]="!goBackBtnVisible" (click)="goBack.emit()">
+      <svg class="icon" width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6.42939 0.142883L7.45503 1.25661L2.89093 6.21252L16.5714 6.21252V7.78759L2.89093 7.78759L7.45503 12.7434L6.42939 13.8572L0.114271 7L6.42939 0.142883Z" fill="#000"/>
+      </svg>
+    </button>
+    <h2 class="logo">
+      {{ title }}
+    </h2>
+    <div class="fake-element"></div>
+  </div>
+</header>
+<div class="mock"></div>

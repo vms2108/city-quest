@@ -1,5 +1,5 @@
 export class HeaderState {
   constructor(
-    public visibleBurger: boolean,
+    public visible: boolean,
   ) {}
 }

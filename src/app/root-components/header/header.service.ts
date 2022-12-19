@@ -11,9 +11,9 @@ export class HeaderService {
 
   private state = new BehaviorSubject<HeaderState>(this.INITIAL_STATE);
 
-  public changeVisibleBurger(visibleBurger: boolean): void {
+  public changeVisible(visible: boolean): void {
     const oldState = this.state.getValue();
-    this.state.next({ ...oldState, visibleBurger });
+    this.state.next({ ...oldState, visible });
   }
 
   public getHeaderState(): Observable<HeaderState> {
