@@ -108,10 +108,9 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
       return;
     }
 
-    this.currentContainer.clear();
-    this.nextContainer.clear();
-
     if (this.quest.items.length > this.index + 1) {
+      this.currentContainer.clear();
+      this.nextContainer.clear();
       this.nextScreen = this.quest.items[this.index + 1];
       this.move = true;
       setTimeout(() => this.stopMoveNext(), 400);

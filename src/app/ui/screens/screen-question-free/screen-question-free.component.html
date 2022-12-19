@@ -5,6 +5,18 @@
   </h1>
 
   <cq-block-universal *ngFor="let block of screen.blocks" [block]="block"></cq-block-universal>
+
+  <button *ngIf="blockPromptVisible" class="help-question" (click)="needPrompt()">
+    Показать подсказку
+  </button>
+
+  <div *ngIf="promptVisible" class="help">
+    {{ prompt }}
+  </div>
+
+  <button *ngIf="needAnswer" class="help-question" (click)="help()">
+    Помогите
+  </button>
   
   <div class="input">
     <cq-text-control placeholder="Ответ" [formControl]="answerControl"></cq-text-control>

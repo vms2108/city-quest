@@ -1,0 +1,11 @@
+<div *ngIf="screen" class="container">
+
+  <h1 class="title">
+    {{ screen.name }}
+  </h1>
+
+  <cq-block-universal *ngFor="let block of screen.blocks" [block]="block"></cq-block-universal>
+  
+  <cq-screen-btn text="Я на месте" (apply)="apply()"></cq-screen-btn>
+  
+</div>

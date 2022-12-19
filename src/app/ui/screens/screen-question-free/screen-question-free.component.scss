@@ -4,7 +4,7 @@
   position: relative;
   box-sizing: border-box;
   width: 100%;
-  padding-bottom: 16px;
+  padding-bottom: 70px;
 }
 
 .title {
@@ -21,4 +21,36 @@
 .input {
   width: 320px;
   margin: 0 auto;
+}
+
+.help-question {
+  width: 100%;
+  max-width: 335px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  color: #26357A;
+  font-size: 20px;
+  line-height: 24px;
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.help {
+  width: 100%;
+  max-width: 335px;
+  margin: 15px auto;
+  font-size: 18px;
+  line-height: 24px;
+  color: #EA3465;
+  text-align: center;
+}
+
+@media screen and (min-width: 360px){
+  .input {
+    width: 335px;
+  }
 }

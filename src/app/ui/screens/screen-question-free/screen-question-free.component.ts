@@ -31,6 +31,10 @@ export class ScreenQuestionFreeComponent implements OnChanges {
 
   public promptVisible = false;
 
+  public prompt = '';
+
+  public needAnswer = false;
+
   constructor(
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly notificationService: NotificationService,
@@ -38,6 +42,7 @@ export class ScreenQuestionFreeComponent implements OnChanges {
 
   public ngOnChanges(changes: SimpleChanges): void {
     this.screen = changes[0].currentValue;
+    this.prompt = this.screen!.blocks[this.screen!.blocks.length - 1].help;
     this.changeDetectorRef.markForCheck();
   }
 
@@ -51,11 +56,29 @@ export class ScreenQuestionFreeComponent implements OnChanges {
     }
   }
 
+  public needPrompt(): void {
+    this.promptVisible = true;
+    this.blockPromptVisible = false;
+    this.changeDetectorRef.markForCheck();
+  }
+
+  public help(): void {
+    const answer = this.screen!.blocks[this.screen!.blocks.length - 1].answers[0];
+    this.answerControl.setValue(answer);
+  }
+
   private fail(): void {
-    if (!this.blockPromptVisible) {
+    if (!this.blockPromptVisible && !this.promptVisible) {
       this.blockPromptVisible = true;
     }
-    this.notificationService.warning('Не получилось, не фортануло');
+
+    if (this.promptVisible) {
+      this.needAnswer = true;
+      this.notificationService.warning('Это фиаско');
+    } else {
+      this.notificationService.warning('Не получилось, не фортануло');
+    }
+
     this.changeDetectorRef.markForCheck();
   }
 
