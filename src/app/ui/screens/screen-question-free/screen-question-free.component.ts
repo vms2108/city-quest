@@ -42,12 +42,12 @@ export class ScreenQuestionFreeComponent implements OnChanges {
 
   public ngOnChanges(changes: SimpleChanges): void {
     this.screen = changes[0].currentValue;
-    this.prompt = this.screen!.blocks[this.screen!.blocks.length - 1].help;
+    this.prompt = this.screen!.parameters.help;
     this.changeDetectorRef.markForCheck();
   }
 
   public apply(): void {
-    const rightAnswers = this.screen!.blocks[this.screen!.blocks.length - 1].answers.map(item => item.toLowerCase());
+    const rightAnswers = this.screen!.parameters.answers.map(item => item.toLowerCase());
     const userAnswer = this.answerControl.value!.toLowerCase();
     if (rightAnswers.indexOf(userAnswer) !== -1) {
       this.success();
@@ -63,7 +63,7 @@ export class ScreenQuestionFreeComponent implements OnChanges {
   }
 
   public help(): void {
-    const answer = this.screen!.blocks[this.screen!.blocks.length - 1].answers[0];
+    const answer = this.screen!.parameters.answers[0];
     this.answerControl.setValue(answer);
   }
 

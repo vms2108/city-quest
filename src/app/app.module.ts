@@ -1,3 +1,4 @@
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule, HammerGestureConfig, HammerModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
@@ -9,8 +10,11 @@ import { environment } from './../environments/environment';
 import { API_URL_GATEWAY } from './api-service.config';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ApiErrorsInterceptor } from './common/api-errors/api-errors.interceptor';
+import { TokenInterceptor } from './common/interceptor/token.interceptor';
 import { FooterComponent } from './root-components/footer/footer.component';
 import { HeaderComponent } from './root-components/header/header.component';
+import { NotificationModule } from './ui/notifications/notification.module';
 
 @NgModule({
   imports: [
@@ -21,6 +25,8 @@ import { HeaderComponent } from './root-components/header/header.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    HttpClientModule,
+    NotificationModule,
   ],
   declarations: [
     AppComponent,
@@ -35,6 +41,16 @@ import { HeaderComponent } from './root-components/header/header.component';
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: HammerGestureConfig,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: TokenInterceptor,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiErrorsInterceptor,
+      multi: true,
     },
   ],
   bootstrap: [

@@ -1,0 +1,46 @@
+@import 'src/app/ui/styles/colors';
+
+.file-control {
+  margin-bottom: 40px;
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: 100px;
+    background-position: center;
+    height: 200px;
+    width: 80%;
+    margin: 20px auto;
+    border: 2px dashed $active-border-color;
+    border-radius: 10px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $hover-block-color !important;
+      opacity: 0.8;
+    }
+  }
+
+  &__file {
+    width: 80%;
+    margin: 10px auto;
+    background: #fff;
+    border: 1px dashed;
+    border-radius: 12px;
+    padding: 5px;
+    color: $active-border-color;
+
+    & p {
+      text-align: center;
+    }
+  }
+
+  &__icon {
+    font-size: 100px;
+    height: 100px;
+    width: 100px;
+    color: $active-border-color;
+  }
+}

@@ -1,0 +1,20 @@
+@import 'src/app/ui/styles/btn.scss';
+
+.form {
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 350px;
+  margin: 0 auto;
+  margin-top: 70px;
+  padding: 20px;
+  border: 2px solid #1976d2;
+
+  &__title {
+    margin: 0 0 30px 0;
+  }
+}
+
+.btn {
+  margin-top: 20px;
+  width: 100%;
+}

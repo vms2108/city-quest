@@ -1,0 +1,23 @@
+<cq-dialog-container-basic dialogTitle="Подтвердите действие">
+
+  <ng-template #contentSection>
+    <div class="description">
+      {{ actionDescription }}
+    </div>
+  </ng-template>
+
+  <ng-template #actionButton>
+    <button
+      class="cq-btn cq-btn--white"
+      [mat-dialog-close]="false"
+    >Отмена</button>
+  </ng-template>
+
+  <ng-template #actionButton>
+    <button
+      class="cq-btn"
+      [mat-dialog-close]="true"
+    >Подтвердить</button>
+  </ng-template>
+
+</cq-dialog-container-basic>

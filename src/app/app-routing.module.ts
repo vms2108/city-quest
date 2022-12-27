@@ -1,10 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AuthGuard } from './common/guard/auth.guard';
+
 const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./route-modules/route-index/route-index.routing.module').then(m => m.RouteIndexRoutingModule),
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./route-modules/route-admin/route-admin.routing.module').then(m => m.RouteAdminRoutingModule),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./route-modules/route-login/route-login.routing.module').then(m => m.RouteLoginRoutingModule),
   },
   {
     path: ':city',

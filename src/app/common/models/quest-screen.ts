@@ -1,13 +1,12 @@
 import { ScreenTypesEnum } from 'src/app/common/enums/screen-types.enum';
 
-import { ScreenBlock } from './screen-block';
+import { QuestScreenParameters } from './quest-screen-parameters';
 
 export class QuestScreen {
   constructor(
     public id: string,
     public name: string,
     public type: ScreenTypesEnum,
-    public order: number,
-    public blocks: ScreenBlock[],
+    public parameters: QuestScreenParameters,
   ) {}
 }

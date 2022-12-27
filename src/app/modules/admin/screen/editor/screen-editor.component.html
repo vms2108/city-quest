@@ -1,0 +1,38 @@
+<header>
+  <h3>
+    {{ isCopy ? 'Копировать' : screen ? 'Редактировать' : 'Создать' }}
+    экран
+  </h3>
+</header>
+
+<section>
+  <div class="flex">
+    <form
+      class="form"
+      [formGroup]="form"
+    >
+      <cq-text-control formControlName="name" label="Название"></cq-text-control>
+      <cq-admin-screen-type-control formControlName="type" label="Тип"></cq-admin-screen-type-control>
+      <cq-admin-parameters-control formControlName="parameters" [type]="form.value.type"></cq-admin-parameters-control>
+    </form>
+  
+    <div class="example">
+      
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <button
+    *ngIf="form"
+    class="btn"
+    [disabled]="form.invalid || loading || form.value.locked"
+
+    (click)="apply()"
+  >
+    Сохранить
+  </button>
+</footer>
+
+<cq-loader-with-backdrop *ngIf="loading"></cq-loader-with-backdrop>

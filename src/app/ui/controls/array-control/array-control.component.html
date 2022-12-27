@@ -1,0 +1,93 @@
+<ng-container *ngIf="dragVisible else elseTemplate">
+  <div
+    cdkDropList
+    [cdkDropListData]="itemsControl.value"
+    class="items"
+    (cdkDropListDropped)="changeItemPosition($event)"
+  >
+    <div
+      *ngFor="let itemControl of itemsControl.controls; let index = index;"
+      cdkDrag
+      cdkDragBoundary=".items"
+      class="item"
+    >
+      <div
+        class="drag-placeholder"
+        *cdkDragPlaceholder
+      ></div>
+
+      <div class="drag">
+        <mat-icon cdkDragHandle>swap_vert</mat-icon>
+      </div>
+
+      <div class="control">
+        <ng-container
+          [ngTemplateOutlet]="itemControlTemplate"
+          [ngTemplateOutletContext]="{ itemFormControl: itemControl }"
+        ></ng-container>
+      </div>
+
+      <div class="remove">
+        <button
+          mat-icon-button
+          color="warn"
+          [disabled]="minSize >= itemsControl.controls.length || control.disabled"
+          (click)="removeItem(index)"
+        >
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <button
+      class="btn"
+      [disabled]="allowAddingItem() || control.disabled"
+      (click)="addEmptyItem()"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</ng-container>
+
+<ng-template #elseTemplate>
+  <div
+    class="items"
+  >
+    <div
+      *ngFor="let itemControl of itemsControl.controls; let index = index;"
+      class="item"
+    >
+
+      <div class="control">
+        <ng-container
+          [ngTemplateOutlet]="itemControlTemplate"
+          [ngTemplateOutletContext]="{ itemFormControl: itemControl }"
+        ></ng-container>
+      </div>
+
+      <div class="remove">
+        <button
+          mat-icon-button
+          color="warn"
+          [disabled]="minSize >= itemsControl.controls.length || control.disabled"
+          (click)="removeItem(index)"
+        >
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <button
+      class="btn"
+      [disabled]="allowAddingItem() || control.disabled"
+      (click)="addEmptyItem()"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</ng-template>
+
+
+

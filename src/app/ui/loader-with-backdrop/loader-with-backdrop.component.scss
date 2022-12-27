@@ -1,0 +1,279 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+
+  &,
+  &::before {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    background: #000;
+    opacity: 0.2;
+  }
+}
+
+.loadBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+}
+
+.anim {
+  width: 50px;
+  height: 205px;
+  background-image: url('/assets/loading.png');
+}
+
+.icon-loader_0 {
+  background-position: -50px 0px;
+}
+
+.icon-loader_1 {
+  background-position: -200px -410px;
+}
+
+.icon-loader_2 {
+  background-position: -100px 0px;
+}
+
+.icon-loader_3 {
+  background-position: -150px 0px;
+}
+
+.icon-loader_4 {
+  background-position: -200px 0px;
+}
+
+.icon-loader_5 {
+  background-position: -250px 0px;
+}
+
+.icon-loader_6 {
+  background-position: -300px 0px;
+}
+
+.icon-loader_7 {
+  background-position: -350px 0px;
+}
+
+.icon-loader_8 {
+  background-position: -400px 0px;
+}
+
+.icon-loader_9 {
+  background-position: 0px -205px;
+}
+
+.icon-loader_10 {
+  background-position: -50px -205px;
+}
+
+.icon-loader_11 {
+  background-position: -100px -205px;
+}
+
+.icon-loader_12 {
+  background-position: -150px -205px;
+}
+
+.icon-loader_13 {
+  background-position: -200px -205px;
+}
+
+.icon-loader_14 {
+  background-position: -250px -205px;
+}
+
+.icon-loader_15 {
+  background-position: -300px -205px;
+}
+
+.icon-loader_16 {
+  background-position: -350px -205px;
+}
+.icon-loader_17 {
+  background-position: -400px -205px;
+}
+
+.icon-loader_18 {
+  background-position: -450px 0px;
+}
+
+.icon-loader_19 {
+  background-position: -450px -205px;
+}
+
+.icon-loader_20 {
+  background-position: -500px 0px;
+}
+
+.icon-loader_21 {
+  background-position: -500px -205px; 
+}
+
+.icon-loader_22 {
+  background-position: -550px 0px;
+}
+
+.icon-loader_23 {
+  background-position: -550px -205px;
+}
+
+.icon-loader_24 {
+  background-position: -600px 0px;
+}
+
+.icon-loader_25 {
+  background-position: -600px -205px;
+}
+
+.icon-loader_26 {
+  background-position: 0px -410px;  
+}
+
+.icon-loader_27 {
+  background-position: -50px -410px;
+}
+
+.icon-loader_28 {
+  background-position: -100px -410px;
+}
+
+.icon-loader_29 {
+  background-position: -150px -410px;
+}
+
+.icon-loader_30 {
+  background-position: 0px 0px;
+}
+
+.icon-loader_31 {
+  background-position: -250px -410px;
+}
+
+.icon-loader_32 {
+  background-position: -300px -410px;
+}
+
+.icon-loader_33 {
+  background-position: -350px -410px;
+}
+
+.icon-loader_34 {
+  background-position: -400px -410px;
+}
+
+.icon-loader_35 {
+  background-position: -450px -410px;
+}
+
+.icon-loader_36 {
+  background-position: -500px -410px;
+}
+
+.icon-loader_37 {
+  background-position: -550px -410px;
+}
+
+.icon-loader_38 {
+  background-position: -600px -410px;
+}
+
+.icon-loader_39 {
+  background-position: -650px 0px;
+}
+
+.icon-loader_40 {
+  background-position: -650px -205px;
+}
+
+.icon-loader_41 {
+  background-position: -650px -410px;
+}
+
+.icon-loader_42 {
+  background-position: -700px 0px;
+}
+
+.icon-loader_43 {
+  background-position: -700px -205px;
+}
+
+.icon-loader_44 {
+  background-position: -700px -410px;
+}
+
+.icon-loader_45 {
+  background-position: -750px 0px;
+}
+
+.icon-loader_46 {
+  background-position: -750px -205px;
+}
+
+.icon-loader_47 {
+  background-position: -750px -410px;
+}
+
+.icon-loader_48 {
+  background-position: -800px 0px;
+}
+
+.icon-loader_49 {
+  background-position: -800px -205px;
+}
+
+.icon-loader_50 {
+  background-position: -800px -410px;
+}
+
+.icon-loader_51 {
+  background-position: 0px -615px;
+}
+
+.icon-loader_52 {
+  background-position: -50px -615px;
+}
+
+.icon-loader_53 {
+  background-position: -100px -615px;
+}
+
+.icon-loader_54 {
+  background-position: -150px -615px;
+}
+
+.icon-loader_55 {
+  background-position: -200px -615px;
+}
+
+.icon-loader_56 {
+  background-position: -250px -615px;
+}
+
+.icon-loader_57 {
+  background-position: -300px -615px;
+}
+
+.icon-loader_58 {
+  background-position: -350px -615px;
+}
+
+.icon-loader_59 {
+  background-position: -400px -615px;
+}

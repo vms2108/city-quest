@@ -1,0 +1,9 @@
+<ng-container
+  [ngTemplateOutlet]="template || defaultTemplate"
+  [ngTemplateOutletContext]="{ required: required, label: label }"
+></ng-container>
+
+<ng-template #defaultTemplate>
+  <span *ngIf="required" class="required-prefix">*</span>
+  <span class="label">{{ label }}</span>:
+</ng-template>

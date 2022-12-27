@@ -1,0 +1,35 @@
+<form class="form" [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+  <h2 class="form__title">Вход</h2>
+  <cq-vertical-form-field>
+    <!-- <cq-form-field-label label="Логин" [required]="true"></cq-form-field-label> -->
+    <ng-container ikFormFieldControl>
+      <cq-text-control formControlName="login" label="Логин" [maxLength]="LOGIN_MAX_LENGTH"></cq-text-control>
+    </ng-container>
+    <ng-container ikFormFieldErrors>
+      <cq-control-error *ngIf="hasErrorInCommonDataForm('login', 'required')">
+        Логин обязателен для заполнения.
+      </cq-control-error>
+      <cq-control-error *ngIf="hasErrorInCommonDataForm('login', 'minlength') || hasErrorInCommonDataForm('login', 'maxlength')">
+        Длина логина должна быть в диапазоне [{{ LOGIN_MIN_LENGTH }}, {{ LOGIN_MAX_LENGTH }}].
+      </cq-control-error>
+    </ng-container>
+  </cq-vertical-form-field>
+
+  <cq-vertical-form-field>
+    <!-- <cq-form-field-label label="Пароль" [required]="true"></cq-form-field-label> -->
+    <ng-container ikFormFieldControl>
+      <cq-password-control formControlName="password" label="Пароль"></cq-password-control>
+    </ng-container>
+    <ng-container ikFormFieldErrors>
+      <cq-control-error *ngIf="hasErrorInCommonDataForm('password', 'required')">
+        Пароль обязателен для заполнения.
+      </cq-control-error>
+    </ng-container>
+  </cq-vertical-form-field>
+  
+  <button
+    class="btn"
+    type="submit"
+    [disabled]="loginForm.invalid || loading"
+  >Войти</button>
+</form>

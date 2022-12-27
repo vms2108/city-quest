@@ -62,9 +62,9 @@ export class QuestComponent implements OnInit, OnDestroy {
   private getScreen(): void {
     const data = this.storageService.getData(this.quest.id);
     if (!data) {
-      this.selectScreen(this.quest.items[0]);
+      this.selectScreen(this.quest.items[0].screen);
     } else {
-      this.selectScreen(this.quest.items[+data]);
+      this.selectScreen(this.quest.items[+data].screen);
       this.index = +data;
     }
   }

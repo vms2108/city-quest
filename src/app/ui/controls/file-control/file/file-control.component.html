@@ -1,0 +1,15 @@
+<ng-container class="file-control">
+  <div class="file-control__container" sqDragDrop
+       (fileDropped)="onDropFile($event)"
+       (dropError)="errorDrop($event)" (click)="inputRef.click()">
+    <input #inputRef type="file" class="input-file" hidden (change)="selectFile($event)">
+    <mat-icon class="file-control__icon">
+      <ng-container *ngIf="file; else uploadIconTemplate;">done</ng-container>
+      <ng-template #uploadIconTemplate>cloud_upload</ng-template>
+    </mat-icon>
+    
+  </div>
+  <div *ngIf="file" class="file-control__file">
+    <p> {{ file.name }} </p>
+ </div>
+</ng-container>

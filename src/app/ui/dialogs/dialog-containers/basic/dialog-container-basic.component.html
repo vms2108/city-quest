@@ -1,0 +1,18 @@
+<header>
+  <h3 class="title">
+    {{ dialogTitle }}
+  </h3>
+</header>
+
+<section class="content-section">
+  <ng-container [ngTemplateOutlet]="contentTemplate"></ng-container>
+</section>
+
+<footer class="actions">
+  <div
+    *ngFor="let actionButtonTemplate of actionButtonsTemplates"
+    class="action"
+  >
+    <ng-container [ngTemplateOutlet]="actionButtonTemplate"></ng-container>
+  </div>
+</footer>

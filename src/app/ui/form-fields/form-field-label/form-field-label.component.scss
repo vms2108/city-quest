@@ -1,0 +1,18 @@
+@import 'src/app/ui/styles/colors';
+
+:host {
+  display: block;
+  font: 400 12px/18px Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 500;
+}
+
+.tooltip {
+  margin-left: 5px;
+
+  span {
+    display: inline-block;
+    padding: 0 2px;
+    color: $orange-color;
+    cursor: help;
+  }
+}

@@ -5,7 +5,5 @@ export class ScreenBlock {
     public type: BlockTypesEnum,
     public text: string = '',
     public link: string = '',
-    public answers: string[] = [],
-    public help: string = '',
   ) {}
 }

@@ -1,0 +1,63 @@
+h3 {
+  padding: 0;
+  margin: 0;
+  padding-left: 20px;
+}
+
+header {
+  z-index: 2;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  border-bottom: 1px solid rgba(34, 36, 38, 0.1);
+  background: #fff;
+  padding: 10px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form {
+  padding: 20px;
+}
+
+.example {
+  position: relative;
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 375px;
+  min-height: 667px;
+  border: 1px solid black;
+  border-radius: 20px;
+
+  &.fixed {
+    height: 667px;
+  }
+}
+
+footer {
+  z-index: 2;
+  position: sticky;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 40px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  border-top: 1px solid rgba(34, 36, 38, 0.1);
+  background: #fff;
+  padding: 10px;
+}
+
+.checkbox {
+  margin-bottom: 20px;
+}
+
+.cq-btn--red {
+  margin-right: 10px;
+}

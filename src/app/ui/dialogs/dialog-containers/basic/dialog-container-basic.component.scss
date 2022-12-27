@@ -1,0 +1,50 @@
+@import 'src/app/ui/styles/colors';
+
+$header-height: 50px;
+$actions-height: 60px;
+$padding: 15px;
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+header {
+  $border-bottom-width: 1px;
+
+  display: flex;
+  padding: $padding;
+  height: $header-height - ($padding * 2 + $border-bottom-width);
+  border-bottom: $border-bottom-width solid $border-color;
+
+  .title {
+    margin: 0;
+    font-weight: 500;
+    opacity: 0.5;
+  }
+}
+
+.content-section {
+  height: calc(100% - #{$header-height + $actions-height + $padding * 2});
+  padding: $padding;
+  overflow: auto;
+}
+
+.actions {
+  $border-top-width: 1px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: $padding;
+  height: $actions-height - ($padding * 2 + $border-top-width);
+  border-top: $border-top-width solid $border-color;
+
+  .action {
+    margin-right: 15px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

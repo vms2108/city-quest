@@ -1,0 +1,18 @@
+<cq-form-field-label
+  *ngIf="label"
+  [label]="label"
+></cq-form-field-label>
+<cq-array-control
+  [formControl]="control"
+  [initialItemValue]="initialItemValue"
+  [minSize]="0"
+  [dragVisible]="false"
+>
+  <ng-template
+    #itemControl
+    let-itemFormControl="itemFormControl"
+  >
+    <cq-text-control [formControl]="itemFormControl"></cq-text-control>
+    <cq-ab-page-control></cq-ab-page-control>
+  </ng-template>
+</cq-array-control>

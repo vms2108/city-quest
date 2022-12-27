@@ -4,7 +4,7 @@
     {{ screen.name }}
   </h1>
 
-  <cq-block-universal *ngFor="let block of screen.blocks" [block]="block"></cq-block-universal>
+  <cq-block-universal *ngFor="let block of screen?.parameters?.blocks" [block]="block"></cq-block-universal>
 
   <button *ngIf="blockPromptVisible" class="help-question" (click)="needPrompt()">
     Показать подсказку
@@ -19,11 +19,11 @@
   </button>
   
   <div class="input">
-    <cq-text-control placeholder="Ответ" [formControl]="answerControl"></cq-text-control>
+    <cq-text-control label="Ответ" [formControl]="answerControl"></cq-text-control>
   </div>
 
   <cq-screen-btn text="Готово" [disabled]="answerControl.invalid" (apply)="apply()"></cq-screen-btn>
   
 </div>
 
-<cq-notification></cq-notification>
+<!-- <cq-notification></cq-notification> -->

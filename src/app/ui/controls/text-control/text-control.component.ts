@@ -23,7 +23,7 @@ import { SimpleFormControlBaseComponent } from 'src/app/ui/control-base/simple-f
 export class TextControlComponent extends SimpleFormControlBaseComponent<string, string> implements OnInit {
 
   @Input()
-  public placeholder = '';
+  public label = '';
 
   @Input()
   public maxLength = 64;
@@ -56,9 +56,5 @@ export class TextControlComponent extends SimpleFormControlBaseComponent<string,
 
   public createInputDataFromValue(value: string | null): string | null {
     return value;
-  }
-
-  public focus(): void {
-    window.scrollTo({ top: 90, behavior: 'smooth' });
   }
 }

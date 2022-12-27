@@ -1,0 +1,10 @@
+<div class="field">
+  <cq-form-field-label
+    *ngIf="label"
+    [label]="label"
+  ></cq-form-field-label>
+  <ng-container ikFormFieldControl>
+    <cq-select-control [formControl]="control" [options]="list"></cq-select-control>
+  </ng-container>
+</div>
+

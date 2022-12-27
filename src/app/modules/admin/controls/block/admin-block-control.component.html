@@ -1,0 +1,12 @@
+<form class="form" [formGroup]="form">
+  <cq-admin-block-type-control formControlName="type" label="Тип"></cq-admin-block-type-control>
+  <ng-container [ngSwitch]="control.value.type">
+    <ng-container *ngSwitchCase="'PICTURE'">
+      <cq-file-control formControlName="link" label="Картинка"></cq-file-control>
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+      <cq-textarea-control formControlName="text" label="Текст"></cq-textarea-control>
+    </ng-container>
+  </ng-container>
+  
+</form>

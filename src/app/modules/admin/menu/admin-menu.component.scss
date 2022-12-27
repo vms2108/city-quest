@@ -1,0 +1,33 @@
+@import 'src/app/ui/styles/colors';
+
+.menu {
+  display: flex;
+  align-items: flex-end;
+  height: 45px;
+  padding-left: 10px;
+
+  &__link {
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    box-sizing: border-box;
+    height: 38px;
+    font-size: 14px;
+    color: $text-color;
+    background: $menu-bg;
+    cursor: pointer;
+
+    &:hover {
+      color: $orange-color;
+    }
+
+    &--active {
+      background: #fff;
+      font-weight: bold;
+    }
+  }
+
+  &__icon {
+    margin-right: 5px;
+  }
+}

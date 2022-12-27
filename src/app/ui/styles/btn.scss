@@ -1,58 +1,34 @@
+.container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: 20px;
+  padding-top: 5px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
 .btn {
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 64px;
-  margin-top: 48px;
-  border: 1px solid #D40035;
-  box-sizing: border-box;
   font-weight: bold;
   font-size: 24px;
-  line-height: 29px;
-  background: #D40035;
-  color: #fff;
-  transition: color 0.3s, background-color 0.3s;
-  
+  line-height: 32px;
+  text-align: center;
+  color: #FFFFFF;
+  background: #5055BE;
+  text-decoration-line: none;
+  padding: 12px 20px;
+  display: block;
+  width: 320px;
+  margin: 0 auto;
   cursor: pointer;
-  text-decoration: none;
+  border-radius: 12px;
+  transition: background 0.2s;
 
   &:hover {
-    background: #fff;
-    color: #D40035;
-
-    & .btn-arrow path {
-      fill: #D40035;
-    }
+    background: #6F6CFF;
   }
 
-  &--long {
-    font-size: 16px;
-  }
-
-  &__text {
-    margin-right: 12px;
-  }
-}
-
-.btn-arrow {
-  margin-top: 5px;
-  display: block;
-  path {
-    transition: fill 0.3s;
-    fill: #fff;
-  }
-}
-
-@media only screen and (min-width: 640px)  {
-  .btn {
-    width: 320px;
-    margin: 0 auto;
-    margin-top: 48px;
-
-    &--long {
-      font-size: 24px;
-      width: 420px;
-    }
+  &:disabled {
+    opacity: 0.8;
   }
 }
