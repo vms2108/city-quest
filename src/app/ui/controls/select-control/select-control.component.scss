@@ -1,65 +1,67 @@
-.select-menu {
-  z-index: 5;
-  color: #212529;
-  text-align: left;
-  list-style: none;
-  overflow-x: hidden;
-  background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, .15);
+.custom-select {
+  position: relative;
+  font-family: Arial;
 }
 
-.select-trigger {
-  width: 180px;
-  border: 1px solid lightgray;
-  text-align: left;
-  padding: 7px;
-  font-size: 14px;
-  color: #212529;
+.custom-select select {
+  display: none;
+}
+
+.select-selected {
+  color: #26357A;
+  border: 1px solid #BDBDBD;
+  border-radius: 8px;
+  background: #fff;
+  margin-top: 5px;
+}
+
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+.select-items div,
+.select-selected {
+  color: #26357A;
+  padding: 8px 16px;
   cursor: pointer;
-  &:focus {
-    outline: none;
+}
+
+.select-items {
+  position: absolute;
+  margin-top: 3px;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  border: 1px solid #BDBDBD;
+  background: #fff;
+
+  div {
+    border-bottom: 1px solid #BDBDBD;
+
+    &:last-child {
+      border-bottom: none;
+    }
   }
 }
 
-.select-menu-inner {
-  width: 180px;
-  max-height: 128px;
+.select-hide {
+  display: none;
 }
 
-
-input {
-  border: none;
-  width: 100%;
-  font-size: 14px;
-
-  &:focus {
-    outline: none;
-  }
-}
-
-
-.select-item {
-  height: 32px;
-  display: flex;
-  align-items: center;
-  padding: 0 7px;
-  cursor: pointer;
-  font-size: 14px;
-
-  &:hover {
-    background-color: whitesmoke;
-  }
-
-  &.active {
-    background-color: deeppink;
-    color: #fff;
-  }
-}
-
-.no-results-item {
-  height: 32px;
-  display: flex;
-  align-items: center;
-  padding: 0 7px;
-  font-size: 14px;
+.select-items div:hover, .same-as-selected {
+  color: #000;
+  background: rgb(220, 220, 220);
 }

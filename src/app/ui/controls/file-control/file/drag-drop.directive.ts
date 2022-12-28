@@ -1,7 +1,7 @@
 import { Directive, EventEmitter, HostBinding, HostListener, Output } from '@angular/core';
 
 @Directive({
-  selector: '[sqDragDrop]',
+  selector: '[cqDragDrop]',
 })
 export class DragDropDirective {
 

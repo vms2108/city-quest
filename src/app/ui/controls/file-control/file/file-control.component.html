@@ -1,5 +1,5 @@
 <ng-container class="file-control">
-  <div class="file-control__container" sqDragDrop
+  <div class="file-control__container" cqDragDrop
        (fileDropped)="onDropFile($event)"
        (dropError)="errorDrop($event)" (click)="inputRef.click()">
     <input #inputRef type="file" class="input-file" hidden (change)="selectFile($event)">
