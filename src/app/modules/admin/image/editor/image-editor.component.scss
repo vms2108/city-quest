@@ -59,6 +59,29 @@ footer {
   margin-bottom: 20px;
 }
 
-.cq-btn--red {
-  margin-right: 10px;
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  margin-right: 20px;
+  margin-left: auto;
+  font-size: 18px;
+  line-height: 24px;
+  height: 40px;
+  color: #FFFFFF;
+  background: #5055BE;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #6F6CFF;
+  }
+
+  &:disabled {
+    cursor: initial;
+    background: #5055BE;
+    opacity: 0.8;
+  }
 }
