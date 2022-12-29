@@ -22,7 +22,7 @@ export class AdminScreenComponent implements OnInit, OnDestroy {
 
   public displayedColumns = [
     new Column('name', 'Заголовок'),
-    new Column('type', 'Тип'),
+    new Column('type', 'Тип экрана'),
   ];
 
   public loading = true;

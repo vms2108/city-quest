@@ -9,6 +9,7 @@ import { FormFieldsModule } from '../../form-fields/form-fields.module';
 
 import { DragDropDirective } from './file/drag-drop.directive';
 import { FileControlComponent } from './file/file-control.component';
+import { FileFactory } from './models/file.models.factory';
 
 @NgModule({
   imports: [
@@ -19,6 +20,10 @@ import { FileControlComponent } from './file/file-control.component';
     MatInputModule,
     MatIconModule,
     FormFieldsModule,
+  ],
+
+  providers: [
+    FileFactory,
   ],
 
   declarations: [

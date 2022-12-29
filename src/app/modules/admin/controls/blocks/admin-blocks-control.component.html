@@ -1,18 +1,15 @@
-<cq-form-field-label
-  *ngIf="label"
-  [label]="label"
-></cq-form-field-label>
+<div class="label">
+  Блоки
+</div>
 <cq-array-control
   [formControl]="control"
   [initialItemValue]="initialItemValue"
   [minSize]="0"
-  [dragVisible]="false"
 >
   <ng-template
     #itemControl
     let-itemFormControl="itemFormControl"
   >
-    <cq-text-control [formControl]="itemFormControl"></cq-text-control>
-    <cq-ab-page-control></cq-ab-page-control>
+    <cq-admin-block-control [formControl]="itemFormControl"></cq-admin-block-control>
   </ng-template>
 </cq-array-control>

@@ -1,8 +1,8 @@
 <form class="form" [formGroup]="form">
-  <cq-admin-block-type-control formControlName="type" label="Тип"></cq-admin-block-type-control>
-  <ng-container [ngSwitch]="control.value.type">
+  <cq-admin-block-type-control formControlName="type" label="Тип блока"></cq-admin-block-type-control>
+  <ng-container [ngSwitch]="form.value.type">
     <ng-container *ngSwitchCase="'PICTURE'">
-      <cq-file-control formControlName="link" label="Картинка"></cq-file-control>
+      <cq-text-control formControlName="link" label="Ссылка на картинку"></cq-text-control>
     </ng-container>
     <ng-container *ngSwitchDefault>
       <cq-textarea-control formControlName="text" label="Текст"></cq-textarea-control>

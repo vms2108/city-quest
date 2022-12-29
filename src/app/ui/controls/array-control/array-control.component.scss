@@ -6,7 +6,11 @@
 
 .btn {
   margin-top: 5px;
-  padding: 7px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #fff;
   border-radius: 0.28571429rem;
   background: #00b5ad;
@@ -24,6 +28,11 @@
     width: $drag-width;
     align-items: center;
     cursor: move;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
   }
 
   .remove {
