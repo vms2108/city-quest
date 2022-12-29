@@ -13,6 +13,9 @@ import { LoaderWithBackdropModule } from 'src/app/ui/loader-with-backdrop/loader
 
 import { AdminComponent } from './admin.component';
 import { ADMIN_CONTROL_COMPONENTS } from './controls/admin-control.components';
+import { AdminImageComponent } from './image/admin-image.component';
+import { AdminImageService } from './image/common/admin-image.service';
+import { ImageEditorComponent } from './image/editor/image-editor.component';
 import { OfferMenuComponent } from './menu/admin-menu.component';
 import { AdminQuestComponent } from './quest/admin-quest.component';
 import { AdminScreenComponent } from './screen/admin-screen.component';
@@ -39,10 +42,13 @@ import { ScreenEditorComponent } from './screen/editor/screen-editor.component';
     AdminScreenComponent,
     AdminQuestComponent,
     ScreenEditorComponent,
+    AdminImageComponent,
+    ImageEditorComponent,
     ADMIN_CONTROL_COMPONENTS,
   ],
   providers: [
     AdminScreenService,
+    AdminImageService,
   ],
   exports: [
     AdminComponent,

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AdminModule } from './admin.module';
+import { AdminImageComponent } from './image/admin-image.component';
 import { AdminQuestComponent } from './quest/admin-quest.component';
 import { AdminScreenComponent } from './screen/admin-screen.component';
 
@@ -26,6 +27,10 @@ export const routes: Routes = [
   {
     path: 'screen/:id',
     component: AdminQuestComponent,
+  },
+  {
+    path: 'image',
+    component: AdminImageComponent,
   },
   {
     path: '**',

@@ -16,9 +16,9 @@ export class AdminScreenService {
   public loadList(): Observable<QuestScreen[]> {
 
     return this.httpClient
-    .get<{ payload: QuestScreen[] }>(`${ this.api }/screen`)
+    .get<QuestScreen[]>(`${ this.api }/screen`)
     .pipe(
-      map(json => json.payload),
+      map(json => json),
     );
   }
 

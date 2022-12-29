@@ -95,7 +95,6 @@ export class AdminScreenComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy),
       )
       .subscribe();
-
   }
 
   private readGetParams(): void {

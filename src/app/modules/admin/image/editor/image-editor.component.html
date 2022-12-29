@@ -1,0 +1,31 @@
+<header>
+  <h3>
+    Добавить картинку
+  </h3>
+</header>
+
+<section>
+  <div class="flex">
+    <form
+      *ngIf="form"
+      class="form"
+      [formGroup]="form"
+    >
+      <cq-file-control formControlName="file" label="Картинка"></cq-file-control>
+    </form>
+  </div>
+</section>
+
+
+<footer>
+  <button
+    *ngIf="form"
+    class="btn"
+    [disabled]="form.invalid || loading"
+    (click)="apply()"
+  >
+    Сохранить
+  </button>
+</footer>
+
+<cq-loader-with-backdrop *ngIf="loading"></cq-loader-with-backdrop>
