@@ -14,8 +14,8 @@
     </th>
     <th></th>
   </thead>
-  <tbody *ngIf="list?.length">
-    <tr *ngFor="let item of list; index as i" (dblclick)="selectScreen(item)" [class.locked]="item.locked">
+  <tbody *ngIf="(state | async)">
+    <tr *ngFor="let item of (state | async)?.admin?.screen?.list; index as i" (dblclick)="selectScreen(item)" [class.locked]="item.locked">
       <td *ngFor="let column of displayedColumns; index as j"
         >
         <ng-container [ngSwitch]="column.id">

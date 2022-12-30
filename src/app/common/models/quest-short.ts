@@ -1,10 +1,13 @@
 export class QuestShort {
   constructor(
-    public id: string,
-    public city: string,
+    public _id: string,
+    public link: string,
     public name: string,
     public text: string,
     public pictureLink: string,
-    public length: number,
+    public items: {
+      order: number,
+      screenId: string,
+    }[],
   ) {}
 }

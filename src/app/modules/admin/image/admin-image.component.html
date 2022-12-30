@@ -11,8 +11,8 @@
     </th>
     <th></th>
   </thead>
-  <tbody *ngIf="list?.length">
-    <tr *ngFor="let item of list; index as i">
+  <tbody *ngIf="(state | async)">
+    <tr *ngFor="let item of (state | async)?.admin?.image?.list; index as i">
       <td *ngFor="let column of displayedColumns; index as j"
         >
         <ng-container [ngSwitch]="column.id">

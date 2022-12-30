@@ -1,14 +1,18 @@
 import { Location } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { filter, finalize, map, takeUntil } from 'rxjs/operators';
+import { filter, finalize, map, takeUntil, tap } from 'rxjs/operators';
+import { ScreenService } from 'src/app/common/data/screen/screen.service';
 import { Column } from 'src/app/common/models/column';
 import { QuestScreen } from 'src/app/common/models/quest-screen';
 import { BasicDialogsService } from 'src/app/ui/dialogs/basic-dialogs/basic-dialogs.service';
 import { NotificationService } from 'src/app/ui/notifications/notification.service';
 
-import { AdminScreenService } from './common/admin-screen.service';
+import { GetScreensFromServer } from '../store/actions/screen.actions';
+import { selectAdminData } from '../store/selectors/admin.selector';
+import { CommonAdminState } from '../store/states/admin.state';
 
 @Component({
   selector: 'cq-admin-screen',
@@ -17,6 +21,8 @@ import { AdminScreenService } from './common/admin-screen.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminScreenComponent implements OnInit, OnDestroy {
+
+  public state = this.store.pipe(select(selectAdminData));
 
   public list!: QuestScreen[];
 
@@ -39,11 +45,12 @@ export class AdminScreenComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly adminScreenService: AdminScreenService,
+    private readonly screenService: ScreenService,
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly location: Location,
     private readonly basicDialogsService: BasicDialogsService,
     private readonly notificationService: NotificationService,
+    private readonly store: Store<CommonAdminState>,
   ) { }
 
   public ngOnInit(): void {
@@ -67,7 +74,7 @@ export class AdminScreenComponent implements OnInit, OnDestroy {
     this.isCopy = isCopy;
     this.selectedItem = item;
     if (!isCopy && item) {
-      this.location.go(`/admin/screen/${ item.id }`);
+      this.location.go(`/admin/screen/${ item._id }`);
     }
     this.visibleEditor = true;
     this.changeDetectorRef.markForCheck();
@@ -84,8 +91,8 @@ export class AdminScreenComponent implements OnInit, OnDestroy {
   private removeScreen(screen: QuestScreen): void {
     this.setLoading(true);
 
-    this.adminScreenService
-      .deleteScreen(screen.id)
+    this.screenService
+      .deleteScreen(screen._id)
       .pipe(
         map(() => {
           this.notificationService.success('Успешно удалено');
@@ -102,33 +109,33 @@ export class AdminScreenComponent implements OnInit, OnDestroy {
   }
 
   private getList(): void {
-    this.adminScreenService
-      .loadList()
-      .pipe(
-        map(data => {
-          this.list = data;
-          this.setUpdatedItem();
-        }),
-        takeUntil(this.destroy),
-        finalize(() => this.setLoading(false)),
-      )
-      .subscribe();
+    this.state
+    .pipe(tap(data => {
+      if (!data.screen.list) {
+        this.store.dispatch(new GetScreensFromServer());
+        return;
+      }
+    }))
+    .subscribe(data => {
+      this.list = data.screen.list!;
+      this.setUpdatedItem();
+    });
   }
 
   private setUpdatedItem(): void {
     if (this.selectedItem) {
-      this.selectedItem = this.list.find(item => item.id === this.selectedItem!.id)!;
+      this.selectedItem = this.list.find(item => item._id === this.selectedItem!._id)!;
       return;
     }
-    if (this.editableId && this.list.find(item => item.id === this.editableId)) {
-      this.selectedItem = this.list.find(item => item.id === this.editableId)!;
+    if (this.editableId && this.list.find(item => item._id === this.editableId)) {
+      this.selectedItem = this.list.find(item => item._id === this.editableId)!;
       this.visibleEditor = true;
       this.changeDetectorRef.markForCheck();
     }
   }
 
   private confirmDelete(screen: QuestScreen): Observable<boolean> {
-    return this.basicDialogsService.confirm(`Вы действительно хотите удалить экран ${screen.name}?`);
+    return this.basicDialogsService.confirm(`Вы действительно хотите удалить экран ${ screen.name }?`);
   }
 
   private setLoading(loading: boolean): void {

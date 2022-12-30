@@ -5,8 +5,10 @@ import { BrowserModule, HammerGestureConfig, HammerModule, HAMMER_GESTURE_CONFIG
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { environment } from 'src/environments/environment';
 
-import { environment } from './../environments/environment';
 import { API_URL_GATEWAY } from './api-service.config';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +29,8 @@ import { NotificationModule } from './ui/notifications/notification.module';
     FontAwesomeModule,
     HttpClientModule,
     NotificationModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot(),
   ],
   declarations: [
     AppComponent,

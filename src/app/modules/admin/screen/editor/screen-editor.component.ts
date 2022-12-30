@@ -5,7 +5,7 @@ import { finalize, takeUntil } from 'rxjs/operators';
 import { QuestScreen } from 'src/app/common/models/quest-screen';
 import { NotificationService } from 'src/app/ui/notifications/notification.service';
 
-import { AdminScreenService } from '../common/admin-screen.service';
+import { ScreenService } from '../../../../common/data/screen/screen.service';
 
 @Component({
   selector: 'cq-screen-editor',
@@ -35,7 +35,7 @@ export class ScreenEditorComponent implements OnChanges {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly changeDetectorRef: ChangeDetectorRef,
-    private readonly screenService: AdminScreenService,
+    private readonly screenService: ScreenService,
     private readonly notificationService: NotificationService,
   ) {
   }

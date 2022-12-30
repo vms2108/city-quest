@@ -3,20 +3,21 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { API_URL_GATEWAY } from 'src/app/api-service.config';
+import { ScreenImage } from 'src/app/common/models/screen-image';
 import { LocalFile } from 'src/app/ui/controls/file-control/models/local-file';
 
 @Injectable()
-export class AdminImageService {
+export class ImageService {
 
   constructor(
-    private httpClient: HttpClient,
-    @Inject(API_URL_GATEWAY) private api: string,
+    private readonly httpClient: HttpClient,
+    @Inject(API_URL_GATEWAY) private readonly api: string,
   ) {}
 
-  public loadList(): Observable<{imageSrc: string, _id: string}[]> {
+  public loadList(): Observable<ScreenImage[]> {
 
     return this.httpClient
-    .get<{imageSrc: string, _id: string}[]>(`${ this.api }/file`)
+    .get<ScreenImage[]>(`${ this.api }/file`)
     .pipe(
       map(json => json),
     );

@@ -4,7 +4,7 @@ import { QuestScreenParameters } from './quest-screen-parameters';
 
 export class QuestScreen {
   constructor(
-    public id: string,
+    public _id: string,
     public name: string,
     public type: ScreenTypesEnum,
     public parameters: QuestScreenParameters,

@@ -5,7 +5,7 @@ import { finalize, takeUntil } from 'rxjs/operators';
 import { LocalFile } from 'src/app/ui/controls/file-control/models/local-file';
 import { NotificationService } from 'src/app/ui/notifications/notification.service';
 
-import { AdminImageService } from '../common/admin-image.service';
+import { ImageService } from '../../../../common/data/image/image.service';
 
 @Component({
   selector: 'cq-image-editor',
@@ -27,7 +27,7 @@ export class ImageEditorComponent implements OnInit, OnDestroy {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly changeDetectorRef: ChangeDetectorRef,
-    private readonly adminImageService: AdminImageService,
+    private readonly imageService: ImageService,
     private readonly notificationService: NotificationService,
   ) {
   }
@@ -49,7 +49,7 @@ export class ImageEditorComponent implements OnInit, OnDestroy {
   private create(file: LocalFile): void {
 
     this.setLoading(true);
-    this.adminImageService
+    this.imageService
       .createImage(file)
       .pipe(
         finalize(() => this.setLoading(false)),

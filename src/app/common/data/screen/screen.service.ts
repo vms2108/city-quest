@@ -6,11 +6,11 @@ import { API_URL_GATEWAY } from 'src/app/api-service.config';
 import { QuestScreen } from 'src/app/common/models/quest-screen';
 
 @Injectable()
-export class AdminScreenService {
+export class ScreenService {
 
   constructor(
-    private httpClient: HttpClient,
-    @Inject(API_URL_GATEWAY) private api: string,
+    private readonly httpClient: HttpClient,
+    @Inject(API_URL_GATEWAY) private readonly api: string,
   ) {}
 
   public loadList(): Observable<QuestScreen[]> {
@@ -43,20 +43,20 @@ export class AdminScreenService {
 
   public updateScreen(screen: QuestScreen): Observable<string> {
     const {
-      id,
+      _id,
       name,
       type,
       parameters,
     } = screen;
 
     const body = {
-      id,
+      _id,
       name,
       type,
       parameters,
     };
     return this.httpClient
-      .patch<{ code: string }>(`${ this.api }/screen/${ id }`, body)
+      .patch<{ code: string }>(`${ this.api }/screen/${ _id }`, body)
       .pipe(
         map(json => json.code),
       );

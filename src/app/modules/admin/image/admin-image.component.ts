@@ -1,11 +1,16 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { filter, finalize, map, takeUntil } from 'rxjs/operators';
+import { filter, finalize, map, takeUntil, tap } from 'rxjs/operators';
+import { ImageService } from 'src/app/common/data/image/image.service';
 import { Column } from 'src/app/common/models/column';
+import { ScreenImage } from 'src/app/common/models/screen-image';
 import { BasicDialogsService } from 'src/app/ui/dialogs/basic-dialogs/basic-dialogs.service';
 import { NotificationService } from 'src/app/ui/notifications/notification.service';
 
-import { AdminImageService } from './common/admin-image.service';
+import { GetImagesFromServer } from '../store/actions/image.actions';
+import { selectAdminData } from '../store/selectors/admin.selector';
+import { CommonAdminState } from '../store/states/admin.state';
 
 @Component({
   selector: 'cq-admin-image',
@@ -15,7 +20,7 @@ import { AdminImageService } from './common/admin-image.service';
 })
 export class AdminImageComponent implements OnInit, OnDestroy {
 
-  public list!: { _id: string, imageSrc: string }[];
+  public state = this.store.pipe(select(selectAdminData));
 
   public displayedColumns = [
     new Column('imageSrc', 'Ссылка'),
@@ -28,10 +33,11 @@ export class AdminImageComponent implements OnInit, OnDestroy {
   private destroy = new Subject<void>();
 
   constructor(
-    private readonly adminImageService: AdminImageService,
+    private readonly imageService: ImageService,
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly basicDialogsService: BasicDialogsService,
     private readonly notificationService: NotificationService,
+    private readonly store: Store<CommonAdminState>,
   ) { }
 
   public ngOnInit(): void {
@@ -59,7 +65,7 @@ export class AdminImageComponent implements OnInit, OnDestroy {
     this.changeDetectorRef.markForCheck();
   }
 
-  public deleteImage(image: { imageSrc: string, _id: string }): void {
+  public deleteImage(image: ScreenImage): void {
     this.confirmDelete(image)
       .pipe(
         filter(confirmed => confirmed),
@@ -68,27 +74,29 @@ export class AdminImageComponent implements OnInit, OnDestroy {
   }
 
   private getList(): void {
-    this.adminImageService
-      .loadList()
-      .pipe(
-        map(data => {
-          this.list = data;
-        }),
-        takeUntil(this.destroy),
-        finalize(() => this.setLoading(false)),
-      )
-      .subscribe();
+    this.state
+    .pipe(
+      tap(data => {
+        if (!data.image.list) {
+          this.store.dispatch(new GetImagesFromServer());
+          return;
+        }
+      }),
+      takeUntil(this.destroy),
+      map(() => this.setLoading(false)),
+    )
+    .subscribe();
   }
 
-  private removeImage(image: { imageSrc: string, _id: string }): void {
+  private removeImage(image: ScreenImage): void {
     this.setLoading(true);
 
-    this.adminImageService
+    this.imageService
       .deleteImage(image._id)
       .pipe(
         map(() => {
           this.notificationService.success('Успешно удалено');
-          this.getList();
+          this.store.dispatch(new GetImagesFromServer());
         }),
         finalize(() => this.setLoading(false)),
         takeUntil(this.destroy),
