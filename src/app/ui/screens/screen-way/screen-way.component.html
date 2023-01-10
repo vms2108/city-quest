@@ -6,6 +6,6 @@
 
   <cq-block-universal *ngFor="let block of screen?.parameters?.blocks" [block]="block"></cq-block-universal>
   
-  <cq-screen-btn text="Я на месте" (apply)="apply()"></cq-screen-btn>
+  <cq-screen-btn text="Я на месте" [fromAdmin]="fromAdmin" (apply)="apply()"></cq-screen-btn>
   
 </div>

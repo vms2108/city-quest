@@ -1,4 +1,4 @@
 <div class="name-input">
-  <input class="input" type="text" autocomplete="off" [id]="id" [formControl]="control" [maxlength]="maxLength">
-  <label class="label" [for]="id">{{ label }}</label>
+  <input #input class="input" type="text" autocomplete="off" cqInput [formControl]="control" [maxlength]="maxLength" >
+  <label class="label" (click)="input.focus()">{{ label }}</label>
 </div>

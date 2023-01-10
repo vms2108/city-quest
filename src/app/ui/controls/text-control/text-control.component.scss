@@ -18,6 +18,7 @@
 
     &:focus,
     &:active,
+    &.fill,
     &.ng-valid.ng-touched {
       outline: none;
 

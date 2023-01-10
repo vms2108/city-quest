@@ -19,6 +19,6 @@ export class QuestService {
   }
 
   private mockLoadByType(type: string): Quest | null {
-    return this.ALL_QUESTS.find(item => item.id === type) || null;
+    return this.ALL_QUESTS.find(item => item._id === type) || null;
   }
 }

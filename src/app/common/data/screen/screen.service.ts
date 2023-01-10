@@ -50,7 +50,6 @@ export class ScreenService {
     } = screen;
 
     const body = {
-      _id,
       name,
       type,
       parameters,

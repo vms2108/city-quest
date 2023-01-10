@@ -1,7 +1,9 @@
 <div class="name-input">
   <textarea
+    #input
+    cqInput
     [style.height.px]="height"
     [formControl]="control"
   ></textarea>
-  <label class="label">{{ label }}</label>
+  <label class="label" (click)="input.focus()">{{ label }}</label>
 </div>

@@ -4,8 +4,7 @@ import { QuestScreen } from 'src/app/common/models/quest-screen';
 import { StorageService } from 'src/app/common/services/storage.service';
 import { FooterService } from 'src/app/root-components/footer/footer.service';
 import { HeaderService } from 'src/app/root-components/header/header.service';
-
-import { ALLCOMPONENTS, LazyLoadingScreenService } from '../common/lazy-loading-screen.service';
+import { ALLCOMPONENTS, LazyLoadingScreenService } from 'src/app/ui/lazy-loading/lazy-loading-screen.service';
 
 @Component({
   selector: 'cq-quest-screen',
@@ -136,7 +135,7 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
   }
 
   private saveData(): void {
-    this.storageService.saveData(this.quest.id, this.index.toString());
+    this.storageService.saveData(this.quest._id, this.index.toString());
   }
 
   private stopMove(): void {

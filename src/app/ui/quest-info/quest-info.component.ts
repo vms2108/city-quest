@@ -19,6 +19,6 @@ export class QuestInfoComponent {
   public goToQuest = new EventEmitter<void>();
 
   public getWidth(): number {
-    return this.userProgress / this.quest.length * 100;
+    return this.userProgress / this.quest.items.length * 100;
   }
 }

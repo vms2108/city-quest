@@ -17,7 +17,9 @@
       <img src="assets/images/oops.jpg" width="20" height="20" alt="Oops">
     </ng-container>
     <ng-container *ngSwitchCase="'error'">
-      <button (click)="close(notification)">close</button>
+      <button class="cq-link" (click)="close(notification)">
+        <mat-icon>clear</mat-icon>
+      </button>
     </ng-container>
     <ng-container *ngSwitchCase="'info'">
     

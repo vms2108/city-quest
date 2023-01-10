@@ -4,7 +4,7 @@ import { Quest } from 'src/app/common/models/quest';
 import { ScreenBlock } from 'src/app/common/models/screen-block';
 
 export const QUEST_123: Quest = {
-  id: '123',
+  _id: '123',
   link: 'nevskii-prospect',
   name: 'По Невскому проспекту',
   text: '',
@@ -13,7 +13,7 @@ export const QUEST_123: Quest = {
     {
       order: 1,
       screen: {
-        id: '001',
+        _id: '001',
         type: ScreenTypesEnum.INFO,
         name: 'Дворцовый мост',
         parameters: {
@@ -32,7 +32,7 @@ export const QUEST_123: Quest = {
     {
       order: 2,
       screen: {
-        id: '002',
+        _id: '002',
         type: ScreenTypesEnum.QUESTION_FREE,
         name: '',
         parameters: {
@@ -53,7 +53,7 @@ export const QUEST_123: Quest = {
     {
       order: 3,
       screen: {
-        id: '003',
+        _id: '003',
         name: '',
         type: ScreenTypesEnum.WAY,
         parameters: {
@@ -70,7 +70,7 @@ export const QUEST_123: Quest = {
     {
       order: 4,
       screen: {
-        id: '004',
+        _id: '004',
         type: ScreenTypesEnum.INFO,
         name: 'Адмиралтейство',
         parameters: {
@@ -87,7 +87,7 @@ export const QUEST_123: Quest = {
     {
       order: 5,
       screen: {
-        id: '005',
+        _id: '005',
         type: ScreenTypesEnum.INFO,
         name: 'Адмиралтейство',
         parameters: {
@@ -104,7 +104,7 @@ export const QUEST_123: Quest = {
     {
       order: 6,
       screen: {
-        id: '006',
+        _id: '006',
         type: ScreenTypesEnum.QUESTION_FREE,
         name: '',
         parameters: {
@@ -125,7 +125,7 @@ export const QUEST_123: Quest = {
     {
       order: 7,
       screen: {
-        id: '007',
+        _id: '007',
         name: '',
         type: ScreenTypesEnum.WAY,
         parameters: {

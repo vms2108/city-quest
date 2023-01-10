@@ -3,6 +3,7 @@ import { AdminBlockTypeControlComponent } from './block-type/admin-block-type-co
 import { AdminBlockControlComponent } from './block/admin-block-control.component';
 import { AdminBlocksControlComponent } from './blocks/admin-blocks-control.component';
 import { AdminParametersControlComponent } from './parameters/admin-parameters-control.component';
+import { AdminPictureControlComponent } from './picture/admin-picture-control.component';
 import { AdminScreenTypeControlComponent } from './type/admin-screen-type-control.component';
 
 export const ADMIN_CONTROL_COMPONENTS = [
@@ -12,4 +13,5 @@ export const ADMIN_CONTROL_COMPONENTS = [
   AdminBlockTypeControlComponent,
   AdminBlockControlComponent,
   AdminBlocksControlComponent,
+  AdminPictureControlComponent,
 ];

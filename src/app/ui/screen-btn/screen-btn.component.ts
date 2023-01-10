@@ -14,6 +14,9 @@ export class ScreenBtnComponent {
   @Input()
   public disabled = false;
 
+  @Input()
+  public fromAdmin = false;
+
   @Output()
   public apply = new EventEmitter<void>();
 

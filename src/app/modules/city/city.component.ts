@@ -40,7 +40,7 @@ export class CityComponent implements OnInit, OnDestroy {
   }
 
   public goToQuest(item: QuestShort): void {
-    this.router.navigate([`${ this.router.url }/${ item.id }`]);
+    this.router.navigate([`${ this.router.url }/${ item._id }`]);
   }
 
   private readGetParams(): void {

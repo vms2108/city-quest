@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminComponent } from './admin.component';
 
 import { AdminModule } from './admin.module';
 import { AdminImageComponent } from './image/admin-image.component';
@@ -9,8 +10,7 @@ import { AdminScreenComponent } from './screen/admin-screen.component';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'quest',
-    pathMatch: 'full',
+    component: AdminComponent,
   },
   {
     path: 'screen',

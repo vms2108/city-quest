@@ -22,8 +22,6 @@
     <cq-text-control label="Ответ" [formControl]="answerControl"></cq-text-control>
   </div>
 
-  <cq-screen-btn text="Готово" [disabled]="answerControl.invalid" (apply)="apply()"></cq-screen-btn>
+  <cq-screen-btn text="Готово" [fromAdmin]="fromAdmin" [disabled]="answerControl.invalid" (apply)="apply()"></cq-screen-btn>
   
 </div>
-
-<!-- <cq-notification></cq-notification> -->

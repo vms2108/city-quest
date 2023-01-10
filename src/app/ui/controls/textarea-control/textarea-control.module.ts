@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { InputDirectiveModule } from 'src/app/ui/input-directive/input-directive.module';
 
 import { TextareaControlComponent } from './textarea-control.component';
 
@@ -13,6 +14,7 @@ import { TextareaControlComponent } from './textarea-control.component';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    InputDirectiveModule,
   ],
 
   declarations: [

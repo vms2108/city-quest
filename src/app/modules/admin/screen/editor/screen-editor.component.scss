@@ -1,3 +1,5 @@
+@import 'src/app/ui/styles/btn.scss';
+
 h3 {
   padding: 0;
   margin: 0;
@@ -30,7 +32,7 @@ header {
   margin: 0 auto;
   box-sizing: border-box;
   width: 375px;
-  min-height: 667px;
+  height: 667px;
   border: 1px solid black;
   border-radius: 20px;
 
@@ -60,4 +62,12 @@ footer {
 
 .cq-btn--red {
   margin-right: 10px;
+}
+
+.btn {
+  padding: 10px;
+  font-size: 16px;
+  line-height: 20px;
+  width: 200px;
+  margin: 5px;
 }

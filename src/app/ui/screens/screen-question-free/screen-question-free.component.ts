@@ -22,6 +22,9 @@ export class ScreenQuestionFreeComponent implements OnChanges {
   @Input()
   public screen!: QuestScreen;
 
+  @Input()
+  public fromAdmin = false;
+
   @Output()
   public goNext = new EventEmitter<string>();
 

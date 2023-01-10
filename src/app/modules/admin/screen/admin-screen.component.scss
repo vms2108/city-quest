@@ -1,4 +1,5 @@
 @import 'src/app/ui/styles/btn.scss';
+@import 'src/app/ui/styles/link.scss';
 
 .header {
   margin: 10px;
@@ -104,4 +105,8 @@
   background-color: rgba(0, 0, 0, 0.65);
   position: fixed;
   cursor: default;
+}
+
+.btn {
+  margin-left: 10px;
 }

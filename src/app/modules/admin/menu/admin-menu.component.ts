@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AdminPagesEnum } from '../common/enums/admin-pages.enum';
@@ -11,7 +11,7 @@ import { AdminMenuItem } from '../common/models/admin-menu-item';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class OfferMenuComponent {
+export class OfferMenuComponent implements OnInit {
   public readonly rows: AdminMenuItem[] = [
     {
       label: 'Quest',
@@ -23,6 +23,11 @@ export class OfferMenuComponent {
       type: AdminPagesEnum.SCREEN,
       link: 'admin/screen',
     },
+    {
+      label: 'Image',
+      type: AdminPagesEnum.IMAGE,
+      link: 'admin/image',
+    },
   ];
 
   public currentType = AdminPagesEnum.QUEST;
@@ -31,6 +36,9 @@ export class OfferMenuComponent {
     private router: Router,
     private changeDetectorRef: ChangeDetectorRef,
   ) {
+  }
+
+  public ngOnInit(): void {
     this.getCurrentLink();
   }
 

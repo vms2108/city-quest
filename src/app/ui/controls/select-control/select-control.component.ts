@@ -2,8 +2,10 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   forwardRef,
   Input,
+  ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SimpleFormControlBaseComponent } from 'src/app/ui/control-base/simple-form-control.base-component';
@@ -34,6 +36,12 @@ export class SelectControlComponent<T = any> extends SimpleFormControlBaseCompon
   @Input()
   public options: string[] = [];
 
+  @ViewChild('el', { static: true })
+  public el!: ElementRef;
+
+  @ViewChild('select', { static: true })
+  public select!: ElementRef;
+
   protected readonly validatorKey = 'cq-select-control';
 
   constructor(
@@ -56,6 +64,10 @@ export class SelectControlComponent<T = any> extends SimpleFormControlBaseCompon
   }
 
   public createInputDataFromValue(value: T | null): T | null {
+    if (this.el.nativeElement) {
+      this.select.nativeElement.value = value;
+      this.el.nativeElement.dispatchEvent(new Event('change'));
+    }
     return value;
   }
 

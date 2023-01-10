@@ -12,7 +12,7 @@ import { NotificationService } from 'src/app/ui/notifications/notification.servi
 
 import { GetScreensFromServer } from '../store/actions/screen.actions';
 import { selectAdminData } from '../store/selectors/admin.selector';
-import { CommonAdminState } from '../store/states/admin.state';
+import { AdminState } from '../store/states/admin.state';
 
 @Component({
   selector: 'cq-admin-screen',
@@ -50,7 +50,7 @@ export class AdminScreenComponent implements OnInit, OnDestroy {
     private readonly location: Location,
     private readonly basicDialogsService: BasicDialogsService,
     private readonly notificationService: NotificationService,
-    private readonly store: Store<CommonAdminState>,
+    private readonly store: Store<AdminState>,
   ) { }
 
   public ngOnInit(): void {
@@ -88,6 +88,12 @@ export class AdminScreenComponent implements OnInit, OnDestroy {
     .subscribe(() => this.removeScreen(screen));
   }
 
+  public upsertScreen(): void {
+    this.setLoading(true);
+    this.store.dispatch(new GetScreensFromServer());
+    this.closeEditor();
+  }
+
   private removeScreen(screen: QuestScreen): void {
     this.setLoading(true);
 
@@ -110,13 +116,17 @@ export class AdminScreenComponent implements OnInit, OnDestroy {
 
   private getList(): void {
     this.state
-    .pipe(tap(data => {
-      if (!data.screen.list) {
-        this.store.dispatch(new GetScreensFromServer());
-        return;
-      }
-    }))
+    .pipe(
+      tap(data => {
+        if (!data || !data.screen.list) {
+          this.store.dispatch(new GetScreensFromServer());
+          return;
+        }
+      }),
+      filter(data => !!data && !!data.screen.list),
+    )
     .subscribe(data => {
+      this.setLoading(false);
       this.list = data.screen.list!;
       this.setUpdatedItem();
     });

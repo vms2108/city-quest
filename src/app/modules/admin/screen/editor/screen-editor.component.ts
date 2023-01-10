@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, Output, SimpleChange, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { finalize, takeUntil } from 'rxjs/operators';
+import { finalize, takeUntil, throttleTime } from 'rxjs/operators';
+import { ScreenService } from 'src/app/common/data/screen/screen.service';
 import { QuestScreen } from 'src/app/common/models/quest-screen';
+import { ALLCOMPONENTS, LazyLoadingScreenService } from 'src/app/ui/lazy-loading/lazy-loading-screen.service';
 import { NotificationService } from 'src/app/ui/notifications/notification.service';
-
-import { ScreenService } from '../../../../common/data/screen/screen.service';
 
 @Component({
   selector: 'cq-screen-editor',
@@ -22,7 +22,10 @@ export class ScreenEditorComponent implements OnChanges {
   public screen: any = null;
 
   @Output()
-  public screenChanged = new EventEmitter<boolean>();
+  public screenChanged = new EventEmitter<void>();
+
+  @ViewChild('currentContainer', { read: ViewContainerRef })
+  public currentContainer!: ViewContainerRef;
 
   public exampleScreen!: QuestScreen;
 
@@ -37,6 +40,7 @@ export class ScreenEditorComponent implements OnChanges {
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly screenService: ScreenService,
     private readonly notificationService: NotificationService,
+    private readonly lazyLoadingScreenService: LazyLoadingScreenService,
   ) {
   }
 
@@ -54,7 +58,7 @@ export class ScreenEditorComponent implements OnChanges {
   }
 
   private update(screen: QuestScreen): void {
-    screen.id = this.screen!.id;
+    screen._id = this.screen!._id;
 
     this.setLoading(true);
     this.screenService
@@ -65,12 +69,11 @@ export class ScreenEditorComponent implements OnChanges {
       )
       .subscribe(() => {
         this.notificationService.success('Экран успешно изменен.');
-        this.screenChanged.emit(true);
+        this.screenChanged.emit();
       });
   }
 
   private create(screen: QuestScreen): void {
-
     this.setLoading(true);
     this.screenService
       .createScreen(screen)
@@ -80,7 +83,7 @@ export class ScreenEditorComponent implements OnChanges {
       )
       .subscribe(() => {
         this.notificationService.success('Экран успешно сохранён.');
-        this.screenChanged.emit(true);
+        this.screenChanged.emit();
       });
   }
 
@@ -104,15 +107,20 @@ export class ScreenEditorComponent implements OnChanges {
     });
 
     this.exampleScreen = this.form.value;
+    this.lazyLoadCurrentCard(this.exampleScreen);
     this.formValueChanges();
   }
 
   private formValueChanges(): void {
     this.form
     .valueChanges
-    .pipe(takeUntil(this.destroy))
-    .subscribe(() => {
+    .pipe(
+      takeUntil(this.destroy),
+      throttleTime(400),
+    )
+    .subscribe(data => {
       this.exampleScreen = this.form.value;
+      this.lazyLoadCurrentCard(this.exampleScreen);
       this.changeDetectorRef.markForCheck();
     });
   }
@@ -120,5 +128,17 @@ export class ScreenEditorComponent implements OnChanges {
   private setLoading(loading: boolean): void {
     this.loading = loading;
     this.changeDetectorRef.markForCheck();
+  }
+
+  private async lazyLoadCurrentCard(screen: QuestScreen): Promise<void> {
+    if (this.currentContainer) {
+      this.currentContainer.clear();
+    }
+    const quizCardFactory = await this.lazyLoadingScreenService.getComponentByScreen(screen);
+    this.changeDetectorRef.markForCheck();
+    const { instance } = this.currentContainer.createComponent<ALLCOMPONENTS>(quizCardFactory);
+    instance.screen = screen;
+    instance.fromAdmin = true;
+    (instance as any).ngOnChanges([new SimpleChange(null, screen, true)]);
   }
 }
