@@ -1,8 +1,12 @@
-<div *ngIf="list | async as items" class="wrapper">
+<div class="wrapper">
   <h1 class="title">{{ label }}</h1>
-  <div *ngIf="items.length" class="items">
-    <div *ngFor="let item of items" class="item">
-      <cq-quest-info [quest]="item" [userProgress]="3" (goToQuest)="goToQuest(item)"></cq-quest-info>
+  <div *ngIf="list.length; else elseTemplate" class="items">
+    <div *ngFor="let item of list" class="item">
+      <cq-quest-info [quest]="item" [userProgress]="getProgressByQuest(item)" (goToQuest)="goToQuest(item)"></cq-quest-info>
     </div>
   </div>
+  <ng-template #elseTemplate>
+    Пока нет квестов в данном городе, попробуйте Санкт-Петербург
+  </ng-template>
+  
 </div>

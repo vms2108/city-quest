@@ -1,0 +1,15 @@
+<div class="label">
+  {{ label }}
+</div>
+<cq-array-control
+  [formControl]="control"
+  [initialItemValue]="initialItemValue"
+  [minSize]="0"
+>
+  <ng-template
+    #itemControl
+    let-itemFormControl="itemFormControl"
+  >
+    <cq-admin-screen-control [formControl]="itemFormControl"></cq-admin-screen-control>
+  </ng-template>
+</cq-array-control>

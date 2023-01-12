@@ -11,4 +11,4 @@ import { ImageService } from './image.service';
     ImageService,
   ],
 })
-export class ImageModule{}
+export class DataImageModule{}

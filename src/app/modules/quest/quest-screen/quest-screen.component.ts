@@ -89,7 +89,7 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
     }) : '';
     (instance as any).ngOnChanges([new SimpleChange(null, screen, true)]);
     if (this.quest.items.length > this.index + 1) {
-      this.nextScreen = this.quest.items[this.index + 1].screen;
+      this.nextScreen = this.quest.items[this.index + 1];
       this.lazyLoadNextCard();
     }
   }
@@ -110,7 +110,7 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
     if (this.quest.items.length > this.index + 1) {
       this.currentContainer.clear();
       this.nextContainer.clear();
-      this.nextScreen = this.quest.items[this.index + 1].screen;
+      this.nextScreen = this.quest.items[this.index + 1];
       this.move = true;
       setTimeout(() => this.stopMoveNext(), 400);
     }
@@ -126,7 +126,7 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
   }
 
   private stopMovePrev(): void {
-    this.currentScreen = this.quest.items[this.index - 1].screen;
+    this.currentScreen = this.quest.items[this.index - 1];
     this.index --;
     window.scrollTo({ top: 0, behavior: 'smooth' });
     this.lazyLoadCurrentCard(this.currentScreen);

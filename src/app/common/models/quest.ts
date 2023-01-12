@@ -7,9 +7,6 @@ export class Quest {
     public name: string,
     public text: string,
     public pictureLink: string,
-    public items: {
-      order: number,
-      screen: QuestScreen,
-    }[],
+    public items: QuestScreen[],
   ) {}
 }

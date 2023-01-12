@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { filter, finalize, map, takeUntil, tap } from 'rxjs/operators';
+import { filter, map, takeUntil, tap } from 'rxjs/operators';
 import { ScreenService } from 'src/app/common/data/screen/screen.service';
 import { Column } from 'src/app/common/models/column';
 import { QuestScreen } from 'src/app/common/models/quest-screen';
@@ -102,9 +102,8 @@ export class AdminScreenComponent implements OnInit, OnDestroy {
       .pipe(
         map(() => {
           this.notificationService.success('Успешно удалено');
-          this.getList();
+          this.store.dispatch(new GetScreensFromServer());
         }),
-        finalize(() => this.setLoading(false)),
         takeUntil(this.destroy),
       )
       .subscribe();

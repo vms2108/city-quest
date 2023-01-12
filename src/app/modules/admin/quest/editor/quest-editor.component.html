@@ -1,0 +1,36 @@
+<header>
+  <h3>
+    {{ isCopy ? 'Копировать' : quest ? 'Редактировать' : 'Создать' }}
+    квест
+  </h3>
+</header>
+
+<section *ngIf="showForm">
+  <div class="flex">
+    <form
+      class="form"
+      [formGroup]="form"
+    >
+      <cq-text-control formControlName="name" label="Название"></cq-text-control>
+      <cq-admin-city-control formControlName="city" label="Город"></cq-admin-city-control>
+      <cq-text-control formControlName="link" label="Ссылка"></cq-text-control>
+      <cq-text-control formControlName="text" label="Текст"></cq-text-control>
+      <cq-admin-picture-control formControlName="pictureLink" label="Ссылка на картинку"></cq-admin-picture-control>
+      <cq-admin-screens-control formControlName="items" label="Экраны"></cq-admin-screens-control>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <button
+    *ngIf="form"
+    class="btn"
+    [disabled]="form.invalid || loading || form.value.locked"
+
+    (click)="apply()"
+  >
+    Сохранить
+  </button>
+</footer>
+
+<cq-loader-with-backdrop *ngIf="loading"></cq-loader-with-backdrop>

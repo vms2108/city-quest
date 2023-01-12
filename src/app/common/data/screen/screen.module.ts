@@ -11,4 +11,4 @@ import { ScreenService } from './screen.service';
     ScreenService,
   ],
 })
-export class ScreenModule{}
+export class DataScreenModule{}

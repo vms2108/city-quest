@@ -6,16 +6,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 
 import { API_URL_GATEWAY } from './api-service.config';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApiErrorsInterceptor } from './common/api-errors/api-errors.interceptor';
+import { DataQuestModule } from './common/data/quest/quest.module';
 import { TokenInterceptor } from './common/interceptor/token.interceptor';
 import { FooterComponent } from './root-components/footer/footer.component';
 import { HeaderComponent } from './root-components/header/header.component';
+import { CommonQuestEffects } from './store/effects/quest.effects';
+import { commonReducers } from './store/reducers/common.reducers';
 import { NotificationModule } from './ui/notifications/notification.module';
 
 @NgModule({
@@ -29,8 +34,13 @@ import { NotificationModule } from './ui/notifications/notification.module';
     FontAwesomeModule,
     HttpClientModule,
     NotificationModule,
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot(),
+    StoreModule.forRoot(commonReducers),
+    EffectsModule.forRoot([
+      CommonQuestEffects,
+    ]),
+    StoreRouterConnectingModule.forRoot(),
+    StoreDevtoolsModule.instrument(),
+    DataQuestModule,
   ],
   declarations: [
     AppComponent,

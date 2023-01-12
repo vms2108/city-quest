@@ -7,9 +7,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { ImageModule } from 'src/app/common/data/image/image.module';
-import { QuestModule } from 'src/app/common/data/quest/quest.module';
-import { ScreenModule } from 'src/app/common/data/screen/screen.module';
+import { DataImageModule } from 'src/app/common/data/image/image.module';
+import { DataQuestModule } from 'src/app/common/data/quest/quest.module';
+import { DataScreenModule } from 'src/app/common/data/screen/screen.module';
 import { ArrayControlModule } from 'src/app/ui/controls/array-control/array-control.module';
 import { FileControlModule } from 'src/app/ui/controls/file-control/file-control.module';
 import { SelectControlModule } from 'src/app/ui/controls/select-control/select-control.module';
@@ -26,6 +26,7 @@ import { AdminImageComponent } from './image/admin-image.component';
 import { ImageEditorComponent } from './image/editor/image-editor.component';
 import { OfferMenuComponent } from './menu/admin-menu.component';
 import { AdminQuestComponent } from './quest/admin-quest.component';
+import { QuestEditorComponent } from './quest/editor/quest-editor.component';
 import { AdminScreenComponent } from './screen/admin-screen.component';
 import { ScreenEditorComponent } from './screen/editor/screen-editor.component';
 import { ImageEffects } from './store/effects/image.effects';
@@ -46,9 +47,9 @@ import { adminReducers } from './store/reducers/admin.reducers';
     FileControlModule,
     TextareaControlModule,
     SelectControlModule,
-    ImageModule,
-    ScreenModule,
-    QuestModule,
+    DataImageModule,
+    DataQuestModule,
+    DataScreenModule,
     MatIconModule,
     LazyLoadingScreenModule,
     StoreModule.forFeature('admin', adminReducers),
@@ -68,6 +69,7 @@ import { adminReducers } from './store/reducers/admin.reducers';
     ScreenEditorComponent,
     AdminImageComponent,
     ImageEditorComponent,
+    QuestEditorComponent,
     ADMIN_CONTROL_COMPONENTS,
   ],
   exports: [

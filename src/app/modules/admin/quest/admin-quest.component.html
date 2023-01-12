@@ -1,3 +1,81 @@
-<p>
-  admin-quest works!
-</p>
+<div class="header">
+  <button class="btn" (click)="selectQuest(null)">Создать квест</button>
+</div>
+
+<table class="table">
+  <thead>
+    <th *ngFor="let column of displayedColumns">
+      <div class="th">
+        <button class="th">
+          {{ column.label }}
+          <div class="arrow"></div>
+        </button>
+      </div>
+    </th>
+    <th></th>
+  </thead>
+  <tbody *ngIf="(state | async)">
+    <tr *ngFor="let item of (state | async)?.quest?.list; index as i" (dblclick)="selectQuest(item)" [class.locked]="item.locked">
+      <td *ngFor="let column of displayedColumns; index as j"
+        >
+        <ng-container [ngSwitch]="column.id">
+          <ng-container *ngSwitchDefault>
+            <div class="cell">{{ item[column.id] }}</div>
+          </ng-container>
+        </ng-container>
+      </td>
+      <td>
+        <button class="cq-link" (click)="deleteQuest(item)">
+          <cq-tooltip message="Delete">
+            <mat-icon>delete</mat-icon>
+          </cq-tooltip>
+        </button>
+        <button class="cq-link" (click)="selectQuest(item)">
+          <cq-tooltip message="Edit">
+            <mat-icon>edit</mat-icon>
+          </cq-tooltip>
+        </button>
+        <button
+          class="cq-link"
+          (click)="selectQuest(item, true)"
+        >
+          <cq-tooltip message="Duplicate">
+            <mat-icon>content_copy</mat-icon>
+          </cq-tooltip>
+        </button>
+
+        <button
+          class="cq-link"
+          (click)="getByLink(item)"
+        >
+          <cq-tooltip message="Duplicate">
+            <mat-icon>success</mat-icon>
+          </cq-tooltip>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-container *ngIf="visibleEditor">
+  <div class="overlay" (click)="closeEditor()"></div>
+  <div class="wrapper">
+    <div class="editor">
+      <cq-quest-editor
+        [isCopy]="isCopy"
+        [quest]="selectedItem"
+        (questChanged)="upsertQuest($event)"
+        (closeEditor)="closeEditor()"
+      >
+      </cq-quest-editor>
+    </div>
+    <a
+        class="cq-link"
+        (click)="closeEditor()"
+      >
+        <mat-icon>clear</mat-icon>
+      </a>
+  </div>
+</ng-container>
+
+<cq-loader-with-backdrop *ngIf="loading"></cq-loader-with-backdrop>

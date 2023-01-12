@@ -1,14 +1,17 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { CITIES_MAP } from 'src/app/common/constants/cities.map';
+import { QuestService } from 'src/app/common/data/quest/quest.service';
 import { Quest } from 'src/app/common/models/quest';
 import { StorageService } from 'src/app/common/services/storage.service';
+import { AddFullQuest } from 'src/app/store/actions/quest.actions';
+import { selectCommon } from 'src/app/store/selectors/admin.selector';
+import { CommonState } from 'src/app/store/states/common.state';
 
 import { QuestScreen } from '../../common/models/quest-screen';
-
-import { QuestService } from './common/quest.service';
 
 @Component({
   selector: 'cq-quest',
@@ -26,6 +29,10 @@ export class QuestComponent implements OnInit, OnDestroy {
 
   public index = 0;
 
+  public link = '';
+
+  private state = this.store.pipe(select(selectCommon));
+
   private readonly CITIES_MAP = CITIES_MAP;
 
   private readonly destroy = new Subject<void>();
@@ -36,10 +43,12 @@ export class QuestComponent implements OnInit, OnDestroy {
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly questService: QuestService,
     private readonly storageService: StorageService,
+    private readonly store: Store<CommonState>,
   ) { }
 
   public ngOnInit(): void {
     this.readGetParams();
+    this.subscriptionStore();
   }
 
   public ngOnDestroy(): void {
@@ -55,16 +64,15 @@ export class QuestComponent implements OnInit, OnDestroy {
 
   private selectScreen(item: QuestScreen): void {
     this.currentScreen = item;
-
     this.changeDetectorRef.markForCheck();
   }
 
   private getScreen(): void {
     const data = this.storageService.getData(this.quest._id);
     if (!data) {
-      this.selectScreen(this.quest.items[0].screen);
+      this.selectScreen(this.quest.items[0]);
     } else {
-      this.selectScreen(this.quest.items[+data].screen);
+      this.selectScreen(this.quest.items[+data]);
       this.index = +data;
     }
   }
@@ -76,22 +84,17 @@ export class QuestComponent implements OnInit, OnDestroy {
       this.navigateThrow();
     }
 
-    this.loadQuest(quest);
+    this.link = quest;
   }
 
-  private loadQuest(quest: string): void {
-    this.questService.loadQuest(quest)
+  private loadQuest(): void {
+    this.questService.getFullQuestByLink(this.link)
       .pipe(
         takeUntil(this.destroy),
       )
       .subscribe(info => {
-        if (info) {
-          this.quest = info;
-          this.getScreen();
-          this.changeDetectorRef.markForCheck();
-        } else {
-          this.navigateThrow();
-        }
+        info ? this.getQuestAndScreen(info) : this.navigateThrow();
+        this.store.dispatch(new AddFullQuest(info));
       });
   }
 
@@ -107,5 +110,24 @@ export class QuestComponent implements OnInit, OnDestroy {
       this.router.navigate(['']);
       return;
     }
+  }
+
+  private subscriptionStore(): void {
+    this.state
+    .pipe(
+      takeUntil(this.destroy),
+      map(data => {
+        const quest = data!.quest.fullList.find(item => this.link === item.link)!;
+        quest ? this.getQuestAndScreen(quest) : this.loadQuest();
+        this.changeDetectorRef.markForCheck();
+      }),
+    )
+    .subscribe();
+  }
+
+  private getQuestAndScreen(quest: Quest): void {
+    this.quest = quest;
+    this.getScreen();
+    this.changeDetectorRef.markForCheck();
   }
 }

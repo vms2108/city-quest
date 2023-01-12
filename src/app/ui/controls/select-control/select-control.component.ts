@@ -66,6 +66,7 @@ export class SelectControlComponent<T = any> extends SimpleFormControlBaseCompon
   public createInputDataFromValue(value: T | null): T | null {
     if (this.el.nativeElement) {
       this.select.nativeElement.value = value;
+      console.log(value);
       this.el.nativeElement.dispatchEvent(new Event('change'));
     }
     return value;

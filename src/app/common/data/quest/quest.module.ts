@@ -11,4 +11,4 @@ import { QuestService } from './quest.service';
     QuestService,
   ],
 })
-export class QuestModule{}
+export class DataQuestModule{}
