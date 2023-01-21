@@ -1,7 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QuestScreenComponent } from './quest-screen.component';
 
@@ -9,9 +7,11 @@ describe('QuestScreenComponent', () => {
   let component: QuestScreenComponent;
   let fixture: ComponentFixture<QuestScreenComponent>;
 
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
-      declarations: [ QuestScreenComponent ]
+      declarations: [
+        QuestScreenComponent,
+      ],
     })
     .compileComponents();
   }));

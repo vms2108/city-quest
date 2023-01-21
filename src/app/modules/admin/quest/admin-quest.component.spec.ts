@@ -1,7 +1,4 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminQuestComponent } from './admin-quest.component';
 
@@ -9,9 +6,11 @@ describe('AdminQuestComponent', () => {
   let component: AdminQuestComponent;
   let fixture: ComponentFixture<AdminQuestComponent>;
 
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminQuestComponent ]
+      declarations: [
+        AdminQuestComponent,
+      ],
     })
     .compileComponents();
   }));

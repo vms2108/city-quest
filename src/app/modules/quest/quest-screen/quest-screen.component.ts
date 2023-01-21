@@ -42,7 +42,8 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
   ) { }
 
   public ngOnChanges(): void {
-    if (!!this.currentScreen) {
+    if (!!this.quest) {
+      this.getScreen();
       this.openScreen(this.currentScreen);
       this.footerService.changeVisible(false);
       this.headerService.changeVisible(false);
@@ -63,6 +64,21 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
       setTimeout(() => this.stopMovePrev(), 400);
     }
     this.move = true;
+    this.changeDetectorRef.markForCheck();
+  }
+
+  private getScreen(): void {
+    const data = this.storageService.getData(this.quest._id);
+    if (!data) {
+      this.selectScreen(this.quest.items[0]);
+    } else {
+      this.selectScreen(this.quest.items[+data]);
+      this.index = +data;
+    }
+  }
+
+  private selectScreen(item: QuestScreen): void {
+    this.currentScreen = item;
     this.changeDetectorRef.markForCheck();
   }
 
