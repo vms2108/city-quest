@@ -31,7 +31,7 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
 
   public nextScreen!: QuestScreen;
 
-  public move = false;
+  public move = true;
 
   constructor(
     private readonly changeDetectorRef: ChangeDetectorRef,
@@ -59,11 +59,11 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
     if (this.move) {
       return;
     }
-    this.currentContainer.clear();
+
     if (this.index) {
       setTimeout(() => this.stopMovePrev(), 400);
     }
-    this.move = true;
+    this.changeMove(true);
     this.changeDetectorRef.markForCheck();
   }
 
@@ -83,27 +83,26 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
   }
 
   private openScreen(item: QuestScreen): void {
-    this.move = true;
-
+    this.changeMove(true);
     this.lazyLoadCurrentCard(item);
-    setTimeout(() => this.stopMove(), 400);
+    setTimeout(() => this.changeMove(false), 400);
     this.changeDetectorRef.markForCheck();
   }
 
   private async lazyLoadCurrentCard(screen: QuestScreen): Promise<void> {
-    if (this.currentContainer) {
-      this.currentContainer.clear();
-    }
-
     const quizCardFactory = await this.lazyLoadingScreenService.getComponentByScreen(screen);
     this.currentScreen = screen;
     this.changeDetectorRef.markForCheck();
-    const { instance } = this.currentContainer.createComponent<ALLCOMPONENTS>(quizCardFactory);
-    instance.screen = screen;
-    instance.goNext ? instance.goNext.subscribe(() => {
+    const newComponent = this.currentContainer.createComponent<ALLCOMPONENTS>(quizCardFactory);
+    if (this.currentContainer) {
+      this.currentContainer.detach(0);
+      this.currentContainer.insert(newComponent.hostView, 0);
+    }
+    newComponent.instance.screen = screen;
+    newComponent.instance.goNext.subscribe(() => {
       this.next();
-    }) : '';
-    (instance as any).ngOnChanges([new SimpleChange(null, screen, true)]);
+    });
+    (newComponent.instance as any).ngOnChanges([new SimpleChange(null, screen, true)]);
     if (this.quest.items.length > this.index + 1) {
       this.nextScreen = this.quest.items[this.index + 1];
       this.lazyLoadNextCard();
@@ -111,11 +110,14 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
   }
 
   private async lazyLoadNextCard(): Promise<void> {
-    if (!this.nextScreen) return;
     const quizCardFactory = await this.lazyLoadingScreenService.getComponentByScreen(this.nextScreen);
-    const { instance } = this.nextContainer.createComponent<ALLCOMPONENTS>(quizCardFactory);
-    instance.screen = this.nextScreen;
-    (instance as any).ngOnChanges([new SimpleChange(null, this.nextScreen, true)]);
+    const nextComponent = this.nextContainer.createComponent<ALLCOMPONENTS>(quizCardFactory);
+    if (this.nextContainer) {
+      this.nextContainer.detach(0);
+      this.nextContainer.insert(nextComponent.hostView, 0);
+    }
+    nextComponent.instance.screen = this.nextScreen;
+    (nextComponent.instance as any).ngOnChanges([new SimpleChange(null, this.nextScreen, true)]);
   }
 
   private next(): void {
@@ -124,10 +126,8 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
     }
 
     if (this.quest.items.length > this.index + 1) {
-      this.currentContainer.clear();
-      this.nextContainer.clear();
       this.nextScreen = this.quest.items[this.index + 1];
-      this.move = true;
+      this.changeMove(true);
       setTimeout(() => this.stopMoveNext(), 400);
     }
   }
@@ -138,7 +138,7 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     this.lazyLoadCurrentCard(this.currentScreen);
     this.saveData();
-    this.stopMove();
+    this.changeMove(false);
   }
 
   private stopMovePrev(): void {
@@ -147,16 +147,15 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     this.lazyLoadCurrentCard(this.currentScreen);
     this.saveData();
-    this.stopMove();
+    this.changeMove(false);
   }
 
   private saveData(): void {
     this.storageService.saveData(this.quest._id, this.index.toString());
   }
 
-  private stopMove(): void {
-    this.move = false;
+  private changeMove(move: boolean): void {
+    this.move = move;
     this.changeDetectorRef.markForCheck();
   }
-
 }
