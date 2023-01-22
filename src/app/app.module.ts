@@ -19,6 +19,7 @@ import { DataQuestModule } from './common/data/quest/quest.module';
 import { TokenInterceptor } from './common/interceptor/token.interceptor';
 import { FooterComponent } from './root-components/footer/footer.component';
 import { HeaderComponent } from './root-components/header/header.component';
+import { ScrolledDirective } from './root-components/header/scrolled.directive';
 import { CommonQuestEffects } from './store/effects/quest.effects';
 import { commonReducers } from './store/reducers/common.reducers';
 import { NotificationModule } from './ui/notifications/notification.module';
@@ -46,6 +47,7 @@ import { NotificationModule } from './ui/notifications/notification.module';
     AppComponent,
     HeaderComponent,
     FooterComponent,
+    ScrolledDirective,
   ],
   providers: [
     {

@@ -12,6 +12,9 @@ export const QUEST_PROVIDERS: Provider[] = [
   {
     provide: QUEST_INFO,
     deps: [ActivatedRoute, QuestService],
+    // deps позволяет взять из дерева DI необходимые сущности и передать их
+    // как аргументы в фабрику значения токена.
+    // В них можно получить любую сущность из DI, в том числе и с использованием DI-декораторов
     useFactory: organizationFactory,
   },
 ];
@@ -23,7 +26,6 @@ export function organizationFactory(
   return params.pipe(
     switchMap(params => {
       const link = params['quest'];
-
       return questService.getFullQuestByLink(link);
     }),
   );

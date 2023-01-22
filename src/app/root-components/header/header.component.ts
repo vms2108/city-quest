@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  HostListener,
 } from '@angular/core';
 
 import { HeaderService } from './header.service';
@@ -23,9 +22,4 @@ export class HeaderComponent {
   constructor(
     private readonly headerService: HeaderService,
   ) {}
-
-  @HostListener('window:scroll', ['$event'])
-  public onScroll(): void {
-    this.scrolled = window.pageYOffset > 20;
-  }
 }
