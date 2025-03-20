@@ -1,6 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Quest } from 'src/app/common/models/quest';
-import { QuestShort } from 'src/app/common/models/quest-short';
+import { Quest } from 'src/app/common/interfaces/quest.interface';
 
 export enum EQuestActions {
   GetCommonQuestsFromServer = '[Quest] Get Quest From Server',
@@ -14,7 +13,7 @@ export class GetCommonQuestsFromServer implements Action {
 
 export class UpdateCommonQuestsList implements Action {
   public readonly type = EQuestActions.UpdateCommonQuestsList;
-  constructor(public payload: QuestShort[]) {
+  constructor(public payload: Quest[]) {
   }
 }
 

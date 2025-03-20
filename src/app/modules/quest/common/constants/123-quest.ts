@@ -12,7 +12,7 @@ export const QUEST_123: Quest = {
   items: [
     {
       _id: '001',
-      type: ScreenTypesEnum.INFO,
+      type: ScreenTypesEnum.COMMON,
       name: 'Дворцовый мост',
       parameters: {
         blocks: [
@@ -28,7 +28,7 @@ export const QUEST_123: Quest = {
     },
     {
       _id: '002',
-      type: ScreenTypesEnum.QUESTION_FREE,
+      type: ScreenTypesEnum.COMMON,
       name: '',
       parameters: {
         answers: [
@@ -47,7 +47,7 @@ export const QUEST_123: Quest = {
     {
       _id: '003',
       name: '',
-      type: ScreenTypesEnum.WAY,
+      type: ScreenTypesEnum.COMMON,
       parameters: {
         blocks: [
           new ScreenBlock(BlockTypesEnum.TEXT, 'А теперь давайте выйдем к саду возле адмиралтейства'),
@@ -60,7 +60,7 @@ export const QUEST_123: Quest = {
     },
     {
       _id: '004',
-      type: ScreenTypesEnum.INFO,
+      type: ScreenTypesEnum.COMMON,
       name: 'Адмиралтейство',
       parameters: {
         blocks: [
@@ -74,7 +74,7 @@ export const QUEST_123: Quest = {
     },
     {
       _id: '005',
-      type: ScreenTypesEnum.INFO,
+      type: ScreenTypesEnum.COMMON,
       name: 'Адмиралтейство',
       parameters: {
         blocks: [
@@ -88,7 +88,7 @@ export const QUEST_123: Quest = {
     },
     {
       _id: '006',
-      type: ScreenTypesEnum.QUESTION_FREE,
+      type: ScreenTypesEnum.COMMON,
       name: '',
       parameters: {
         answers: ['Игла'],
@@ -107,7 +107,7 @@ export const QUEST_123: Quest = {
     {
       _id: '007',
       name: '',
-      type: ScreenTypesEnum.WAY,
+      type: ScreenTypesEnum.COMMON,
       parameters: {
         blocks: [
           new ScreenBlock(BlockTypesEnum.TEXT, 'Направимся к набережной реки Мойки'),

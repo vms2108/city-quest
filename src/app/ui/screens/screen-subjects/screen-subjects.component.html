@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="wrapper">
+    <h2 *ngIf="screen.parameters?.title" class="title" [innerHTML]="screen.parameters?.title | safeHtml"></h2>
+    <p *ngIf="screen.parameters?.text" class="text" [innerHTML]="screen.parameters?.text | safeHtml"></p>
+  </div>
+
+  <ng-container>
+    <ng-template #container></ng-template>
+  </ng-container>
+
+  <div class="wrapper">
+    <div *ngIf="screen.parameters?.subjects?.length" class="subjects">
+      <div
+        *ngFor="let subject of screen.parameters.subjects"
+        class="subject"
+        [class.active]="subject === activeSubject"
+        (click)="subjectClick(subject)">
+          {{ subject }}
+        </div>
+    </div>
+
+    <div *ngIf="wrongAnswer" class="wrong-info">
+      {{ getRandomError() }} 
+    </div>
+    
+    <div *ngIf="!wrongAnswer && activeSubject" class="right-info">
+      {{ getRandomPraise() }}
+    </div>
+  </div>
+  
+  
+  
+  <div class="btn-container" [class.fromAdmin]="fromAdmin" (click)="apply()">
+    <button *ngIf="!wrongAnswer && activeSubject" class="btn">
+      {{ screen.button_text }}
+    </button>
+  </div>
+</div>
+
+

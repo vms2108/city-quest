@@ -1,0 +1,33 @@
+<header>
+  <h3>
+    {{ isCopy ? 'Копировать' : screen ? 'Редактировать' : 'Создать' }}
+    экран
+  </h3>
+</header>
+
+<section>
+  <div class="flex">
+    <form *ngIf="form" class="form" [formGroup]="form">
+      <cq-text-control formControlName="title" label="Название"></cq-text-control>
+      <cq-text-control formControlName="button_text" label="Текст кнопки"></cq-text-control>
+      <cq-select-control formControlName="type" label="Тип экрана">
+        <cq-option *ngFor="let item of screenTypes" [value]="item.value">
+          {{ item.label }}
+        </cq-option>
+      </cq-select-control>
+      <cq-screen-parameters-control formControlName="parameters" [type]="form.get('type')?.value"></cq-screen-parameters-control>
+      <cq-admin-blocks-control formControlName="blocks" label="Блоки экрана"></cq-admin-blocks-control>
+    </form>
+    <div class="example">
+      <cq-admin-screen-example [screen]="form.value"></cq-admin-screen-example>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <button class="btn" [disabled]="form.invalid || loading" (click)="apply()">
+    Сохранить
+  </button>
+</footer>
+
+<cq-loader-with-backdrop *ngIf="loading"></cq-loader-with-backdrop>

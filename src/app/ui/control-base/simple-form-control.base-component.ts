@@ -2,13 +2,11 @@ import { ChangeDetectorRef, Injectable, OnDestroy, OnInit } from '@angular/core'
 import { AbstractControl, ControlValueAccessor, FormBuilder, FormControl, ValidationErrors, Validator } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { delay, map, throttleTime } from 'rxjs/operators';
-
 import { ChangeEventFn, defaultChangeEventFn, defaultTouchEventFn, defaultValidateEventFn, TouchEventFn, ValidateEventFn } from './helpers/control-value-accessor.defaults';
 
 @Injectable()
 export abstract class SimpleFormControlBaseComponent<TInputData, TValueData> implements OnInit, OnDestroy, ControlValueAccessor, Validator {
-
-  public control!: FormControl;
+  public control: FormControl;
 
   protected touchEventHandler: TouchEventFn = defaultTouchEventFn;
 
@@ -26,8 +24,9 @@ export abstract class SimpleFormControlBaseComponent<TInputData, TValueData> imp
 
   protected constructor(
     protected formBuilder: FormBuilder,
-    protected changeDetectorRef: ChangeDetectorRef,
+    protected changeDetectorRef: ChangeDetectorRef
   ) {
+    this.control = this.createControl(); // Инициализируем control в конструкторе
   }
 
   public abstract createControl(): FormControl;
@@ -36,9 +35,8 @@ export abstract class SimpleFormControlBaseComponent<TInputData, TValueData> imp
 
   public abstract createInputDataFromValue(value: TValueData | null): TInputData | null;
 
-  // tslint:disable:contextual-life-cycle
   public ngOnInit(): void {
-    this.initialControl();
+    this.initialControlSubscriptions();
   }
 
   public writeValue(value: TValueData | null): void {
@@ -72,7 +70,6 @@ export abstract class SimpleFormControlBaseComponent<TInputData, TValueData> imp
     if (this.control.invalid) {
       return { [this.validatorKey]: true };
     }
-
     return null;
   }
 
@@ -80,8 +77,7 @@ export abstract class SimpleFormControlBaseComponent<TInputData, TValueData> imp
     this.controlSubscriptions.unsubscribe();
   }
 
-  protected initialControl(): void {
-    this.control = this.createControl();
+  protected initialControlSubscriptions(): void {
     const changeValueSubscription = this.control
       .valueChanges
       .pipe(
@@ -90,7 +86,7 @@ export abstract class SimpleFormControlBaseComponent<TInputData, TValueData> imp
           this.touchEventHandler();
           return rawValue;
         }),
-        map(rawValue => this.createValueFromInputData(rawValue)),
+        map(rawValue => this.createValueFromInputData(rawValue))
       )
       .subscribe(value => this.refreshValue.next(value));
     this.controlSubscriptions.add(changeValueSubscription);
@@ -103,9 +99,7 @@ export abstract class SimpleFormControlBaseComponent<TInputData, TValueData> imp
     this.validatorChange();
 
     const refreshValueSubscription = this.refreshValue
-      .pipe(
-        throttleTime(1),
-      )
+      .pipe(throttleTime(1))
       .subscribe(value => this.changeValue(value));
     this.controlSubscriptions.add(refreshValueSubscription);
   }
@@ -120,5 +114,4 @@ export abstract class SimpleFormControlBaseComponent<TInputData, TValueData> imp
     }
     this.changeDetectorRef.markForCheck();
   }
-
 }

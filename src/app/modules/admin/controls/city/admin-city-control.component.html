@@ -1,3 +1,15 @@
-<div class="field">
-  <cq-select-control [formControl]="control" [options]="list" [label]="label"></cq-select-control>
-</div>
+<!-- admin-city-control.component.html -->
+<cq-form-field-label
+  *ngIf="label"
+  [label]="label"
+></cq-form-field-label>
+<cq-select-search-control
+  *ngIf="availableCities$ | async"
+  [formControl]="control"
+  [items]="availableCities$ | async"
+  [searchFields]="['name']"
+  [displayFn]="displayCity"
+  [valueFn]="valueCity"
+  [width]="300"
+  placeholder="Выберите город"
+></cq-select-search-control>

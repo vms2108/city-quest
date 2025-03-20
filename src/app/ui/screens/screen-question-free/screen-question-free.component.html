@@ -4,8 +4,6 @@
     {{ screen.name }}
   </h1>
 
-  <cq-block-universal *ngFor="let block of screen?.parameters?.blocks" [block]="block"></cq-block-universal>
-
   <button *ngIf="blockPromptVisible" class="help-question" (click)="needPrompt()">
     Показать подсказку
   </button>

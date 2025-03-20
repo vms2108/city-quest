@@ -21,8 +21,12 @@ import { FooterComponent } from './root-components/footer/footer.component';
 import { HeaderComponent } from './root-components/header/header.component';
 import { ScrolledDirective } from './root-components/header/scrolled.directive';
 import { CommonQuestEffects } from './store/effects/quest.effects';
+import { CityEffects } from './store/effects/city.effects';
 import { commonReducers } from './store/reducers/common.reducers';
 import { NotificationModule } from './ui/notifications/notification.module';
+import { adminReducer } from './modules/admin/store/admin.reducer';
+import { AdminEffects } from './modules/admin/store/admin.effects';
+import { AdminModule } from './modules/admin/admin.module';
 
 @NgModule({
   imports: [
@@ -36,12 +40,16 @@ import { NotificationModule } from './ui/notifications/notification.module';
     HttpClientModule,
     NotificationModule,
     StoreModule.forRoot(commonReducers),
+    StoreModule.forFeature('admin', adminReducer),
     EffectsModule.forRoot([
       CommonQuestEffects,
+      CityEffects,
     ]),
+    EffectsModule.forFeature([AdminEffects]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument(),
     DataQuestModule,
+    AdminModule,
   ],
   declarations: [
     AppComponent,

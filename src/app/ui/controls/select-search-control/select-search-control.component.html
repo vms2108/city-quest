@@ -1,0 +1,23 @@
+<div class="field" [style.width]="width + 'px'">
+  <input
+    type="text"
+    [formControl]="searchControl"
+    [placeholder]="'Поиск...'"
+    class="search-input"
+    (focus)="onInputFocus()"
+    (blur)="onInputBlur()"
+  />
+  <div *ngIf="visibleOptions" class="options-container">
+    <div
+      *ngFor="let item of filteredItems | async"
+      class="option"
+      (click)="selectItem(item)"
+      [class.selected]="valueFn(item) === valueFn(control.value)"
+    >
+      {{ displayFn(item) }}
+    </div>
+    <div *ngIf="!(filteredItems | async)?.length" class="option disabled">
+      {{ defaultOptionText }}
+    </div>
+  </div>
+</div>

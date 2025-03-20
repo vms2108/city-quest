@@ -10,6 +10,7 @@ export interface APIErrorResponse {
   code?: string;
   message?: string;
   payload?: string;
+  error: string;
 }
 
 @Injectable()
@@ -40,7 +41,7 @@ export class ApiErrorsInterceptor implements HttpInterceptor {
 
   private displayMessageIfError(response: HttpErrorResponse): void {
     const error = <APIErrorResponse> response.error;
-    const message = this.apiErrors.get(error.code || '') || error!.message || error.payload ||  'Неизвестная ошибка.';
+    const message = this.apiErrors.get(error.code || '') || error.error || error!.message || error.payload ||  'Неизвестная ошибка.';
     this.notificationService.error(message, '');
   }
 

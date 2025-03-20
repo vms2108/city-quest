@@ -4,9 +4,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { QuestService } from 'src/app/common/data/quest/quest.service';
-import { QuestShort } from 'src/app/common/models/quest-short';
 
 import { EQuestActions, GetCommonQuestsFromServer, UpdateCommonQuestsList } from '../actions/quest.actions';
+import { Quest } from 'src/app/common/interfaces/quest.interface';
 
 @Injectable()
 export class CommonQuestEffects {
@@ -14,7 +14,7 @@ export class CommonQuestEffects {
     return this.actions.pipe(
       ofType<GetCommonQuestsFromServer>(EQuestActions.GetCommonQuestsFromServer),
       switchMap(() => this.questService.loadList()),
-      switchMap((quests: QuestShort[]) => {
+      switchMap((quests: Quest[]) => {
         return of(new UpdateCommonQuestsList(quests));
       }),
     );

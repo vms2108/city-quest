@@ -1,9 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Input } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { ScreenTypesEnum } from 'src/app/common/enums/screen-types.enum';
-import { ScreenBlock } from 'src/app/common/models/screen-block';
+import { FormBuilder, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { Block } from 'src/app/common/interfaces/block.interface';
 import { SimpleFormControlBaseComponent } from 'src/app/ui/control-base/simple-form-control.base-component';
 
 @Component({
@@ -24,56 +21,36 @@ import { SimpleFormControlBaseComponent } from 'src/app/ui/control-base/simple-f
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdminBlockControlComponent extends SimpleFormControlBaseComponent<ScreenBlock, ScreenBlock> {
-
+export class AdminBlockControlComponent extends SimpleFormControlBaseComponent<Block, Block> {
   @Input()
-  public type!: ScreenTypesEnum;
-
-  public form!: FormGroup;
+  public availableBlocks: Block[] = [];
 
   protected readonly validatorKey = 'cq-admin-block-control';
 
-  private destroy = new Subject<void>();
-
   constructor(
     formBuilder: FormBuilder,
-    changeDetectorRef: ChangeDetectorRef,
+    changeDetectorRef: ChangeDetectorRef
   ) {
     super(formBuilder, changeDetectorRef);
-    this.createForm();
   }
 
   public createControl(): FormControl {
     return this.formBuilder.control(null, [Validators.required]);
   }
 
-  public createValueFromInputData(inputData: ScreenBlock | null): ScreenBlock | null {
+  public createValueFromInputData(inputData: Block | null): Block | null {
     return inputData;
   }
 
-  public createInputDataFromValue(value: ScreenBlock | null): ScreenBlock | null {
-    if (value) {
-      this.form.patchValue(value, { emitEvent: false });
-    }
-
+  public createInputDataFromValue(value: Block | null): Block | null {
     return value;
   }
 
-  private createForm(): void {
-    this.form = this.formBuilder.group({
-      type: [null],
-      text: [''],
-      link: [''],
-    });
-
-    this.form
-      .valueChanges
-      .pipe(
-        takeUntil(this.destroy),
-      )
-      .subscribe(result => {
-        this.control.setValue(result);
-        this.changeDetectorRef.markForCheck();
-      });
+  public onBlockChange(blockId: string): void {
+    const selectedBlock = this.availableBlocks.find(block => block.id === blockId);
+    if (selectedBlock) {
+      this.control.setValue(selectedBlock);
+      this.changeDetectorRef.markForCheck();
+    }
   }
 }

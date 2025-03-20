@@ -1,0 +1,168 @@
+@mixin h1 {
+  font-family: 'Noto', sans-serif;
+  font-weight: bold;
+  font-size: 52px;
+  line-height: 62px;
+  letter-spacing: -0.5px;
+}
+
+@mixin h2 {
+  font-family: 'Noto', sans-serif;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 48px;
+  letter-spacing: -0.5px;
+}
+
+@mixin h3 {
+  font-family: 'Noto', sans-serif;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 36px;
+}
+
+@mixin h4 {
+  font-family: 'Noto', sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+@mixin h5 {
+  font-family: 'Noto', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 26px;
+}
+
+@mixin s1 {
+  font-family: 'Noto', sans-serif;
+  font-weight: 500;
+  font-size: 52px;
+  line-height: 62px;
+  letter-spacing: -0.5px;
+}
+
+@mixin s2 {
+  font-family: 'Noto', sans-serif;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 48px;
+  letter-spacing: -0.5px;
+}
+
+@mixin s3 {
+  font-family: 'Noto', sans-serif;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 40px;
+}
+
+@mixin s4 {
+  font-family: 'Noto', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+@mixin s5 {
+  font-family: 'Noto', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+@mixin p1 {
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+@mixin p2 {
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@mixin p3 {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@mixin p4 {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+@mixin p5 {
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 16px;
+}
+
+@mixin p1m {
+  font-family: 'Noto', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+@mixin p2m {
+  font-family: 'Noto', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@mixin p3m {
+  font-family: 'Noto', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@mixin p4m {
+  font-family: 'Noto', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+@mixin p5m {
+  font-family: 'Noto', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 16px;
+}
+
+@mixin l1 {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+@mixin l2 {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@mixin l3 {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@mixin l4 {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+@mixin l5 {
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 16px;
+}

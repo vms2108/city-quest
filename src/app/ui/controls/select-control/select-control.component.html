@@ -1,5 +1,10 @@
 <div #el class="custom-select" cqSelect [label]="label" (setValue)="setValue($event)">
   <select #select [formControl]="control">
-    <option *ngFor="let option of options" [value]="option">{{ option }}</option>
+    <!-- Если используются options -->
+    <option *ngFor="let option of options" [value]="getOptionValue(option)">
+      {{ getDisplayValue(option) }}
+    </option>
+    <!-- Если используются <cq-option> -->
+    <ng-content></ng-content>
   </select>
 </div>

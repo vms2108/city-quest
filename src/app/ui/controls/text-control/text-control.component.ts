@@ -55,6 +55,10 @@ export class TextControlComponent extends SimpleFormControlBaseComponent<string,
   }
 
   public createInputDataFromValue(value: string | null): string | null {
+    if (value) {
+      this.control.markAsTouched();
+      this.control.updateValueAndValidity();
+    }
     return value;
   }
 }

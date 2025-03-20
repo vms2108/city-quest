@@ -1,12 +1,66 @@
-.picture {
+@import 'src/app/ui/styles/colors';
+@import 'src/app/ui/styles/typography';
+
+.wrapper {
+  width: calc(100% - 32px);
+  max-width: 450px;
   margin: 0 auto;
   margin-bottom: 20px;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer; // Указывает, что по изображению можно кликнуть
 
   img {
     display: block;
-    margin: 0 auto;
     width: 100%;
-    max-width: 335px;
     height: auto;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8); // Затемнение фона
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 720px; // Максимальная ширина модального окна
+  width: 90%; // Адаптивность для маленьких экранов
+  border-radius: 16px;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  font-size: 18px;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: rgba(255, 255, 255, 1);
   }
 }

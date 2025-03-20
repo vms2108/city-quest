@@ -1,0 +1,22 @@
+<!-- admin-city-editor.component.html -->
+<header>
+  <h3>
+    {{ isCopy ? 'Копировать' : city ? 'Редактировать' : 'Создать' }} город
+  </h3>
+</header>
+
+<section>
+  <div class="flex">
+    <form *ngIf="form" class="form" [formGroup]="form">
+      <cq-text-control formControlName="name" label="Название города"></cq-text-control>
+      <cq-text-control formControlName="link" label="Ссылка"></cq-text-control>
+      <cq-city-parameters-control formControlName="parameters"></cq-city-parameters-control>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <button class="btn" [disabled]="form.invalid" (click)="apply()">
+    Сохранить
+  </button>
+</footer>

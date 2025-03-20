@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, NgModule, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { QuestScreen } from 'src/app/common/models/quest-screen';
-import { BlocksModule } from 'src/app/ui/blocks/blocks.module';
 import { InnerHtmlModule } from 'src/app/ui/safe-html/inner-html.module';
 import { ScreenBtnModule } from 'src/app/ui/screen-btn/screen-btn.module';
 
@@ -41,7 +40,6 @@ export class ScreenInfoComponent implements OnChanges {
   imports: [
     CommonModule,
     InnerHtmlModule,
-    BlocksModule,
     ScreenBtnModule,
   ],
   declarations: [

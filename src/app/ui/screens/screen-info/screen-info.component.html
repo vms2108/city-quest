@@ -3,8 +3,6 @@
   <h1 class="title">
     {{ screen.name }}
   </h1>
-
-  <cq-block-universal *ngFor="let block of screen?.parameters?.blocks" [block]="block"></cq-block-universal>
   
   <cq-screen-btn text="Далее" [fromAdmin]="fromAdmin" (apply)="apply()"></cq-screen-btn>
   

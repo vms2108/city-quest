@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     const password = this.loginForm.get('password')!.value;
     const user = { email, password };
     this.authService
-      .login(user)
+      .login(user.email, user.password)
       .pipe(
         takeUntil(this.destroy),
         finalize(() => this.setLoading(false)),
@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private checkAuth(): void {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    if (this.authService.isAuthenticated()) {
+    if (this.authService.isLoggedIn()) {
       this.router.navigate([this.returnUrl]);
     }
   }

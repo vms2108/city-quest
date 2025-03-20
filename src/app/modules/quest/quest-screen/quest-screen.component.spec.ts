@@ -1,5 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 /* tslint:disable:no-unused-variable */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { LazyLoadingScreenService } from 'src/app/ui/lazy-loading/lazy-loading-screen.service';
+
+import { QuestHeaderComponent } from '../header/quest-header.component';
 
 import { QuestScreenComponent } from './quest-screen.component';
 
@@ -11,6 +15,11 @@ describe('QuestScreenComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         QuestScreenComponent,
+        QuestHeaderComponent,
+      ],
+      providers: [
+        LazyLoadingScreenService,
+        HttpClient,
       ],
     })
     .compileComponents();

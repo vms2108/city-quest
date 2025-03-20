@@ -1,3 +1,11 @@
-<div class="picture">
-  <img [src]="block.link">
+<div class="wrapper">
+  <img [src]="block.content" [alt]="block.name" (click)="openModal()">
+</div>
+
+<!-- Модальное окно -->
+<div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="closeModal()">✕</button>
+    <img [src]="block.content" [alt]="block.name">
+  </div>
 </div>

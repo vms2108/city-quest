@@ -1,7 +1,0 @@
-<form class="form" [formGroup]="form">
-  <cq-admin-blocks-control formControlName="blocks" label="Экраны"></cq-admin-blocks-control>
-  <ng-container *ngIf="type === 'QUESTION_FREE'">
-    <cq-admin-array-control formControlName="answers" label="Ответы"></cq-admin-array-control>
-    <cq-text-control formControlName="help" label="Подсказка"></cq-text-control>
-  </ng-container>
-</form>

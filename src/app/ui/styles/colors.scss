@@ -25,3 +25,56 @@ $header-green-bg: rgba(172, 219, 121, 0.4);
 $header-red-bg: rgba(227, 45, 88, 0.4);
 $menu-bg: #dfdfdf;
 $light-menu-bg: #ebebeb;
+
+$marina50: #E0F2FF;
+$marina200: #B5DEFF;
+$marina300: #96CEFD;
+$marina400: rgba(120, 187, 250, 1);
+$marina500: #E0F2FF;
+$marina600: #3892F3;
+$marina800: rgba(2, 101, 220, 1);
+$marina900: rgba(0, 84, 182, 1);
+$marina1000: #004491;
+$marina1100: #003571;
+
+$magenta700: #DE3D82;
+$magenta800: rgba(200, 34, 105, 1);
+
+$indigo300: #C1C4FF;
+$indigo800: #5258E4;
+$emerald300: rgba(101, 218, 210, 1);
+$purple300: rgba(219, 187, 254, 1);
+$red300: rgba(255, 183, 169, 1);
+$LGA300: rgba(39, 53, 68, 0.55);
+$LGA400: rgba(34, 52, 73, 0.4);
+$LGA600: rgba(29, 54, 83, 0.17);
+$LGA700: rgba(41, 77, 117, 0.09);
+$orange50: #FFF4E5;
+$red50: #FFEDEB;
+$yellow50: #FFF7D6;
+$yellow200: #F8D904;
+$indigo50: #EDEEFF;
+$accent-link: #0265DC;
+$grey: #F4F7FA;
+$LG800: #F4F7FA;
+$LG900: #F8FAFC;
+$DG900: #1A1925;
+
+$purple200: #E6D0FF;
+$purple600: #AE72F9;
+
+$emerald200: #8CE9E2;
+$emerald600: #00A19A;
+
+// Основные цвета
+$primaryInvert: rgba(245, 248, 251, 1);       // Светлый фон
+$primary: rgba(13, 13, 21, 1);    // Тёмный текст
+
+// Цвета для текста
+$titleColor: #004491;                   // Тёмно-синий для заголовков
+$linkColor: #3CB371;                    // Средний зелёный для ссылок
+$buttonColor: #FF8C00;                  // Оранжевый для кнопок
+
+// Вторичные цвета (оставлены из текущей палитры, адаптированы для светлой темы)
+$secondary: rgba(42, 53, 65, 0.85);     // Вторичный текст
+$secondary2: rgba(42, 53, 65, 0.70);    // Вторичный текст с большей прозрачностью

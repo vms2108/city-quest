@@ -1,0 +1,29 @@
+<div class="wrapper">
+  <div class="custom-audio-player">
+    <div class="description">
+      {{ block.subtype }}
+    </div>
+    <audio 
+      #audioElement 
+      [src]="audioUrl" 
+      (loadedmetadata)="onLoadedMetadata()" 
+      (timeupdate)="onTimeUpdate()"
+      (contextmenu)="false"
+    ></audio>
+  
+    <button (click)="togglePlay()">
+      <span *ngIf="!isPlaying">▶️</span>
+      <span *ngIf="isPlaying">⏸️</span>
+    </button>
+  
+    <input 
+      type="range" 
+      [min]="0" 
+      [max]="duration" 
+      [value]="currentTime" 
+      (input)="seek($event)"
+    >
+  
+    <span>{{ formatTime(currentTime) }} / {{ formatTime(duration) }}</span>
+  </div>
+</div>

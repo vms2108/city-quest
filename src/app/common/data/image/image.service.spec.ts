@@ -1,5 +1,7 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { inject, TestBed } from '@angular/core/testing';
+import { API_URL_GATEWAY } from 'src/app/api-service.config';
+import { environment } from 'src/environments/environment';
 
 import { ScreenImage } from '../../models/screen-image';
 
@@ -9,7 +11,13 @@ describe('Service: ImageService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [ImageService],
+      providers: [
+        ImageService,
+        {
+          provide: API_URL_GATEWAY,
+          useValue: environment.gateway,
+        },
+      ],
     });
   });
 

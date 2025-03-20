@@ -25,6 +25,9 @@ export class NumberControlComponent extends SimpleFormControlBaseComponent<numbe
   @Input()
   public label = '';
 
+  @Input()
+  public maxLength = 1000;
+
   public id = '';
 
   protected readonly validatorKey = 'cq-text-control';

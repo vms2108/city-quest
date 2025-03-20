@@ -33,7 +33,11 @@
 
 .select-items div,
 .select-selected {
-  padding: 10px 25px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding-left: 25px;
+  height: 52px;
   font-size: 20px;
   line-height: 20px;
   color: #26357A;

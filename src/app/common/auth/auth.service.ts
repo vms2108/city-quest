@@ -1,62 +1,49 @@
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-import { UserJson } from '../interfaces/user.json-interface';
-
-import { AuthApiErrors } from './auth.api-errors';
+import { tap } from 'rxjs/operators';
+import { User } from '../interfaces/user.json-interface';
+import { AuthResponse } from '../interfaces/auth-response.interface';
+import { API_URL_GATEWAY } from 'src/app/api-service.config';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
-
-  private token: string | null = null;
-
   constructor(
     private readonly http: HttpClient,
-    private readonly authApiErrors: AuthApiErrors,
-    private readonly router: Router,
-  ) {
-    this.token = localStorage.getItem('auth-token') || null;
-    this.authApiErrors.registerErrors();
+    @Inject(API_URL_GATEWAY) private readonly api: string
+  ) {}
+
+  public register(username: string, password: string, role: 'admin' | 'user' = 'admin'): Observable<User> {
+    return this.http.post<User>(`${this.api}/auth/register`, { username, password, role });
   }
 
-  public login(user: UserJson): Observable<{token: string}> {
-    return this.http
-      .post<{token: string}>('/api/auth/login', user)
-      .pipe(map(answer => {
-        localStorage.setItem('auth-token', answer.token);
-        this.setToken(answer.token);
-        return answer;
-      }));
-  }
-
-  public register(user: UserJson): Observable<UserJson> {
-    return this.http
-      .post<UserJson>('/api/auth/register', user)
-      .pipe(map(answer => {
-        return answer;
-      }));
+  public login(username: string, password: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.api}/auth/login`, { username, password }).pipe(
+      tap(response => {
+        if (response.accessToken && response.refreshToken) {
+          localStorage.setItem('accessToken', response.accessToken);
+          localStorage.setItem('refreshToken', response.refreshToken);
+        }
+      })
+    );
   }
 
   public getToken(): string | null {
-    return this.token;
-  }
-
-  public isAuthenticated(): boolean {
-    return !!this.token;
+    return localStorage.getItem('accessToken');
   }
 
   public logout(): void {
-    this.setToken(null);
-    localStorage.clear();
-    this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url } });
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
   }
 
-  public setToken(token: string | null): void {
-    this.token = token;
+  public refreshToken(refreshToken: string): Observable<{ accessToken: string; refreshToken: string }> {
+    return this.http.post<{ accessToken: string; refreshToken: string }>(`${this.api}/auth/refresh`, { refreshToken });
+  }
+
+  public isLoggedIn(): boolean {
+    return !!this.getToken(); // Проверяем наличие accessToken
   }
 }

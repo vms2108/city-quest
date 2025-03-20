@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, NgModule, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { QuestScreen } from 'src/app/common/models/quest-screen';
-import { BlocksModule } from 'src/app/ui/blocks/blocks.module';
 import { TextControlModule } from 'src/app/ui/controls/text-control/text-control.module';
 import { NotificationModule } from 'src/app/ui/notifications/notification.module';
 import { NotificationService } from 'src/app/ui/notifications/notification.service';
@@ -96,7 +95,6 @@ export class ScreenQuestionFreeComponent implements OnChanges {
   imports: [
     CommonModule,
     InnerHtmlModule,
-    BlocksModule,
     TextControlModule,
     ReactiveFormsModule,
     NotificationModule,

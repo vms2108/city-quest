@@ -1,0 +1,54 @@
+@import 'src/app/ui/styles/colors';
+@import 'src/app/ui/styles/typography';
+
+.wrapper {
+  width: calc(100% - 32px);
+  max-width: 450px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.custom-audio-player {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  padding-top: 24px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  max-width: 300px;
+
+  .description {
+    position: absolute;
+    top: 4px;
+    left: 10px;
+    @include p5;
+    color: #007bff;
+  }
+
+  button {
+    padding: 5px 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    
+    &:hover {
+      background: #0056b3;
+    }
+  }
+
+  input[type="range"] {
+    flex: 1;
+    cursor: pointer;
+  }
+
+  span {
+    font-size: 12px;
+    color: #333;
+  }
+}

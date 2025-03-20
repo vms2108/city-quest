@@ -1,8 +1,39 @@
-.text {
-  max-width: 335px;
+@import 'src/app/ui/styles/colors';
+@import 'src/app/ui/styles/typography';
+
+.wrapper {
+  width: calc(100% - 32px);
+  max-width: 450px;
   margin: 0 auto;
-  margin-bottom: 10px;
-  font-size: 18px;
-  line-height: 24px;
-  color: #000000;
+}
+
+.paragraph {
+  margin-bottom: 20px;
+  @include p3;
+  color: $primary;
+  text-align: center;
+}
+
+.heading {
+  margin-bottom: 12px;
+  @include h4;
+  color: $titleColor;
+  text-align: center;
+}
+
+.subheading {
+  margin-bottom: 20px;
+  @include p2m;
+  color: $titleColor;
+  text-align: center;
+}
+
+.quote {
+  margin-bottom: 24px;
+  padding: 16px;
+  @include p3;
+  background-color: rgba($linkColor, 0.1);
+  color: $primary;
+  border-left: 4px solid $titleColor;
+  border-radius: 8px;
 }

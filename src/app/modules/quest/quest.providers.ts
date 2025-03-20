@@ -2,7 +2,7 @@ import { InjectionToken, Provider } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { QuestService } from 'src/app/common/data/quest/quest.service';
-import { Quest } from 'src/app/common/models/quest';
+import { Quest } from 'src/app/common/interfaces/quest.interface';
 
 export const QUEST_INFO = new InjectionToken<Observable<Quest>>(
   'A stream with current organization information',

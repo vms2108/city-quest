@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { QuestShort } from 'src/app/common/models/quest-short';
+import { Quest } from 'src/app/common/interfaces/quest.interface';
 
 @Component({
   selector: 'cq-quest-info',
@@ -10,7 +10,7 @@ import { QuestShort } from 'src/app/common/models/quest-short';
 export class QuestInfoComponent {
 
   @Input()
-  public quest!: QuestShort;
+  public quest!: Quest;
 
   @Input()
   public userProgress!: number;
@@ -19,6 +19,6 @@ export class QuestInfoComponent {
   public goToQuest = new EventEmitter<void>();
 
   public getWidth(): number {
-    return this.userProgress / this.quest.items.length * 100;
+    return this.userProgress / this.quest.screens!.length * 100;
   }
 }

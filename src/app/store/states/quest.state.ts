@@ -1,8 +1,7 @@
-import { Quest } from 'src/app/common/models/quest';
-import { QuestShort } from 'src/app/common/models/quest-short';
+import { Quest } from "src/app/common/interfaces/quest.interface";
 
 export interface CommonQuestState {
-  list: QuestShort[];
+  list: Quest[];
   fullList: Quest[];
 }
 

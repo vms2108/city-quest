@@ -1,0 +1,12 @@
+<form *ngIf="form" [formGroup]="form">
+  <cq-text-control formControlName="title" label="Заголовок"></cq-text-control>
+  <cq-textarea-control formControlName="text" label="Текст"></cq-textarea-control>
+  <ng-container [ngSwitch]="type">
+    <ng-container *ngSwitchCase="'subjects'">
+      <cq-admin-array-control formControlName="subjects" label="Варианты"></cq-admin-array-control>
+      <cq-text-control formControlName="rightAnswer" label="Правильный ответ"></cq-text-control>
+    </ng-container>
+    <ng-container *ngSwitchCase="'common'"></ng-container>
+    <ng-container *ngSwitchCase="'start'"></ng-container>
+  </ng-container>
+</form>

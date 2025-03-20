@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="wrapper">
+    <h2 *ngIf="screen.parameters?.title" class="title" [innerHTML]="screen.parameters?.title | safeHtml"></h2>
+    <p *ngIf="screen.parameters?.text" class="text" [innerHTML]="screen.parameters?.text | safeHtml"></p>
+  </div>
+  
+  <ng-container>
+    <ng-template #container></ng-template>
+  </ng-container>
+
+  <div class="btn-container" [class.fromAdmin]="fromAdmin" (click)="apply()">
+    <button class="btn">
+      {{ screen.button_text }}
+    </button>
+  </div>
+</div>

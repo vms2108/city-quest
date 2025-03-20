@@ -1,0 +1,67 @@
+<header>
+  <h3>
+    {{ isCopy ? 'Копировать' : block ? 'Редактировать' : 'Создать' }}
+    блок
+  </h3>
+</header>
+
+<section>
+  <div class="flex">
+    <form class="form" [formGroup]="form">
+      <cq-text-control formControlName="title" label="Название блока"></cq-text-control>
+
+      <cq-select-control formControlName="type" label="Тип блока">
+        <cq-option
+          *ngFor="let item of blockTypes"
+          [value]="item.value"
+        >
+        {{ item.label }}
+        </cq-option>
+      </cq-select-control>
+      <div [ngSwitch]="form.get('type')?.value">
+        <div *ngSwitchCase="'text'">
+          <cq-select-control formControlName="subtype" label="Подтип текста">
+            <cq-option
+              *ngFor="let item of textSubtypes"
+              [value]="item.value"
+            >
+            {{ item.label }}
+            </cq-option>
+          </cq-select-control>
+          <cq-textarea-control formControlName="content" label="Текст"></cq-textarea-control>
+        </div>
+        <div *ngSwitchCase="'image'">
+          <cq-file-control [formControl]="fileControl" label="Картинка"></cq-file-control>
+          <!-- <input type="file" accept="image/*" (change)="onFileChange($event)" /> -->
+          <cq-text-control formControlName="content" label="URL изображения" [readonly]="true"></cq-text-control>
+        </div>
+        <div *ngSwitchCase="'audio'">
+          <cq-text-control formControlName="subtype" label="Описание" [readonly]="true"></cq-text-control>
+          <cq-file-control [formControl]="fileControl" label="Аудио"></cq-file-control>
+          <cq-text-control formControlName="content" label="URL аудио" [readonly]="true"></cq-text-control>
+        </div>
+        <cq-text-control
+          *ngSwitchCase="'input'"
+          formControlName="content"
+          label="Вопрос для ввода"
+        ></cq-text-control>
+        <cq-text-control
+          *ngSwitchCase="'choice'"
+          formControlName="content"
+          label="Вопрос с выбором (временный простой ввод)"
+        ></cq-text-control>
+      </div>
+    </form>
+    <div class="example">
+      <cq-admin-block-example [blocks]="blocks"></cq-admin-block-example>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <button class="btn" [disabled]="form.invalid || loading" (click)="apply()">
+    Сохранить
+  </button>
+</footer>
+
+<cq-loader-with-backdrop *ngIf="loading"></cq-loader-with-backdrop>

@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { CommonState } from 'src/app/store/states/common.state';
+import { GetCitiesFromServer } from 'src/app/store/actions/city.actions';
 
 @Component({
   selector: 'cq-index',
@@ -6,8 +9,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./index.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IndexComponent {
+export class IndexComponent implements OnInit {
+  constructor(private readonly store: Store<CommonState>) {}
 
-  constructor() { }
-
+  ngOnInit(): void {
+    this.store.dispatch(new GetCitiesFromServer());
+  }
 }

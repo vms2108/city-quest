@@ -1,12 +1,10 @@
-<form class="form" [formGroup]="form">
-  <cq-admin-block-type-control formControlName="type" label="Тип блока"></cq-admin-block-type-control>
-  <ng-container [ngSwitch]="form.value.type">
-    <ng-container *ngSwitchCase="'PICTURE'">
-      <cq-admin-picture-control formControlName="link" label="Ссылка на картинку"></cq-admin-picture-control>
-    </ng-container>
-    <ng-container *ngSwitchDefault>
-      <cq-textarea-control formControlName="text" label="Текст"></cq-textarea-control>
-    </ng-container>
-  </ng-container>
-  
-</form>
+<select [formControl]="control" (change)="onBlockChange($event.target.value)">
+  <option value="" disabled>Выберите блок</option>
+  <option *ngFor="let block of availableBlocks" [value]="block.id" [selected]="control.value?.id === block.id">
+    {{ block.type }} (ID: {{ block.id }})
+  </option>
+</select>
+<div *ngIf="control.value">
+  <p>Тип: {{ control.value.type }}</p>
+  <p>Содержимое: {{ control.value.content | json }}</p>
+</div>

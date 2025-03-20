@@ -1,0 +1,28 @@
+<header>
+  <h3>
+    {{ isCopy ? 'Копировать' : quest ? 'Редактировать' : 'Создать' }} квест
+  </h3>
+</header>
+
+<section>
+  <div class="flex">
+    <form *ngIf="form" class="form" [formGroup]="form">
+      <cq-text-control formControlName="title" label="Название"></cq-text-control>
+      <cq-textarea-control formControlName="description" label="Описание"></cq-textarea-control>
+      <cq-checkbox-control formControlName="is_paid">Платный</cq-checkbox-control>
+      <cq-number-control 
+        formControlName="free_screens_count" 
+        label="Количество бесплатных"
+        [min]="0"
+      ></cq-number-control>
+      <cq-admin-city-control formControlName="city_id" label="Город квеста"></cq-admin-city-control>
+      <cq-admin-screens-control formControlName="screens" label="Экраны квеста"></cq-admin-screens-control>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <button class="btn" [disabled]="form.invalid" (click)="apply()">
+    Сохранить
+  </button>
+</footer>

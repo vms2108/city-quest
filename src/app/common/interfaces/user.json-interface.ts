@@ -1,4 +1,6 @@
-export interface UserJson {
-  email: string;
-  password: string;
+export interface User {
+  id: number;
+  username: string;
+  role: 'admin' | 'user';
+  created_at?: string;
 }

@@ -1,6 +1,7 @@
-<div class="label">
-  {{ label }}
-</div>
+<cq-form-field-label
+  *ngIf="label"
+  [label]="label"
+></cq-form-field-label>
 <cq-array-control
   [formControl]="control"
   [initialItemValue]="initialItemValue"
@@ -10,6 +11,13 @@
     #itemControl
     let-itemFormControl="itemFormControl"
   >
-    <cq-admin-screen-control [formControl]="itemFormControl"></cq-admin-screen-control>
+    <cq-select-search-control
+      [formControl]="itemFormControl"
+      [items]="availableScreens$ | async"
+      [searchFields]="['title']"
+      [displayFn]="displayScreen"
+      [valueFn]="valueScreen"
+      [width]="300"
+    ></cq-select-search-control>
   </ng-template>
 </cq-array-control>
