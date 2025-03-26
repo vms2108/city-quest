@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="wrapper">
+    <h2 *ngIf="screen.parameters?.title" class="title" [innerHTML]="screen.parameters?.title | screensCount:screen.parameters | safeHtml"></h2>
+    <p *ngIf="screen.parameters?.text" class="text" [innerHTML]="screen.parameters?.text | screensCount:screen.parameters | safeHtml"></p>
+    <p *ngIf="screen.parameters?.statement" class="statement">
+      <svg width="23" height="14" viewBox="0 0 23 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22.7807 0.871998C22.4687 2.224 22.1567 3.66267 21.8447 5.188C21.5327 6.71333 21.2553 8.204 21.0127 9.66C20.77 11.0813 20.5793 12.3987 20.4407 13.612H13.0047L12.6407 13.04C12.9527 11.792 13.334 10.4747 13.7847 9.088C14.2353 7.70133 14.7207 6.29733 15.2407 4.876C15.7953 3.45467 16.3327 2.12 16.8527 0.871998H22.7807ZM11.1327 0.871998C10.8207 2.224 10.5087 3.66267 10.1967 5.188C9.88466 6.71333 9.60732 8.204 9.36466 9.66C9.12199 11.0813 8.91399 12.3987 8.74066 13.612H1.35666L0.992656 13.04C1.30466 11.792 1.68599 10.4747 2.13666 9.088C2.58732 7.70133 3.07266 6.29733 3.59266 4.876C4.14732 3.45467 4.68466 2.12 5.20466 0.871998H11.1327Z" fill="#2B2E3F"/>
+      </svg>
+      <span [innerHTML]="screen.parameters?.statement | screensCount:screen.parameters | safeHtml"></span>
+    </p>
+  </div>
+
+  <div class="btn-container" [class.fromAdmin]="fromAdmin" (click)="apply()">
+    <button class="btn">
+      {{ screen.button_text | screensCount:screen.parameters }}
+    </button>
+  </div>
+</div>

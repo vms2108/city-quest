@@ -1,6 +1,6 @@
 import { InjectionToken, Provider } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { filter, map, merge, Observable, switchMap, tap } from 'rxjs';
 import { QuestService } from 'src/app/common/data/quest/quest.service';
 import { Quest } from 'src/app/common/interfaces/quest.interface';
 
@@ -26,7 +26,16 @@ export function organizationFactory(
   return params.pipe(
     switchMap(params => {
       const link = params['quest'];
-      return questService.getFullQuestByLink(link);
-    }),
+      return merge(
+        // Начальная загрузка квеста
+        questService.getFullQuestByLink(link),
+        // Обновления из questSubject
+        questService.getQuestObservable().pipe(
+          filter(quest => !!quest && quest.id === link), // Убеждаемся, что это тот же квест
+          tap(quest => console.log(quest)),
+          map(quest => quest as Quest)
+        )
+      );
+    })
   );
 }

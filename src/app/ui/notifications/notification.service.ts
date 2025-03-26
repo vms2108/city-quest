@@ -3,7 +3,9 @@ import { Observable, Subject } from 'rxjs';
 
 import { Notification, NotificationType } from './notification';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class NotificationService {
 
   private subject = new Subject<Notification>();
@@ -27,7 +29,7 @@ export class NotificationService {
     this.subject.next(new Notification(this.idx++, NotificationType.warning, title, message, timeout));
   }
 
-  public error(title: string, message: string, timeout = 0): void {
+  public error(title: string, message: string, timeout = 10000): void {
     this.subject.next(new Notification(this.idx++, NotificationType.error, title, message, timeout));
   }
 

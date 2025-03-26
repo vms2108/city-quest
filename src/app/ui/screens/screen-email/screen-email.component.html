@@ -1,0 +1,32 @@
+<ng-container *ngIf="!refreshHappening; else loaderTemplate">
+
+</ng-container>
+<div class="container">
+  <div class="wrapper">
+    <h2 *ngIf="screen.parameters?.title" class="title" [innerHTML]="screen.parameters?.title | safeHtml"></h2>
+    <form *ngIf="form" class="form" [formGroup]="form">
+      <cq-email-control formControlName="email"></cq-email-control>
+      <cq-password-control formControlName="password"></cq-password-control>
+    </form>
+    <p class="description">
+      Продолжая, вы соглашаетесь на обработку ваших персональных данных в соответствии с <a routerLink="/privacy" target="_blank">политикой конфиденциальности</a>.
+    </p>
+  </div>
+
+  <div *ngIf="form" class="btn-container">
+    <button class="btn" (click)="apply()" [disabled]="loading || form.invalid">
+      <ng-container *ngIf="loading; else textTemplate">
+        <svg class="preloader" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14.9237 1.25148C12.6295 0.644416 10.2033 0.766558 7.98173 1.60096C5.76016 2.43536 3.85343 3.94063 2.52617 5.90786C1.19891 7.87509 0.51695 10.2067 0.574947 12.5791C0.632944 14.9515 1.42802 17.247 2.84982 19.147C4.27162 21.047 6.24963 22.4573 8.50932 23.1822C10.769 23.907 13.1983 23.9105 15.46 23.192C17.7218 22.4736 19.7038 21.0689 21.131 19.1729C22.5581 17.2769 23.3597 14.9837 23.4244 12.6115L19.6397 12.5082C19.5965 14.0946 19.0604 15.6281 18.1061 16.896C17.1517 18.1638 15.8263 19.1032 14.3138 19.5836C12.8014 20.0641 11.1769 20.0617 9.66576 19.577C8.15466 19.0923 6.83194 18.1492 5.88115 16.8786C4.93037 15.6081 4.39869 14.073 4.35991 12.4866C4.32113 10.9001 4.77716 9.34092 5.66472 8.0254C6.55228 6.70988 7.82735 5.70328 9.31295 5.1453C10.7986 4.58732 12.421 4.50565 13.9551 4.9116L14.9237 1.25148Z" fill="#fff"/>
+        </svg>
+      </ng-container>
+      <ng-template #textTemplate>
+        {{ screen.button_text }}
+      </ng-template>
+    </button>
+  </div>
+</div>
+
+<ng-template #loaderTemplate>
+  <cq-loader-with-backdrop></cq-loader-with-backdrop>
+</ng-template>

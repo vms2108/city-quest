@@ -15,7 +15,6 @@ import { API_URL_GATEWAY } from './api-service.config';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApiErrorsInterceptor } from './common/api-errors/api-errors.interceptor';
-import { DataQuestModule } from './common/data/quest/quest.module';
 import { TokenInterceptor } from './common/interceptor/token.interceptor';
 import { FooterComponent } from './root-components/footer/footer.component';
 import { HeaderComponent } from './root-components/header/header.component';
@@ -48,7 +47,6 @@ import { AdminModule } from './modules/admin/admin.module';
     EffectsModule.forFeature([AdminEffects]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument(),
-    DataQuestModule,
     AdminModule,
   ],
   declarations: [

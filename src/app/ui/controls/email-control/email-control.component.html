@@ -1,0 +1,19 @@
+<div class="container">
+  <label class="label" [for]="id">
+    Email
+  </label>
+  <input #emailInput class="input" type="email" name="email" ikInputEmpty placeholder="..." [id]="id" [formControl]="control" autotest="email">
+  <div *ngIf="control?.hasError('pattern') || control?.hasError('required')" class="error">
+    <div *ngIf="control?.hasError('pattern') && !control?.hasError('required')">
+      Пожалуйста, укажите корректный email.
+    </div>
+    <div *ngIf="control?.hasError('required')" [innerHtml]="'Пожалуйста, введите email для создания аккаунта.'">
+    </div>
+  </div>
+
+  <div *ngIf="filteredList.length" class="list">
+    <button *ngFor="let item of filteredList" class="item" (click)="selectDomain(item)">
+      {{ item }}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,111 @@
+@import 'src/app/ui/styles/colors';
+@import 'src/app/ui/styles/typography';
+
+.container {
+  position: relative;
+}
+
+.wrapper {
+  width: calc(100% - 32px);
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.title {
+  margin-bottom: 12px;
+  @include h4;
+  color: $titleColor;
+  text-align: center;
+}
+
+.text {
+  margin-bottom: 20px;
+  @include p2;
+  color: $primary;
+}
+
+.statement {
+  position: relative;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  padding: 50px 16px 13px 16px;
+  background: #FFF7D6;
+  border-radius: 16px;
+  @include p1;
+  color: $primary;
+
+  svg {
+    position: absolute;
+    top: 24px;
+    left: 16px;
+  }
+}
+
+.card-stack {
+  position: relative;
+  box-sizing: border-box;
+  padding-bottom: 24px;
+  width: 220px;
+  height: 320px;
+}
+
+.card {
+  position: absolute;
+  width: 220px;
+  height: 300px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  /* Динамические свойства */
+  z-index: calc(var(--total-cards) - var(--card-index));
+  transform: translate(
+    calc(var(--card-index) * 10px),
+    calc(var(--card-index) * 10px)
+  );
+}
+
+.card:hover {
+  transform: translate(0, 0);
+  z-index: 100;
+}
+
+::ng-deep cq-screen-pay a {
+  color: $buttonColor;
+}
+
+.btn-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  padding-top: 4px;
+
+  &.fromAdmin {
+    position: static;
+  }
+}
+
+.btn {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 430px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  height: 48px;
+  @include l1;
+  color: $primaryInvert;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: $buttonColor;
+}

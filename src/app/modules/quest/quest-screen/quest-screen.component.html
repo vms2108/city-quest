@@ -1,4 +1,4 @@
-<cq-quest-header [title]="quest?.description" [goBackBtnVisible]="!!index" (goBack)="prev()"></cq-quest-header>
+<cq-quest-header [title]="quest?.description" [goBackBtnVisible]="goBackVisible()" (goBack)="prev()"></cq-quest-header>
 
 <div class="container" [class.container--move]="move">
   <div class="current">

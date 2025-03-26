@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 import { NotificationListComponent } from './notification.component';
-import { NotificationService } from './notification.service';
 
 @NgModule({
   imports: [
@@ -12,9 +11,6 @@ import { NotificationService } from './notification.service';
   ],
   declarations: [
     NotificationListComponent,
-  ],
-  providers: [
-    NotificationService,
   ],
   exports: [
     NotificationListComponent,

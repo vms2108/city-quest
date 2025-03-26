@@ -3,20 +3,20 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, mergeMap, catchError, tap } from 'rxjs/operators';
 import * as AdminActions from './admin.actions';
-import { QuestService } from '../services/quest.service';
-import { ScreenService } from '../services/screen.service';
-import { BlockService } from '../services/block.service';
-import { CityService } from '../services/city.service';
+import { AdminQuestService } from '../services/admin-quest.service';
+import { AdminScreenService } from '../services/admin-screen.service';
+import { AdminBlockService } from '../services/admin-block.service';
+import { AdminCityService } from '../services/admin-city.service';
 import { NotificationService } from 'src/app/ui/notifications/notification.service';
 
 @Injectable()
 export class AdminEffects {
   constructor(
     private actions$: Actions,
-    private questService: QuestService,
-    private screenService: ScreenService,
-    private blockService: BlockService,
-    private cityService: CityService,
+    private questService: AdminQuestService,
+    private screenService: AdminScreenService,
+    private blockService: AdminBlockService,
+    private cityService: AdminCityService,
     private notificationService: NotificationService
   ) {}
 

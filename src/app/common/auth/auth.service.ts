@@ -1,8 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { User } from '../interfaces/user.json-interface';
 import { AuthResponse } from '../interfaces/auth-response.interface';
 import { API_URL_GATEWAY } from 'src/app/api-service.config';
 
@@ -15,16 +14,29 @@ export class AuthService {
     @Inject(API_URL_GATEWAY) private readonly api: string
   ) {}
 
-  public register(username: string, password: string, role: 'admin' | 'user' = 'admin'): Observable<User> {
-    return this.http.post<User>(`${this.api}/auth/register`, { username, password, role });
+  public registerAndLogin(email: string, password: string): Observable<AuthResponse> {
+    return this.http
+      .post<AuthResponse>(`${this.api}/auth/auto`, { email, password })
+      .pipe(tap(response => {
+        if (response.accessToken && response.refreshToken) {
+          localStorage.setItem('accessToken', response.accessToken);
+          localStorage.setItem('refreshToken', response.refreshToken);
+          localStorage.setItem('email', response.email);
+        }
+      }));
   }
 
-  public login(username: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.api}/auth/login`, { username, password }).pipe(
+  public register(email: string, password: string, role: 'admin' | 'user' = 'user'): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.api}/auth/register`, { email, password, role });
+  }
+
+  public login(email: string, password: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.api}/auth/login`, { email, password }).pipe(
       tap(response => {
         if (response.accessToken && response.refreshToken) {
           localStorage.setItem('accessToken', response.accessToken);
           localStorage.setItem('refreshToken', response.refreshToken);
+          localStorage.setItem('email', response.email);
         }
       })
     );
@@ -39,11 +51,29 @@ export class AuthService {
     localStorage.removeItem('refreshToken');
   }
 
-  public refreshToken(refreshToken: string): Observable<{ accessToken: string; refreshToken: string }> {
-    return this.http.post<{ accessToken: string; refreshToken: string }>(`${this.api}/auth/refresh`, { refreshToken });
+  public refreshToken(refreshToken: string): Observable<AuthResponse> {
+    return this.http
+      .post<AuthResponse>(`${this.api}/auth/refresh`, { refreshToken })
+      .pipe(
+        tap(response => {
+          if (response.accessToken && response.refreshToken) {
+            localStorage.setItem('accessToken', response.accessToken);
+            localStorage.setItem('refreshToken', response.refreshToken);
+            localStorage.setItem('email', response.email);
+          }
+        })
+      );
   }
 
   public isLoggedIn(): boolean {
-    return !!this.getToken(); // Проверяем наличие accessToken
+    return !!this.getToken();
+  }
+
+  public getTokenAndRefresh(): Observable<AuthResponse | null> {
+    const refreshToken = localStorage.getItem('refreshToken');
+    if (!!refreshToken) {
+      return this.refreshToken(refreshToken)
+    }
+    return of(null);
   }
 }

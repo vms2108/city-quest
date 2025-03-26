@@ -12,4 +12,13 @@ export class AuthApiErrors extends ApiErrorsRecorderBase {
     USER_NOT_FOUND: 'Пользователь не найден.',
     PROFILE_BLOCKED: 'Профиль заблокирован.',
   };
+
+  // Отдельный Map для сообщений
+  private readonly messageMappings: Map<string, string> = new Map([
+    ['Invalid password', 'Неверный пароль'],
+  ]);
+
+  public getMessageMapping(message: string): string | undefined {
+    return this.messageMappings.get(message);
+  }
 }

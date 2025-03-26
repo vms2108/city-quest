@@ -18,6 +18,14 @@ const routes: Routes = [
     loadChildren: () => import('./route-modules/route-login/route-login.routing.module').then(m => m.RouteLoginRoutingModule),
   },
   {
+    path: 'privacy',
+    loadChildren: () => import('./route-modules/route-privacy/route-privacy.routing.module').then(m => m.RoutePrivacyRoutingModule),
+  },
+  {
+    path: 'cookie',
+    loadChildren: () => import('./route-modules/route-cookie/route-cookie.routing.module').then(m => m.RouteCookieRoutingModule),
+  },
+  {
     path: ':city',
     loadChildren: () => import('./route-modules/route-city/route-city.routing.module').then(m => m.RouteCityRoutingModule),
   },

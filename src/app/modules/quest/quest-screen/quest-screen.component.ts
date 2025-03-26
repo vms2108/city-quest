@@ -5,6 +5,8 @@ import { StorageService } from 'src/app/common/services/storage.service';
 import { FooterService } from 'src/app/root-components/footer/footer.service';
 import { HeaderService } from 'src/app/root-components/header/header.service';
 import { ALLCOMPONENTS, LazyLoadingScreenService } from 'src/app/ui/lazy-loading/lazy-loading-screen.service';
+import { AuthService } from 'src/app/common/auth/auth.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'cq-quest-screen',
@@ -33,18 +35,20 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
 
   public move = true;
 
+  private destroy = new Subject<void>();
+
   constructor(
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly lazyLoadingScreenService: LazyLoadingScreenService,
     private readonly footerService: FooterService,
     private readonly headerService: HeaderService,
     private readonly storageService: StorageService,
+    private readonly authService: AuthService,
   ) { }
 
   public ngOnChanges(): void {
     if (!!this.quest) {
       this.getScreen();
-      this.openScreen(this.currentScreen);
       this.footerService.changeVisible(false);
       this.headerService.changeVisible(false);
     }
@@ -67,18 +71,53 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
     this.changeDetectorRef.markForCheck();
   }
 
+  public goBackVisible(): boolean {
+    return !!this.index && this.currentScreen.type !== 'pay' && this.currentScreen.type !== 'email' && this.currentScreen.type !== 'wyg';
+  }
+
   private getScreen(): void {
     const data = this.storageService.getData(this.quest.id);
+    console.log(data);
     if (!data) {
+      console.log(this.quest);
       this.selectScreen(this.quest.screens![0]);
     } else {
-      this.selectScreen(this.quest.screens![+data]);
-      this.index = +data;
+      const index = this.findExistIndex(+data);
+      console.log(index);
+      if (this.quest.screens![index].type === 'pay') {
+        this.checkTokenAndRefresh(index);
+      } else {
+        this.goToScreen(index);
+      }
     }
+  }
+
+  private findExistIndex(index: number): number {
+    return !!this.quest.screens![index] ? index : this.findExistIndex(index - 1);
+  }
+
+  private checkTokenAndRefresh(index: number): void {
+    this.authService
+      .getTokenAndRefresh()
+      .pipe(takeUntil(this.destroy))
+      .subscribe(answer => {
+        if (answer) {
+          this.goToScreen(index);
+        } else {
+          const emailIndex = this.quest.screens!.findIndex(screen => screen.type === 'email');
+          this.goToScreen(emailIndex);
+        }
+      })
+  }
+
+  private goToScreen(index: number): void {
+    this.selectScreen(this.quest.screens![index]);
+    this.index = index;
   }
 
   private selectScreen(item: Screen): void {
     this.currentScreen = item;
+    this.openScreen(this.currentScreen);
     this.changeDetectorRef.markForCheck();
   }
 
@@ -90,6 +129,7 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
   }
 
   private async lazyLoadCurrentCard(screen: Screen): Promise<void> {
+    
     const quizCardFactory = await this.lazyLoadingScreenService.getComponentByScreen(screen);
     this.currentScreen = screen;
     this.changeDetectorRef.markForCheck();
@@ -103,6 +143,7 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
       this.next();
     });
     (newComponent.instance as any).ngOnChanges([new SimpleChange(null, screen, true)]);
+    this.saveData();
     if (this.quest.screens!.length > this.index + 1) {
       this.nextScreen = this.quest.screens![this.index + 1];
       this.lazyLoadNextCard();
@@ -137,7 +178,6 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
     this.index ++;
     window.scrollTo({ top: 0, behavior: 'smooth' });
     this.lazyLoadCurrentCard(this.currentScreen);
-    this.saveData();
     this.changeMove(false);
   }
 
@@ -146,7 +186,6 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
     this.index --;
     window.scrollTo({ top: 0, behavior: 'smooth' });
     this.lazyLoadCurrentCard(this.currentScreen);
-    this.saveData();
     this.changeMove(false);
   }
 

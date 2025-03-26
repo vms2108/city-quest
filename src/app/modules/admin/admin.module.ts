@@ -9,10 +9,10 @@ import { AdminScreenComponent } from './components/screen/admin-screen.component
 import { AdminQuestComponent } from './components/quest/admin-quest.component';
 import { adminReducer } from './store/admin.reducer';
 import { AdminEffects } from './store/admin.effects';
-import { QuestService } from './services/quest.service';
-import { ScreenService } from './services/screen.service';
-import { BlockService } from './services/block.service';
-import { CityService } from './services/city.service';
+import { AdminQuestService } from './services/admin-quest.service';
+import { AdminScreenService } from './services/admin-screen.service';
+import { AdminBlockService } from './services/admin-block.service';
+import { AdminCityService } from './services/admin-city.service';
 import { AdminMenuComponent } from './components/menu/admin-menu.component';
 import { ScreenEditorComponent } from './components/screen/editor/screen-editor.component';
 // import { QuestEditorComponent } from './components/quest/editor/quest-editor.component';
@@ -86,10 +86,10 @@ const EDITOR_COMPONENTS = [
   ],
   
   providers: [
-    QuestService,
-    ScreenService,
-    BlockService,
-    CityService
+    AdminQuestService,
+    AdminScreenService,
+    AdminBlockService,
+    AdminCityService
   ],
   exports: [AdminComponent]
 })

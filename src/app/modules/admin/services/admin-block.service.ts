@@ -5,7 +5,7 @@ import { Block } from 'src/app/common/interfaces/block.interface';
 import { API_URL_GATEWAY } from 'src/app/api-service.config';
 
 @Injectable()
-export class BlockService {
+export class AdminBlockService {
   constructor(
     private readonly http: HttpClient,
     @Inject(API_URL_GATEWAY) private readonly api: string

@@ -1,0 +1,11 @@
+<div class="card-stack">
+  <div class="card" 
+       *ngFor="let card of _cards; let i = index" 
+       [class.exit-left]="card.isExiting"
+       [class.moving]="card.isMoving"
+       [style.zIndex]="card.isExiting ? 100 : (_cards.length - i)"
+       [style.left.px]="i * 10"
+       [style.top.px]="i * 10">
+    <cq-fake-card [block]="card.description" [header]="header"></cq-fake-card>
+  </div>
+</div>

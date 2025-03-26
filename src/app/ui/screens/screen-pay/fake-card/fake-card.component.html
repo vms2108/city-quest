@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="header">
+    {{ header }}
+  </div>
+  <div class="wrapper">
+    <h2 *ngIf="block?.title" class="title" [innerHTML]="block?.title | safeHtml"></h2>
+    <p *ngIf="block?.text" class="text" [innerHTML]="block?.text | safeHtml"></p>
+
+    <div *ngIf="block?.subjects?.length" class="subjects">
+      <div
+        *ngFor="let subject of block.subjects"
+        class="subject"
+        [class.active]="subject === activeSubject"
+        (click)="subjectClick(subject)">
+          {{ subject }}
+        </div>
+    </div>
+
+    <img [src]="'/assets/images/pay-blocks/' + block.img" alt="">
+  </div>
+
+  
+  
+  <div class="btn-container">
+    <button class="btn">
+      {{ block.buttonText }}
+    </button>
+  </div>
+</div>
+
+

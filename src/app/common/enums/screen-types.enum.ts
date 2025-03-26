@@ -1,5 +1,7 @@
 export enum ScreenTypesEnum {
   SUBJECTS = 'subjects',
   COMMON = 'common',
-  NEED_EMAIL = 'need_email',
+  WYG = 'wyg',
+  EMAIL = 'email',
+  PAY = 'pay',
 }

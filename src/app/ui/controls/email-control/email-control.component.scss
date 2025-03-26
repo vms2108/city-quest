@@ -1,0 +1,80 @@
+@import 'src/app/ui/styles/colors';
+@import 'src/app/ui/styles/typography';
+
+.container {
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 0;
+  width: 100%;
+
+  input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 36px;
+    padding-left: 12px;
+    @include p3;
+    color: $primary;
+    border: 1px solid rgba(29, 54, 83, 0.17);
+    border-radius: 7px;
+
+    &:focus,
+    &:active,
+    &.fill {
+      outline: none;
+    }
+
+    &.focusout {
+      ~.error {
+        opacity: 1;
+      }
+    }
+  
+    &::placeholder {
+      @include p3;
+      color: $secondary2;
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      border: 1px solid rgba(29, 54, 83, 0.17);
+      -webkit-text-fill-color: $primary;
+      -webkit-box-shadow: 0 0 0 30px white inset !important;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+  }
+
+  .label {
+    margin-bottom: 2px;
+    @include p3;
+    color: $primary;
+    transition: all 0.2s;
+  }
+
+  .error {
+    min-height: 15px;
+    margin-top: 5px;
+    margin-left: 5px;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.4px;
+    color: $buttonColor;
+    transition: opacity 0.2s;
+  }
+}
+
+
+.list {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.item {
+  @include p4m;
+  color: $primary;
+  margin-right: 8px;
+  padding: 4px 12px;
+  background: #F8FAFC;
+  border-radius: 20px;
+}

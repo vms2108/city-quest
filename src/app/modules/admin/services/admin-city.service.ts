@@ -5,7 +5,7 @@ import { City } from 'src/app/common/interfaces/city.interface';
 import { API_URL_GATEWAY } from 'src/app/api-service.config';
 
 @Injectable()
-export class CityService {
+export class AdminCityService {
   constructor(
     private readonly http: HttpClient,
     @Inject(API_URL_GATEWAY) private readonly api: string

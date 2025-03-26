@@ -5,7 +5,7 @@ import { Quest } from 'src/app/common/interfaces/quest.interface';
 import { API_URL_GATEWAY } from 'src/app/api-service.config';
 
 @Injectable()
-export class QuestService {
+export class AdminQuestService {
   constructor(
     private readonly http: HttpClient,
     @Inject(API_URL_GATEWAY) private readonly api: string
