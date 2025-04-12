@@ -6,6 +6,7 @@ import { QuestItemModule } from 'src/app/ui/quest-item/quest-item.module';
 import { QuestHeaderComponent } from './header/quest-header.component';
 import { QuestScreenComponent } from './quest-screen/quest-screen.component';
 import { QuestComponent } from './quest.component';
+import { QuestMusicRatingComponent } from './music-rating/quest-music-rating.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { QuestComponent } from './quest.component';
     QuestComponent,
     QuestScreenComponent,
     QuestHeaderComponent,
+    QuestMusicRatingComponent,
   ],
   exports: [
     QuestComponent,

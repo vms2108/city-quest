@@ -32,8 +32,8 @@
 
 .modal-content {
   position: relative;
-  max-width: 720px; // Максимальная ширина модального окна
-  width: 90%; // Адаптивность для маленьких экранов
+  max-width: 720px;
+  width: calc(100% - 16px);
   border-radius: 16px;
   overflow: hidden;
 

@@ -35,7 +35,6 @@ export class CityComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     // Явно инициируем загрузку городов
-    console.log(0);
     this.store.dispatch(new GetCitiesFromServer());
     this.initializeCitiesAndParams();
     this.subscriptionStore();
@@ -61,8 +60,7 @@ export class CityComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy),
         filter(cities => cities.length > 0), // Ждем, пока города загрузятся
       )
-      .subscribe(cities => {
-        console.log('Cities loaded:', cities); // Проверяем, что города пришли
+      .subscribe(() => {
         this.readGetParams(); // Вызываем после загрузки городов
         this.changeDetectorRef.markForCheck();
       });
@@ -103,10 +101,8 @@ export class CityComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy),
         filter(data => !!data && !!data.quest.list.length),
         map(data => {
-          console.log(data);
           console.log(this.city);
           this.list = data!.quest.list!.filter(item => item.city_link === this.city);
-          console.log(this.list);
           this.changeDetectorRef.markForCheck();
         }),
       )

@@ -9,3 +9,9 @@
     <ng-template #nextContainer></ng-template>
   </div>
 </div>
+
+<cq-quest-music-rating 
+  *ngIf="showRatingModal"
+  (ratingSubmitted)="onRatingSubmitted($event)"
+  (closeModal)="onModalClosed()">
+</cq-quest-music-rating>

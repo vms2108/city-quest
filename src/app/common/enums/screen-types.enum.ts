@@ -4,4 +4,5 @@ export enum ScreenTypesEnum {
   WYG = 'wyg',
   EMAIL = 'email',
   PAY = 'pay',
+  FREE_ANSWER = 'free_answer',
 }

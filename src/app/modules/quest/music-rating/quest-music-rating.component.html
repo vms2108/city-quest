@@ -1,0 +1,18 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <h2>Насколько понравилась музыка на этом экране?</h2>
+    
+    <div class="rating">
+      <span *ngFor="let star of [1,2,3,4,5]" 
+            (click)="rating = star"
+            [class.selected]="star <= rating">
+        ★
+      </span>
+    </div>
+
+    <div class="buttons">
+      <button (click)="submitRating()" [disabled]="rating === 0">Оценить</button>
+      <button (click)="close()">Пропустить</button>
+    </div>
+  </div>
+</div>

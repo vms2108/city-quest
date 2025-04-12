@@ -120,7 +120,7 @@ export class AdminEffects {
     this.actions$.pipe(
       ofType(AdminActions.createScreen),
       mergeMap(action =>
-        this.screenService.createScreen(action.title, action.blocks, action.button_text, action.parameters).pipe(
+        this.screenService.createScreen(action.title, action.blocks, action.button_text, action.parameters, action.screenType).pipe(
           map(screen => AdminActions.createScreenSuccess({ screen })),
           catchError(() => of({ type: '[Admin] Create Screen Failed' }))
         )

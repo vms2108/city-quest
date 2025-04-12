@@ -7,6 +7,9 @@ import { HeaderService } from 'src/app/root-components/header/header.service';
 import { ALLCOMPONENTS, LazyLoadingScreenService } from 'src/app/ui/lazy-loading/lazy-loading-screen.service';
 import { AuthService } from 'src/app/common/auth/auth.service';
 import { Subject, takeUntil } from 'rxjs';
+import { TitleService } from 'src/app/common/services/title.service';
+import { BlockTypeEnum } from 'src/app/ui/constructor-distribution/enums/block-type.enum';
+import { AnalyticService } from 'src/app/common/services/analytic.service';
 
 @Component({
   selector: 'cq-quest-screen',
@@ -35,6 +38,8 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
 
   public move = true;
 
+  public showRatingModal = false;
+
   private destroy = new Subject<void>();
 
   constructor(
@@ -44,6 +49,8 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
     private readonly headerService: HeaderService,
     private readonly storageService: StorageService,
     private readonly authService: AuthService,
+    private readonly titleService: TitleService,
+    private readonly analyticService: AnalyticService,
   ) { }
 
   public ngOnChanges(): void {
@@ -51,6 +58,7 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
       this.getScreen();
       this.footerService.changeVisible(false);
       this.headerService.changeVisible(false);
+      this.titleService.setTitle(this.quest.description!);
     }
   }
 
@@ -75,15 +83,34 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
     return !!this.index && this.currentScreen.type !== 'pay' && this.currentScreen.type !== 'email' && this.currentScreen.type !== 'wyg';
   }
 
+  public onRatingSubmitted(rating: number): void {
+    this.sendMusicRating(rating);
+    this.onModalClosed();
+  }
+
+  public onModalClosed(): void {
+    this.showRatingModal = false;
+    this.changeDetectorRef.markForCheck();
+    this.next();
+  }
+
+  private sendMusicRating(rating: number): void {
+    const blockId = this.currentScreen!.blocks!.find(item => item.type === BlockTypeEnum.AUDIO)!.id;
+    this.analyticService
+      .saveMusicRating(blockId, rating)
+      .pipe(
+        takeUntil(this.destroy)
+      )
+      .subscribe();
+  }
+
   private getScreen(): void {
     const data = this.storageService.getData(this.quest.id);
-    console.log(data);
     if (!data) {
       console.log(this.quest);
       this.selectScreen(this.quest.screens![0]);
     } else {
       const index = this.findExistIndex(+data);
-      console.log(index);
       if (this.quest.screens![index].type === 'pay') {
         this.checkTokenAndRefresh(index);
       } else {
@@ -140,7 +167,7 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
     }
     newComponent.instance.screen = screen;
     newComponent.instance.goNext.subscribe(() => {
-      this.next();
+      this.checkMusicAndNext();
     });
     (newComponent.instance as any).ngOnChanges([new SimpleChange(null, screen, true)]);
     this.saveData();
@@ -159,6 +186,15 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
     }
     nextComponent.instance.screen = this.nextScreen;
     (nextComponent.instance as any).ngOnChanges([new SimpleChange(null, this.nextScreen, true)]);
+  }
+
+  private checkMusicAndNext(): void {
+    if (this.currentScreen!.blocks && this.currentScreen!.blocks.find(item => item.type === BlockTypeEnum.AUDIO)) {
+      this.showRatingModal = true;
+      this.changeDetectorRef.markForCheck();
+    } else {
+      this.next();
+    }
   }
 
   private next(): void {

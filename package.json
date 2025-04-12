@@ -8,6 +8,7 @@
     "build": "npm install && gulp build",
     "build:production": "npm install && gulp build:production",
     "build:stage": "npm install && gulp build:stage",
+    "build:prerender": "npm install && gulp build:prerender && gulp compress",
     "test": "ng test",
     "tslint": "ng lint",
     "update": "ng update",

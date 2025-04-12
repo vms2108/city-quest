@@ -70,20 +70,17 @@ export class QuestService {
 
   public getFullQuestByLink(link: string): Observable<Quest> {
     const email = localStorage.getItem('email');
-    console.log('Sending request with email:', email); // Лог для проверки
     return this.httpClient
       .get<Quest>(`${this.api}/for_users/quests/${link}`, { params: email ? { email } : {} })
       .pipe(
         map(quest => this.enrichQuestScreens(quest)),
         tap(updatedQuest => {
-          console.log(updatedQuest);
           this.questSubject.next(updatedQuest)
   })
       );
   }
 
   private enrichQuestScreens(quest: Quest): Quest {
-    console.log(quest);
     const screens = quest.screens ?? [];
     const screensCount = quest.screens_count ?? 0;
     const freeScreensCount = quest.free_screens_count ?? 0;

@@ -69,7 +69,7 @@ export class ScreenEditorComponent implements OnChanges {
           blocks: blockLinks,
           button_text: screenData.button_text,
           parameters: screenData.parameters,
-          screenType: screenData.type, // Добавляем type
+          screenType: screenData.type,
         })
       );
       this.notificationService.success('Экран успешно сохранён.');
