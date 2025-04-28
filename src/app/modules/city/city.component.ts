@@ -67,7 +67,6 @@ export class CityComponent implements OnInit, OnDestroy {
   }
 
   private readGetParams(): void {
-    console.log(1); // Теперь должно сработать
     const city = this.route.snapshot.paramMap.get('city') || '';
     let cities: { id: string; name: string; link: string }[] = [];
     this.cities$.subscribe(c => (cities = c));
@@ -101,7 +100,6 @@ export class CityComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy),
         filter(data => !!data && !!data.quest.list.length),
         map(data => {
-          console.log(this.city);
           this.list = data!.quest.list!.filter(item => item.city_link === this.city);
           this.changeDetectorRef.markForCheck();
         }),

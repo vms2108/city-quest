@@ -5,7 +5,7 @@ export interface Block {
   title: string;
   type: BlockTypeEnum;
   subtype?: string;
-  content: TextContent | ImageContent | AudioContent | InputContent | ChoiceContent;
+  content: TextContent | ImageContent | AudioContent | InputContent | ChoiceContent | string;
   order?: number;
   created_at?: string;
   updated_at?: string;

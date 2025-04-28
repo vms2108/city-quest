@@ -10,6 +10,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { TitleService } from 'src/app/common/services/title.service';
 import { BlockTypeEnum } from 'src/app/ui/constructor-distribution/enums/block-type.enum';
 import { AnalyticService } from 'src/app/common/services/analytic.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'cq-quest-screen',
@@ -51,6 +52,7 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
     private readonly authService: AuthService,
     private readonly titleService: TitleService,
     private readonly analyticService: AnalyticService,
+    private readonly router: Router,
   ) { }
 
   public ngOnChanges(): void {
@@ -197,6 +199,12 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
     }
   }
 
+  private redirectToParent(): void {
+    const currentUrl = this.router.url;
+    const parentUrl = currentUrl.split('/').slice(0, -1).join('/');
+    this.router.navigateByUrl(parentUrl);
+  }
+
   private next(): void {
     if (this.move || !this.currentScreen) {
       return;
@@ -206,6 +214,10 @@ export class QuestScreenComponent implements OnChanges, OnDestroy {
       this.nextScreen = this.quest.screens![this.index + 1];
       this.changeMove(true);
       setTimeout(() => this.stopMoveNext(), 400);
+    } else {
+      this.redirectToParent();
+      this.index = 0;
+      this.saveData();
     }
   }
 

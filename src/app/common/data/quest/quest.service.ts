@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { API_URL_GATEWAY } from 'src/app/api-service.config';
 import { Quest } from '../../interfaces/quest.interface';
-import { BEFORE_EMAIL, BEFORE_PAY, SCREEN_EMAIL, SCREEN_PAY } from '../../constants/default-screens';
+import { BEFORE_EMAIL, BEFORE_PAY, SCREEN_EMAIL, SCREEN_FINISH, SCREEN_PAY, SCREEN_REVIEW } from '../../constants/default-screens';
 import { Screen } from '../../interfaces/screen.interface';
 import { StorageService } from '../../services/storage.service';
 
@@ -100,8 +100,10 @@ export class QuestService {
     }));
   
     if (enrichedScreens.length < screensCount) {
-      this.addConditionalScreens(enrichedScreens, screensCount, freeScreensCount, paidScreensCount, questDescription!);
+      this.addConditionalScreens(enrichedScreens, screensCount, freeScreensCount, paidScreensCount, questDescription!, quest.id);
     }
+
+    this.addFinalScreens(enrichedScreens, screensCount, freeScreensCount, paidScreensCount, questDescription!, quest.id);
   
     return {...quest, screens: enrichedScreens};
   }
@@ -112,12 +114,14 @@ export class QuestService {
     freeScreensCount: number,
     paidScreensCount: number,
     questDescription: string,
+    questId: string,
   ): void {
     const commonParameters = {
       screens_count: screensCount,
       free_screens_count: freeScreensCount,
       paid_screens_count: paidScreensCount,
       quest_description: questDescription,
+      quest_id: questId,
     };
   
     if (!this.authService.getToken()) {
@@ -127,6 +131,27 @@ export class QuestService {
       screens.push(this.mergeScreenWithParameters(BEFORE_PAY, commonParameters));
     }
     screens.push(this.mergeScreenWithParameters(SCREEN_PAY, commonParameters));
+  }
+
+  private addFinalScreens(
+    screens: Screen[],
+    screensCount: number,
+    freeScreensCount: number,
+    paidScreensCount: number,
+    questDescription: string,
+    questId: string,
+  ): void {
+    const commonParameters = {
+      screens_count: screensCount,
+      free_screens_count: freeScreensCount,
+      paid_screens_count: paidScreensCount,
+      quest_description: questDescription,
+      quest_id: questId,
+    };
+  
+
+    screens.push(this.mergeScreenWithParameters(SCREEN_REVIEW, commonParameters));
+    screens.push(this.mergeScreenWithParameters(SCREEN_FINISH, commonParameters));
   }
 
   private mergeScreenWithParameters(screen: Screen, commonParameters: Record<string, any>): Screen {

@@ -6,20 +6,23 @@ import { ScreenCommonComponent } from 'src/app/ui/screens/screen-common/screen-c
 import { ScreenEmailComponent } from 'src/app/ui/screens/screen-email/screen-email.component';
 import { ScreenSubjectsComponent } from 'src/app/ui/screens/screen-subjects/screen-subjects.component';
 import { ScreenPayComponent } from 'src/app/ui/screens/screen-pay/screen-pay.component';
+import { ScreenReviewComponent } from 'src/app/ui/screens/screen-review/screen-review.component';
 
 export type ALLTYPES =
   typeof ScreenCommonComponent |
   typeof ScreenSubjectsComponent |
   typeof ScreenEmailComponent |
   typeof ScreenWygComponent |
-  typeof ScreenPayComponent;
+  typeof ScreenPayComponent |
+  typeof ScreenReviewComponent;
 
 export type ALLCOMPONENTS =
   ScreenCommonComponent |
   ScreenSubjectsComponent |
   ScreenEmailComponent |
   ScreenWygComponent |
-  ScreenPayComponent;
+  ScreenPayComponent |
+  ScreenReviewComponent;
 
 @Injectable()
 export class LazyLoadingScreenService {
@@ -50,6 +53,11 @@ export class LazyLoadingScreenService {
       case ScreenTypesEnum.PAY : {
         const { ScreenPayComponent } = await import('src/app/ui/screens/screen-pay/screen-pay.component');
         return ScreenPayComponent;
+      }
+
+      case ScreenTypesEnum.REVIEW : {
+        const { ScreenReviewComponent } = await import('src/app/ui/screens/screen-review/screen-review.component');
+        return ScreenReviewComponent;
       }
 
       default : {

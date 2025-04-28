@@ -1,0 +1,85 @@
+@import 'src/app/ui/styles/colors';
+@import 'src/app/ui/styles/typography';
+
+.container {
+  position: relative;
+}
+
+.wrapper {
+  width: calc(100% - 32px);
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.title {
+  margin-bottom: 12px;
+  @include h4;
+  color: $titleColor;
+  text-align: center;
+}
+
+.text {
+  margin-bottom: 4px;
+  @include p1;
+  color: $primary;
+}
+
+.rating {
+  margin-bottom: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  
+  span {
+    color: #ccc;
+    &.selected {
+      color: #ffd700;
+    }
+  }
+}
+
+.btn-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  padding-top: 4px;
+
+  &.fromAdmin {
+    position: static;
+  }
+}
+
+.btn {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 430px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  height: 48px;
+  @include l1;
+  color: $primaryInvert;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: $buttonColor;
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: initial;
+  }
+}
+
+.preloader {
+  position: static;
+  display: block;
+  animation: preloader-rotate 2s infinite linear;
+}
+
+@keyframes preloader-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+

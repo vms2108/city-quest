@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="wrapper">
+    <h2 *ngIf="screen.parameters?.title" class="title" [innerHTML]="screen.parameters?.title | safeHtml"></h2>
+    
+    <form [formGroup]="form" (ngSubmit)="apply()">
+      <div class="text">
+        Оценка
+      </div>
+      <div class="rating">
+        <span *ngFor="let star of [1,2,3,4,5]" 
+              (click)="form.get('rating')?.setValue(star)"
+              [class.selected]="star <= form.get('rating')?.value">
+          ★
+        </span>
+      </div>
+
+
+      <cq-textarea-control formControlName="review" label="Отзыв"></cq-textarea-control>
+
+      <div class="btn-container">
+        <button type="submit" class="btn" [disabled]="form.invalid || loading">Отправить</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+import { BlockTypeEnum } from "src/app/ui/constructor-distribution/enums/block-type.enum";
 import { Screen } from "../interfaces/screen.interface";
 
 export const BEFORE_EMAIL: Screen = {
@@ -43,4 +44,36 @@ export const SCREEN_PAY: Screen = {
     text: '',
   },
   type: 'pay',
+};
+
+export const SCREEN_REVIEW: Screen = {
+  id: '',
+  title: '',
+  button_text: 'Отправить',
+  parameters: {
+    title: 'Как вам прогулка?',
+    text: '',
+  },
+  type: 'review',
+};
+
+export const SCREEN_FINISH: Screen = {
+  id: '',
+  title: '',
+  button_text: 'До встречи!',
+  parameters: {
+    title: 'Спасибо!',
+    text: '',
+  },
+  blocks: [
+    {
+      "id": "7869dbf0-5c8f-489c-b032-d5acc3253f52",
+      "type": BlockTypeEnum.IMAGE,
+      "content": "/uploads/images/1745402773152-final-spb.jpg",
+      "created_at": "2025-04-23T10:06:13.000Z",
+      "updated_at": "2025-04-23T10:06:13.000Z",
+      "title": "final_spb"
+    },
+  ],
+  type: 'start',
 };
